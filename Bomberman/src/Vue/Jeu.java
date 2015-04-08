@@ -1,4 +1,4 @@
-package panel;
+package Vue;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import Controleur.Controleur;
 import jeu.Case;
 import jeu.Plateau;
 
@@ -17,11 +18,13 @@ public class Jeu extends JPanel implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Plateau plateau = new Plateau(); 
+	private Plateau plateau = new Plateau();
+	private Controleur controleur = null; 
 	
 	
-	public Jeu(){
+	public Jeu(Controleur controleur){
 		super();
+		this.controleur  = controleur;
 		this.addKeyListener(this);
 	}
 	

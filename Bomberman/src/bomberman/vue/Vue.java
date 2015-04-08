@@ -17,7 +17,7 @@ public class Vue extends JFrame{
 	private Jeu  jeu  = null;
 
 	public Vue (Controleur controleur){
-		super("bomberman");
+		super("Bomberman");
 	    this.setSize(800, 600);
 	    this.setMinimumSize( new Dimension(500,400) );
 	    this.setMaximumSize( new Dimension(800,600) );

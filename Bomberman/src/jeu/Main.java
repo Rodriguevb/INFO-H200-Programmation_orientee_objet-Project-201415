@@ -17,7 +17,7 @@ public class Main {
 		fenetre.setContentPane(menu);
 		fenetre.setVisible(true);
 
-		
+		//coucou
 	}
 
 }

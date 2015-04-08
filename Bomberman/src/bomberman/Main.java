@@ -2,7 +2,6 @@ package bomberman;
 
 import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
-import bomberman.vue.Menu;
 import bomberman.vue.Vue;
 
 public class Main {
@@ -17,11 +16,6 @@ public class Main {
 		controleur.link( vue );
 		controleur.link( modele );
 		
-
-		Menu menu = new Menu(vue);
-		
-		vue.setContentPane(menu);
-		vue.setVisible(true);
 	}
 
 }

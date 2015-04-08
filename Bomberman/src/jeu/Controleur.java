@@ -3,7 +3,7 @@ import javax.swing.Timer;
 
 
 public class Controleur {
-	private Plateau plateau; //coucou
+	private Plateau plateau; 
 	private keyListener kListener1;
 	private keyListener kListener2;
 	//private keyListener kListener3;

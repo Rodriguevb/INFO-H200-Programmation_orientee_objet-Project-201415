@@ -2,8 +2,6 @@ package panel;
 
 import javax.swing.JPanel;
 
-import fenetre.Fenetre;
-
 public class Menu extends JPanel {
 	
 	/**

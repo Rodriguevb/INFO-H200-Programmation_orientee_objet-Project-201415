@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import fenetre.Fenetre;
-
 public class Bouton_jouer extends JButton implements ActionListener{
 	
 	

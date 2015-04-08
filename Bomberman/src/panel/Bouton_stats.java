@@ -14,7 +14,7 @@ public class Bouton_stats extends JButton implements ActionListener{
 	
 	
 	public Bouton_stats() {
-		super( "Statistiques");
+		super("Statistiques");
 		this.addActionListener(this); // mets le bouton sur Žcoute de la souris
 	}
 

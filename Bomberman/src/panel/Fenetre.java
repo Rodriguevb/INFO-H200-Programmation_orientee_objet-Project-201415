@@ -1,4 +1,4 @@
-package fenetre;
+package panel;
 
 import java.awt.Dimension;
 

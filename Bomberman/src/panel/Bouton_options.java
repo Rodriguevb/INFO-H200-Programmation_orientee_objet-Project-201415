@@ -14,7 +14,7 @@ public class Bouton_options extends JButton implements ActionListener{
 	
 	
 	public Bouton_options() {
-		super( "Options");
+		super("Options");
 		this.addActionListener(this); // mets le bouton sur Žcoute de la souris
 	}
 

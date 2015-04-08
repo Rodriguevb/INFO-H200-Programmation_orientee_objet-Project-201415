@@ -1,6 +1,6 @@
 package jeu;
+import panel.Fenetre;
 import panel.Menu;
-import fenetre.Fenetre;
 
 
 

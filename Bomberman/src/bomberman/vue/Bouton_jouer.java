@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 
 public class Bouton_jouer extends JButton implements ActionListener{
 	

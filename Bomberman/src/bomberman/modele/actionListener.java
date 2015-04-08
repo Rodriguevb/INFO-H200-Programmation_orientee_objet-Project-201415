@@ -2,7 +2,7 @@ package bomberman.modele;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 
 public class actionListener implements ActionListener {
 		private Plateau plateau;

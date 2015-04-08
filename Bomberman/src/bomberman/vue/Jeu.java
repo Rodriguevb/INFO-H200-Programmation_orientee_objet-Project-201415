@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 import bomberman.modele.Case;
 import bomberman.modele.MyKeyListener;
 import bomberman.modele.Plateau;

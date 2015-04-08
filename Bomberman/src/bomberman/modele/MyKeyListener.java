@@ -2,7 +2,7 @@ package bomberman.modele;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 
 
 public class MyKeyListener implements KeyListener{

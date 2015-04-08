@@ -1,6 +1,6 @@
 package bomberman;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
 import bomberman.vue.Vue;
 

@@ -2,7 +2,7 @@ package bomberman.vue;
 
 import javax.swing.JPanel;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 
 public class Menu extends JPanel {
 	

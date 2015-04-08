@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import bomberman.Controleur.Controleur;
+import bomberman.controleur.Controleur;
 
 public class Vue extends JFrame{
 	

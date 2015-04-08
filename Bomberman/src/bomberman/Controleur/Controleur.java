@@ -1,4 +1,4 @@
-package bomberman.Controleur;
+package bomberman.controleur;
 
 import bomberman.modele.Modele;
 import bomberman.vue.Vue;

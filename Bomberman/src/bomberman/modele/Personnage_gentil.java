@@ -9,8 +9,7 @@ public class Personnage_gentil extends Personnage{
 	private int nombre_bombes;
 	
 	public Personnage_gentil(int x, int y, int nombre_vies, int nombre_bombes, String name, String nom_image){
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		this.nombre_vies = nombre_vies;
 		this.nombre_bombes = nombre_bombes;
 		this.name = name;

@@ -10,9 +10,7 @@ public class Plateau {
 	
 	public Plateau(){
 		Personnage_gentil personnage1 = new Personnage_gentil(50,50,1,1,"oeil","bob.png");
-		//Personnage_gentil personnage2 = new Personnage_gentil(750,750,1,1,"limace","limace.png");
 		liste_cases.add(personnage1);
-		//liste_cases.add(personnage2);
 		creation_plateau();
 		ajout_blocs();
 	}

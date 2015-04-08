@@ -11,8 +11,8 @@ public class Bombe extends Case{
 	private Timer timerBombe;
 	
 	public Bombe (int x,int y, int duree, int action_x, int action_y){
-		this.x = x;
-		this.y = y;
+		super(x,y);
+		
 		this.duree = duree;
 		this.action_x = action_x;
 		this.action_y = action_y;

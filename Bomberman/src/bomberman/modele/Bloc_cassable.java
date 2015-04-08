@@ -1,9 +1,11 @@
 package bomberman.modele;
 public class Bloc_cassable extends Bloc {
 	
-	public Bloc_cassable(int pos_x, int pos_y){
-		this.x = pos_x;
-		this.y = pos_y;
+	
+	
+	public Bloc_cassable(int x, int y){
+		super(x,y);
+		
 		this.nom_image = "brique.JPG";
 		
 	}

@@ -26,30 +26,36 @@ public class MyKeyListener implements KeyListener{
 		this.controleur = controleur;
 		this.plateau = plateau;
 		this.personnage = personnage;
-	}
-
-
-	public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == n_up && plateau.libre(plateau.getPositionX(personnage),plateau.getPositionY(personnage)-50))
-					plateau.getListe_cases().get(personnage).move(0,-1);
-				if (e.getKeyCode() == n_down && plateau.libre(plateau.getPositionX(personnage),plateau.getPositionY(personnage)+50))
-					plateau.getListe_cases().get(personnage).move(0, 1);
-				if (e.getKeyCode() == n_left && plateau.libre(plateau.getPositionX(personnage)-50,plateau.getPositionY(personnage)))
-					plateau.getListe_cases().get(personnage).move(-1, 0);
-				if (e.getKeyCode() == n_right && plateau.libre(plateau.getPositionX(personnage)+50,plateau.getPositionY(personnage)))
-					plateau.getListe_cases().get(personnage).move(1,0);
-				
-				if (e.getKeyCode() == n_drop && plateau.getListe_cases().get(personnage).getNombre_bombes() !=0) {
-
-					plateau.getListe_cases().add(new Bombe(plateau.getPositionX(personnage),plateau.getPositionY(personnage),10,5,5));
-					plateau.getListe_cases().get(personnage).Dim_Nombre_bombes();	
-				}
-				
-				controleur.repaint();
 		
+		System.out.println("dd");
 	}
 	
 	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		if (e.getKeyCode() == n_up && plateau.libre(plateau.getPositionX(personnage),plateau.getPositionY(personnage)-50)) {
+			plateau.getListe_cases().get(personnage).move(0,-1);
+		}
+		if (e.getKeyCode() == n_down && plateau.libre(plateau.getPositionX(personnage),plateau.getPositionY(personnage)+50)) {
+			plateau.getListe_cases().get(personnage).move(0, 1);
+		}
+		if (e.getKeyCode() == n_left && plateau.libre(plateau.getPositionX(personnage)-50,plateau.getPositionY(personnage))) {
+			plateau.getListe_cases().get(personnage).move(-1, 0);
+		}
+		if (e.getKeyCode() == n_right && plateau.libre(plateau.getPositionX(personnage)+50,plateau.getPositionY(personnage))) {
+			plateau.getListe_cases().get(personnage).move(1,0);
+		}
+		if (e.getKeyCode() == n_drop && plateau.getListe_cases().get(personnage).getNombre_bombes() !=0) {
+			plateau.getListe_cases().add(new Bombe(plateau.getPositionX(personnage),plateau.getPositionY(personnage),10,5,5));
+			plateau.getListe_cases().get(personnage).Dim_Nombre_bombes();	
+		}
+		
+		controleur.repaint();
+	}
+	
+	
+	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode()==n_up) 
 			plateau.getListe_cases().get(personnage).move(0,0);
@@ -65,6 +71,7 @@ public class MyKeyListener implements KeyListener{
 	}
 	
 	
+	@Override
 	public void keyTyped(KeyEvent arg0) {	
 	}
 	

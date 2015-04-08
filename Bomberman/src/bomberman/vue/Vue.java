@@ -28,6 +28,9 @@ public class Vue extends JFrame{
 	    menu = new Menu(controleur);
 	    jeu  = new Jeu(controleur);
 	    
+	    menu.setFocusable(true);
+	    jeu.setFocusable(true);
+	    
 	    this.switchToMenu();
 	}
 	
@@ -35,15 +38,19 @@ public class Vue extends JFrame{
 	public void switchToMenu() {
 		this.getContentPane().removeAll();
 		this.getContentPane().add( menu );
-		this.getContentPane().validate();
+		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus();
+		menu.requestFocus();
+		this.getContentPane().validate();
 	}
 	
 	public void switchToJeu() {
 		this.getContentPane().removeAll();
 		this.getContentPane().add( jeu );
-		this.getContentPane().validate();
+		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus();
+		jeu.requestFocus();
+		this.getContentPane().validate();
 	}
 	
 }

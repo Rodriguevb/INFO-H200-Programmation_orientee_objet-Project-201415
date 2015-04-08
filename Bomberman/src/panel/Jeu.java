@@ -17,7 +17,7 @@ public class Jeu extends JPanel implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Plateau plateau = new Plateau();
+	private Plateau plateau = new Plateau(); // plateau
 	
 	
 	public Jeu(){

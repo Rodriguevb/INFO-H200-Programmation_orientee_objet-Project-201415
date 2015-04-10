@@ -1,6 +1,6 @@
 package bomberman.modele;
 
-import java.awt.Container;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import bomberman.controleur.Explosion;
@@ -8,11 +8,11 @@ import bomberman.controleur.Explosion;
 public class Modele {
 	
 	/**
-	 * Classe représentant la base de donnée.
+	 * Classe reprŽsentant la base de donnŽes.
 	 */
 	private Plateau plateau = new Plateau();
 	private ArrayList<Personnage> personnages = new ArrayList<Personnage>();
-	private ArrayList<Bomb>       bombs       = new ArrayList<Bomb>();
+	private ArrayList<Bombe>       bombs       = new ArrayList<Bombe>();
 	private ArrayList<Explosion>  explosions  = new ArrayList<Explosion>();
 	
 	public Modele () {
@@ -31,7 +31,7 @@ public class Modele {
 		return personnages.get( idPersonnage );
 	}
 	
-	public Bomb getBomb(int idBomb) {
+	public Bombe getBomb(int idBomb) {
 		return bombs.get( idBomb );
 	}
 
@@ -39,7 +39,7 @@ public class Modele {
 		return personnages;
 	}
 
-	public ArrayList<Bomb> getListBomb() {
+	public ArrayList<Bombe> getListBomb() {
 		return bombs;
 	}
 
@@ -49,5 +49,9 @@ public class Modele {
 
 	public Explosion getExplosion(int idExplosion) {
 		return explosions.get( idExplosion );
+	}
+
+	public Case getCase(int x, int y) {
+		return plateau.getMatrice().get(x,y);
 	}
 }

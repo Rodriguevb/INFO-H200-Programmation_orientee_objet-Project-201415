@@ -14,7 +14,7 @@ public class Menu extends JPanel {
 
 	public Menu(Controleur controleur) {
 		this.add( new Bouton_jouer(controleur) );
-		this.add( new Bouton_options() );
+		this.add( new Bouton_options(controleur) );
 		this.add( new Bouton_stats() );
 	}
 

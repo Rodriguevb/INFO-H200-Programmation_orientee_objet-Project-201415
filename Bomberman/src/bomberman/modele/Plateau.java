@@ -7,7 +7,7 @@ public class Plateau {
 	/**
 	 * Classe contenant la matrice de la carte et facilitant les changements.
 	 */
-	private Matrice matrice = new Matrice(17,17);
+	private Matrice matrice;
 	
 	
 	public void genererTerrain(int width, int height) {
@@ -25,14 +25,14 @@ public class Plateau {
 		
 		// On ajoute les cases incassables en haut et en bas.
 		for ( int x = 0; x < width; ++x ){
-			matrice.get(x, 0).setOccupation( new BlocIncassable() );
-			matrice.get(x, height-1).setOccupation( new BlocIncassable() );
+			matrice.get(x, 0).setPossedeBlocIncassable( true );
+			matrice.get(x, height-1).setPossedeBlocIncassable( true );
 		}
 		
 		// On ajoute les cases incassable à gauche et à droite.
 		for ( int y = 0; y < height; ++y ){
-			matrice.get(0, y).setOccupation( new BlocIncassable() );
-			matrice.get(width-1, y).setOccupation( new BlocIncassable() );
+			matrice.get(0, y).setPossedeBlocIncassable( true );
+			matrice.get(width-1, y).setPossedeBlocIncassable( true );
 		}
 	}
 	
@@ -44,12 +44,16 @@ public class Plateau {
 		// On ajoute les cases incassables
 		for ( int x = 2; x < width; x+=2 ){
 			for ( int y = 2; y < height; y+=2 ){
-				matrice.get(x, y).setOccupation( new BlocIncassable() );
+				matrice.get(x, y).setPossedeBlocIncassable( true );
 			}
 		}
 	}
 	
 	
+	/**
+	 * Remplir la matrice de blocs cassables un peu partout.
+	 * @param matrice La matrice qu'on veut remplir.
+	 */
 	public static void addRandom( Matrice matrice ) {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
@@ -62,7 +66,7 @@ public class Plateau {
 			int y = randomInt(height);
 			if ( matrice.get(x, y).estLibre() ) {
 				added += 1;
-				matrice.get(x, y).setOccupation( new BlocCassable() );
+				matrice.get(x, y).setPossedeBlocCassable( true );
 			}
 		}
 	}
@@ -72,21 +76,21 @@ public class Plateau {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
 		
-		matrice.get(1,1).setOccupation( null );
-		matrice.get(2,1).setOccupation( null );
-		matrice.get(1,2).setOccupation( null );
+		matrice.get(1,1).rendreLibre();
+		matrice.get(2,1).rendreLibre();
+		matrice.get(1,2).rendreLibre();
 		
-		matrice.get(width-2,1).setOccupation( null );
-		matrice.get(width-3,1).setOccupation( null );
-		matrice.get(width-2,2).setOccupation( null );
+		matrice.get(width-2,1).rendreLibre();
+		matrice.get(width-3,1).rendreLibre();
+		matrice.get(width-2,2).rendreLibre();
 		
-		matrice.get(width-2,height-2).setOccupation( null );
-		matrice.get(width-3,height-2).setOccupation( null );
-		matrice.get(width-2,height-3).setOccupation( null );
+		matrice.get(width-2,height-2).rendreLibre();
+		matrice.get(width-3,height-2).rendreLibre();
+		matrice.get(width-2,height-3).rendreLibre();
 		
-		matrice.get(1,height-2).setOccupation( null );
-		matrice.get(1,height-3).setOccupation( null );
-		matrice.get(2,height-2).setOccupation( null );
+		matrice.get(1,height-2).rendreLibre();
+		matrice.get(1,height-3).rendreLibre();
+		matrice.get(2,height-2).rendreLibre();
 	}
 	
 	

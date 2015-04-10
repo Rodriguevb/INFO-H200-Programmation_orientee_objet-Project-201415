@@ -14,7 +14,7 @@ import bomberman.controleur.ListenerPlayer;
 public class Jeu extends JPanel {
 	
 	/**
-	 * 
+	 * Permettre d'afficher les constituants du plateau
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
@@ -28,6 +28,10 @@ public class Jeu extends JPanel {
 	ImageIcon img_explosion  = new ImageIcon("explosion.png");
 	
 	
+	/**
+	 * Constructeur de la classe Jeu
+	 * @param controleur
+	 */
 	public Jeu(Controleur controleur){
 		super();
 		this.controleur  = controleur;
@@ -48,42 +52,45 @@ public class Jeu extends JPanel {
 	}
 	
 	
+	/**
+	 * Afficher les différents éléments du plateau
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		// On affiche le fond d'Ècran.
+		// Afficher le fond d'écran.
 		g2d.drawImage(new ImageIcon("chambre.png").getImage(), 0, 0, null);
 		
 		
-		// On affiche la map.
+		// Afficher le plateau de départ avec les blocs.
 		for( int x = 0; x < controleur.getMapWidth(); ++x ) {
 			for( int y = 0; y < controleur.getMapHeight(); ++y ) {
-
+				
 				if ( controleur.estBlocIncassable(x,y) ) {
-					g2d.drawImage( blocIncassable.getImage(), x*blocIncassable.getIconWidth(), y*blocIncassable.getIconHeight(), null);
+					g2d.drawImage( blocIncassable.getImage(), x*taille_img, y*taille_img, null);
 				}
 				if ( controleur.estBlocCassable(x,y) ) {
-					g2d.drawImage( blocCassable.getImage(), x*blocCassable.getIconWidth(), y*blocCassable.getIconHeight(), null);
+					g2d.drawImage( blocCassable.getImage(), x*taille_img, y*taille_img, null);
 				}
 				
 			}
 		}
 		
-		// On affiche les bombes.
+		// Afficher les bombes.
 		for ( int id = 0; id < controleur.getSizeBomb(); ++id ){
 			Point point = controleur.getBombPosition( id );
 			g2d.drawImage( img_bomb.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
-		// On affiche les explosion.
+		// Afficher les explosions.
 		for ( int id = 0; id < controleur.getSizeExplosion(); ++id ){
 			Point point = controleur.getExplosionPosition( id );
 			g2d.drawImage( img_explosion.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
-		// On affiche les personnages.
-		for ( int id = 0; id < controleur.getSizePersonnage(); ++id ){
+		// Afficher les personnages.
+		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
 			Point point = controleur.getPersonnagePosition( id );
 			g2d.drawImage( img_personnage.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}

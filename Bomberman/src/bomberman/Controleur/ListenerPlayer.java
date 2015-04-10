@@ -4,7 +4,10 @@ import java.awt.event.KeyListener;
 
 
 public class ListenerPlayer implements KeyListener{
-		
+	
+	/**
+	 * Classe permettant d'intercepter les actions du joueur
+	 */
 	private int key_up;
 	private int key_down;
 	private int key_left;
@@ -13,7 +16,7 @@ public class ListenerPlayer implements KeyListener{
 	private final Controleur controleur;
 	private final int idPersonnage;
 	
-	
+
 	public ListenerPlayer(Controleur controleur, int idPersonnage){
 		this.idPersonnage  = idPersonnage;
 		this.controleur = controleur;
@@ -57,6 +60,9 @@ public class ListenerPlayer implements KeyListener{
 		}
 		if (keyEvent.getKeyCode() == key_drop ) {
 			controleur.dropBomb( idPersonnage );
+		}
+		if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE ) {
+			controleur.switchToMenu();
 		}
 		
 		

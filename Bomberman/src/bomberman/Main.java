@@ -13,8 +13,8 @@ public class Main {
 		Modele modele         = new Modele();
 		Vue vue               = new Vue(controleur);
 		
-		controleur.link( vue );
-		controleur.link( modele );
+		controleur.link( vue ); // lier la vue au controleur
+		controleur.link( modele ); // lier le modèle au controleur
 		
 	}
 

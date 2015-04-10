@@ -13,8 +13,9 @@ public class Vue extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Menu menu = null;
-	private Jeu  jeu  = null;
+	private final Menu menu;
+	private final Jeu  jeu;
+	private final Object option;
 
 	public Vue (Controleur controleur){
 		super("Bomberman");
@@ -27,6 +28,7 @@ public class Vue extends JFrame{
 	    
 	    menu = new Menu(controleur);
 	    jeu  = new Jeu(controleur);
+	    option = null; // TODO: Option(controleur)
 	    
 	    menu.setFocusable(true);
 	    jeu.setFocusable(true);
@@ -48,8 +50,18 @@ public class Vue extends JFrame{
 		this.getContentPane().removeAll();
 		this.getContentPane().add( jeu );
 		this.getContentPane().setFocusable( true );
-		this.getContentPane().requestFocus();
+		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();
+		this.getContentPane().validate();
+	}
+
+
+	public void switchToOptions() {
+		this.getContentPane().removeAll();
+		//TODO this.getContentPane().add( option );
+		this.getContentPane().setFocusable( true );
+		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
+		//TODO option.requestFocus();
 		this.getContentPane().validate();
 	}
 	

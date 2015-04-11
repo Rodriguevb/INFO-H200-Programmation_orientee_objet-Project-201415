@@ -24,8 +24,8 @@ public class Controleur {
 	
 	
 	/**
-	 * Lie le modèle au controleur
-	 * @param modele Le modèle.
+	 * Lie le modÔøΩle au controleur
+	 * @param modele Le modÔøΩle.
 	 */
 	public void link(Modele modele) {
 		this.modele = modele;
@@ -191,7 +191,7 @@ public class Controleur {
 
 
 	/**
-	 * Lâche une bombe à l'endroit du personnage
+	 * L‚Ä∞che une bombe ÀÜ l'endroit du personnage
 	 * @param idPersonnage L'ID du personnage
 	 */
 	public void dropBomb(int idPersonnage) {
@@ -206,9 +206,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Savoir si la case possède une bombe ou non.
-	 * @param x,y Position de la case à vérifier.
-	 * @return Vrai si il y a une bombe à l'emplacement.
+	 * Savoir si la case possÔøΩde une bombe ou non.
+	 * @param x,y Position de la case ÀÜ v≈Ωrifier.
+	 * @return Vrai si il y a une bombe ÀÜ l'emplacement.
 	 */
 	private boolean casePasDeBomb(int x, int y) {	
 		return !modele.getCase(x,y).getPossedeBombe();
@@ -254,7 +254,7 @@ public class Controleur {
 
 
 	/**
-	 * Savoir le nombre d'explosions présentes sur le plateau
+	 * Savoir le nombre d'explosions pr≈Ωsentes sur le plateau
 	 * @return Le nombre d'explosions
 	 */
 	public int getSizeExplosion() {
@@ -276,9 +276,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaîne 
+	 * Ajoute des explosions en cha‚Äùne 
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnée de l'explosion
+	 * @param y L'ordonn≈Ωe de l'explosion
 	 */
 	public void addExplosionUp(int x, int y){
 		y -= 1;
@@ -294,9 +294,9 @@ public class Controleur {
 
 	
 	/**
-	 * Ajoute des explosions en chaîne
+	 * Ajoute des explosions en cha‚Äùne
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnée de l'explosion
+	 * @param y L'ordonn≈Ωe de l'explosion
 	 */
 	public void addExplosionDown(int x, int y){
 		y += 1;
@@ -312,9 +312,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaîne
+	 * Ajoute des explosions en cha‚Äùne
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnée de l'explosion
+	 * @param y L'ordonn≈Ωe de l'explosion
 	 */
 	public void addExplosionLeft(int x, int y){
 		x -= 1;
@@ -330,9 +330,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaîne
+	 * Ajoute des explosions en cha‚Äùne
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnée de l'explosion
+	 * @param y L'ordonn≈Ωe de l'explosion
 	 */
 	public void addExplosionRight(int x, int y){
 		x += 1;
@@ -350,7 +350,7 @@ public class Controleur {
 	/**
 	 * Supprimer le bloc cassable
 	 * @param x L'abscisse du bloc cassable
-	 * @param y L'ordonnée du bloc cassable
+	 * @param y L'ordonn≈Ωe du bloc cassable
 	 */
 	private void removeBlocCassable(int x, int y) {
 		modele.getCase(x,y).rendreLibre();
@@ -360,10 +360,10 @@ public class Controleur {
 	/**
 	 * Ajouter une explosion 
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnée de l'explosion
+	 * @param y L'ordonn≈Ωe de l'explosion
 	 */
 	private void addExplosion(int x, int y){
-		modele.getListExplosion().add( new Explosion(x,y,this,null) );
+		modele.getListExplosion().add( new Explosion(x,y,1000,this,null) );
 	}
 
 

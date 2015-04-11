@@ -19,7 +19,7 @@ public class Bombe extends PossedePosition {
 	public Bombe(int x, int y, Controleur controleur) {
 		super(x,y);
 		
-		this.timer = new Timer(3000, new Explosion(x,y,controleur, this) );
+		this.timer = new Timer(3000, new Explosion(x,y,4000,controleur, this) );
 		this.timer.setRepeats(false);
 		this.timer.start();
 	}

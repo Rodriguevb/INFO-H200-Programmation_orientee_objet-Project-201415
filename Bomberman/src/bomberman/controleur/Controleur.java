@@ -276,7 +276,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha”ne 
+	 * Ajoute des explosions en cha�?ne 
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
@@ -294,7 +294,7 @@ public class Controleur {
 
 	
 	/**
-	 * Ajoute des explosions en cha”ne
+	 * Ajoute des explosions en cha�?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
@@ -312,7 +312,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha”ne
+	 * Ajoute des explosions en cha�?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
@@ -330,7 +330,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha”ne
+	 * Ajoute des explosions en cha�?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */

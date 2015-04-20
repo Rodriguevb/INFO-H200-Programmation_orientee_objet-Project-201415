@@ -14,9 +14,9 @@ public class Modele {
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Bombe>       bombs       = new ArrayList<Bombe>();
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
+	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	
 	public Modele () {
-		
 		plateau.genererTerrain(17, 17);
 	}
 	
@@ -79,6 +79,10 @@ public class Modele {
 	public Bombe getBomb(int idBomb) {
 		return bombs.get( idBomb );
 	}
+	
+	public Mort getMort(int idMort) {
+		return morts.get( idMort );
+	}
 
 	public ArrayList<Personnage> getListPersonnages() {
 		return personnages;
@@ -90,6 +94,10 @@ public class Modele {
 
 	public ArrayList<Explosion> getListExplosion() {
 		return explosions;
+	}
+	
+	public ArrayList<Mort> getListMorts() {
+		return morts;
 	}
 
 	public Explosion getExplosion(int idExplosion) {

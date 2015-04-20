@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import bomberman.modele.Bombe;
 import bomberman.modele.Modele;
+import bomberman.modele.Mort;
 import bomberman.modele.Personnage;
 import bomberman.vue.Vue;
 
@@ -24,8 +25,8 @@ public class Controleur {
 	
 	
 	/**
-	 * Lie le mod�le au controleur
-	 * @param modele Le mod�le.
+	 * Lie le modele au controleur
+	 * @param modele Le modele.
 	 */
 	public void link(Modele modele) {
 		this.modele = modele;
@@ -213,6 +214,28 @@ public class Controleur {
 	public int getNumberPersonnage() {
 		return modele.getListPersonnages().size();
 	}
+	
+
+	/**
+	 * Savoir le nombre de morts sur le tableau
+	 * @return Le nombre de morts
+	 */
+	public int getSizeMorts() {
+		return modele.getListMorts().size();
+	}
+
+	/**
+	 * Retourne la position du personnage elimine
+	 * @param idPersonnage L'ID du personnage elimine
+ 	 * @return La position
+	 */
+	public Point getMortPosition(int id) {
+		Mort mort = modele.getMort( id );
+		int x = mort.getX();
+		int y = mort.getY();
+		return new Point(x,y);
+	}
+	
 
 
 	/**
@@ -231,8 +254,8 @@ public class Controleur {
 	
 	
 	/**
-	 * Savoir si la case poss�de une bombe ou non.
-	 * @param x,y Position de la case ˆ vŽrifier.
+	 * Savoir si la case possede une bombe ou non.
+	 * @param x,y Position de la case ˆ verifier.
 	 * @return Vrai si il y a une bombe ˆ l'emplacement.
 	 */
 	private boolean casePasDeBomb(int x, int y) {	
@@ -287,7 +310,6 @@ public class Controleur {
 		return modele.getListExplosion().size();
 	}
 
-
 	/**
 	 * Savoir la position de l'explosion
 	 * @param idExplosion L'ID de l'explosion
@@ -323,6 +345,7 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));
 			}
 			addExplosion(x,y);
 		}
@@ -330,7 +353,7 @@ public class Controleur {
 
 	
 	/**
-	 * Ajoute des explosions en cha�?ne
+	 * Ajoute des explosions en chaine
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
@@ -351,6 +374,7 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));
 			}
 			addExplosion(x,y);
 		}
@@ -358,9 +382,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha�?ne
+	 * Ajoute des explosions en chaine
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnŽe de l'explosion
+	 * @param y L'ordonnee de l'explosion
 	 */
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
@@ -379,6 +403,7 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));
 			}
 			addExplosion(x,y);
 		}
@@ -407,6 +432,7 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));
 			}
 			addExplosion(x,y);
 		}

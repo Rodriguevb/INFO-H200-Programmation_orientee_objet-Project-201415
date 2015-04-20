@@ -210,7 +210,7 @@ public class Controleur {
 		int y = point.y;
 		
 		if ( casePasDeBomb( x,y ) ){
-			modele.getListBomb().add( new Bombe(x,y, this) );
+			modele.getListBomb().add( new Bombe(x,y,this) );
 		}
 	}
 	
@@ -255,10 +255,11 @@ public class Controleur {
 		modele.getListExplosion().add( explosion );
 		int x = explosion.getX();
 		int y = explosion.getY();
-		addExplosionUp(x,y);
-		addExplosionDown(x,y);
-		addExplosionLeft(x,y);
-		addExplosionRight(x,y);
+		int portee = explosion.getPortee();
+		addExplosionUp(x,y,portee);
+		addExplosionDown(x,y,portee);
+		addExplosionLeft(x,y,portee);
+		addExplosionRight(x,y,portee);
 		vue.repaint();
 	}
 
@@ -290,11 +291,13 @@ public class Controleur {
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
-	public void addExplosionUp(int x, int y){
+	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) ){
+		int p = 0;
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
 			addExplosion(x,y);
 			y -= 1;
+			p += 1;
 		}
 		if( estBlocCassable(x,y) ){
 			removeBlocCassable(x,y);
@@ -308,11 +311,13 @@ public class Controleur {
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
-	public void addExplosionDown(int x, int y){
+	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) ){
+		int p = 0;
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
 			addExplosion(x,y);
 			y += 1;
+			p += 1;
 		}
 		if( estBlocCassable(x,y) ){
 			removeBlocCassable(x,y);
@@ -326,11 +331,13 @@ public class Controleur {
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
-	public void addExplosionLeft(int x, int y){
+	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) ){
+		int p = 0;
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
 			addExplosion(x,y);
 			x -= 1;
+			p += 1;
 		}
 		if( estBlocCassable(x,y) ){
 			removeBlocCassable(x,y);
@@ -344,11 +351,13 @@ public class Controleur {
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnŽe de l'explosion
 	 */
-	public void addExplosionRight(int x, int y){
+	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) ){
+		int p = 0;
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
 			addExplosion(x,y);
 			x += 1;
+			p += 1;
 		}
 		if( estBlocCassable(x,y) ){
 			removeBlocCassable(x,y);
@@ -373,7 +382,7 @@ public class Controleur {
 	 * @param y L'ordonnŽe de l'explosion
 	 */
 	private void addExplosion(int x, int y){
-		modele.getListExplosion().add( new Explosion(x,y,1000,this,null) );
+		modele.getListExplosion().add( new Explosion(x,y,1000,0,this,null) );
 	}
 
 

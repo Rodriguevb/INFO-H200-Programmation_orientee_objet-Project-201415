@@ -294,12 +294,12 @@ public class Controleur {
 	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
 			addExplosion(x,y);
 			y -= 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) ){
+		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
 			addExplosion(x,y);
 		}
@@ -314,12 +314,12 @@ public class Controleur {
 	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
 			addExplosion(x,y);
 			y += 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) ){
+		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
 			addExplosion(x,y);
 		}
@@ -334,12 +334,12 @@ public class Controleur {
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
 			addExplosion(x,y);
 			x -= 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) ){
+		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
 			addExplosion(x,y);
 		}
@@ -354,12 +354,12 @@ public class Controleur {
 	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
 			addExplosion(x,y);
 			x += 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) ){
+		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
 			addExplosion(x,y);
 		}

@@ -172,6 +172,10 @@ public class Controleur {
 		return modele.getCase( x,y ).getPossedeBlocCassable();
 	}
 	
+	public boolean estPersonnage(int x, int y){
+		return modele.PersonnageSurCase(x,y);
+	}
+	
 
 	/**
 	 * Savoir la longueur du plateau
@@ -294,13 +298,21 @@ public class Controleur {
 	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
 			addExplosion(x,y);
 			y -= 1;
 			p += 1;
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			addExplosion(x,y);
+		}
+		if (estPersonnage(x,y) && p<=portee){
+			modele.getPersonnageSurPlateau(x, y).perdreVie();
+			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
+			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
+				removePersonnage(x,y);
+			}
 			addExplosion(x,y);
 		}
 	}
@@ -314,13 +326,21 @@ public class Controleur {
 	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
 			addExplosion(x,y);
 			y += 1;
 			p += 1;
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			addExplosion(x,y);
+		}
+		if (estPersonnage(x,y) && p<=portee){
+			modele.getPersonnageSurPlateau(x, y).perdreVie();
+			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
+			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
+				removePersonnage(x,y);
+			}
 			addExplosion(x,y);
 		}
 	}
@@ -334,13 +354,21 @@ public class Controleur {
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
 			addExplosion(x,y);
 			x -= 1;
 			p += 1;
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			addExplosion(x,y);
+		}
+		if (estPersonnage(x,y) && p<=portee){
+			modele.getPersonnageSurPlateau(x, y).perdreVie();
+			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
+			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
+				removePersonnage(x,y);
+			}
 			addExplosion(x,y);
 		}
 	}
@@ -354,13 +382,21 @@ public class Controleur {
 	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
 			addExplosion(x,y);
 			x += 1;
 			p += 1;
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			addExplosion(x,y);
+		}
+		if (estPersonnage(x,y) && p<=portee){
+			modele.getPersonnageSurPlateau(x, y).perdreVie();
+			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
+			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
+				removePersonnage(x,y);
+			}
 			addExplosion(x,y);
 		}
 	}
@@ -373,6 +409,10 @@ public class Controleur {
 	 */
 	private void removeBlocCassable(int x, int y) {
 		modele.getCase(x,y).rendreLibre();
+	}
+	
+	private void removePersonnage(int x, int y){
+		modele.removePersonnageDuPlateau(x,y);
 	}
 	
 	

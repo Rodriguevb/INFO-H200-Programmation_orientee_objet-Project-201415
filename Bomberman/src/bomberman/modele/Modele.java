@@ -31,6 +31,39 @@ public class Modele {
 		return personnages.get( idPersonnage );
 	}
 	
+	public int getIdPersonnage(int x, int y){
+		int idPersonnage = -1;
+		for (int id = 0; id < personnages.size(); ++id){
+			if (personnages.get(id).getX() == x && personnages.get(id).getY() == y){
+				idPersonnage = id;
+			}
+		}
+		return idPersonnage;
+	}
+	
+	public Personnage getPersonnageSurPlateau(int x, int y){
+		for (Personnage personnage: personnages){
+			if (personnage.getX()==x && personnage.getY() == y){
+				return personnage;
+			}
+		}
+		return null;
+	}
+	
+	public boolean PersonnageSurCase(int x, int y){
+		boolean surCase = false;
+		String SsurCase = "false";
+		for (Personnage personnage: personnages){
+			if (personnage.getX() == x && personnage.getY() == y){
+				surCase = true;
+				SsurCase = "true";
+			}
+		}
+
+		System.out.println(SsurCase);
+		return surCase;
+	}
+	
 	public Bombe getBomb(int idBomb) {
 		return bombs.get( idBomb );
 	}
@@ -53,5 +86,10 @@ public class Modele {
 
 	public Case getCase(int x, int y) {
 		return plateau.getMatrice().get(x,y);
+	}
+	
+	public void removePersonnageDuPlateau(int x, int y){
+		int id = getIdPersonnage(x,y);
+		personnages.remove(id);
 	}
 }

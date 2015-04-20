@@ -5,11 +5,13 @@ public class Personnage extends PossedePosition {
 	
 	private String nom_image;
 	private String nom;
+	private int nb_vies;
 	
 	public Personnage(int x, int y, String nom) {
 		super(x,y);
 		this.nom = nom;
 		this.nom_image = nom+"Face.png";
+		this.nb_vies = 1;
 	}
 
 	public String getNom() {
@@ -26,5 +28,13 @@ public class Personnage extends PossedePosition {
 
 	public void setNom_image(String nom_image) {
 		this.nom_image = nom_image;
+	}
+	
+	public int getNb_vies(){
+		return nb_vies;
+	}
+	
+	public void perdreVie(){
+		this.nb_vies -= 1;
 	}
 }

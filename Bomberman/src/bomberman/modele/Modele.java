@@ -8,25 +8,37 @@ import bomberman.controleur.Explosion;
 public class Modele {
 	
 	/**
-	 * Classe reprsentant la base de donnes.
+	 * Classe representant la base de donnees.
 	 */
 	private Plateau plateau = new Plateau();
-	private ArrayList<Personnage> personnages = new ArrayList<Personnage>();
+	private ArrayList<Personnage> personnages;
 	private ArrayList<Bombe>       bombs       = new ArrayList<Bombe>();
-	private ArrayList<Explosion>  explosions  = new ArrayList<Explosion>();
+	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	
 	public Modele () {
 		
 		plateau.genererTerrain(17, 17);
-		
-		personnages.add( new Personnage(1,1,"Mickey") );
 	}
+	
 	
 	public Plateau getPlateau() {
 		return plateau;
 	}
 
 
+	public void createPlayers(int nb){
+	personnages = new ArrayList<Personnage>();
+		personnages.add(new Personnage(1,1,"Mickey"));
+		if (nb >= 2) { personnages.add(new Personnage(1,15,"Mickey"));
+			if (nb >= 3) { personnages.add(new Personnage (15, 1, "Mickey"));
+				if (nb == 4) { personnages.add(new Personnage (15, 15, "Mickey")); 
+				}
+			}
+		}
+		
+	}
+	
+	
 	public Personnage getPersonnage(int idPersonnage) {
 		return personnages.get( idPersonnage );
 	}

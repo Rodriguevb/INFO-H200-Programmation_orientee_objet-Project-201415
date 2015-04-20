@@ -1,4 +1,5 @@
 package bomberman.vue;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +20,7 @@ public class Bouton_options extends JButton implements ActionListener{
 	public Bouton_options(Controleur controleur) {
 		super("Options");
 		this.controleur = controleur;
-		this.addActionListener(this); // mets le bouton sur Žcoute de la souris
+		this.addActionListener(this); // met le bouton sur ecoute de la souris
 	}
 
 

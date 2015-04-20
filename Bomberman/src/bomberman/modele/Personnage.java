@@ -11,7 +11,7 @@ public class Personnage extends PossedePosition {
 		super(x,y);
 		this.nom = nom;
 		this.nom_image = nom+"Face.png";
-		this.nb_vies = 1;
+		this.nb_vies = 2;
 	}
 
 	public String getNom() {

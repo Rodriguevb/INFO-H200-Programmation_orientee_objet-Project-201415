@@ -19,7 +19,7 @@ public class Vue extends JFrame{
 
 	public Vue (Controleur controleur){
 		super("Bomberman");
-	    this.setSize(800, 600);
+	    this.setSize(860, 890);
 	    this.setMinimumSize( new Dimension(500,400) );
 	    this.setMaximumSize( new Dimension(800,600) );
 	    this.setLocationRelativeTo(null); // Centre la fenetre au milieu de l'Žcran

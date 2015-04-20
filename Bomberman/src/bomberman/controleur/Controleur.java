@@ -59,6 +59,17 @@ public class Controleur {
 		vue.repaint();
 	}
 	
+	public void NbJoueurs(Object NbJoueurs){
+		int nb = 1 ;
+		if (NbJoueurs == "2 joueurs"){
+			nb = 2 ;}
+		if (NbJoueurs == "3 joueurs"){
+			nb = 3 ;}
+		if (NbJoueurs == "4 joueurs"){
+			nb = 4 ;}
+		modele.createPlayers (nb) ;
+	
+	}
 	
 	/**
 	 * Bouge le personnage une case au dessus

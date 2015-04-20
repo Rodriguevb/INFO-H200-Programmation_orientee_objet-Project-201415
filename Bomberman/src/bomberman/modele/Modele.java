@@ -19,7 +19,7 @@ public class Modele {
 		
 		plateau.genererTerrain(17, 17);
 		
-		personnages.add( new Personnage(1,1) );
+		personnages.add( new Personnage(1,1,"Mickey") );
 	}
 	
 	public Plateau getPlateau() {

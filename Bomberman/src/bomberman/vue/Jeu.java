@@ -23,7 +23,7 @@ public class Jeu extends JPanel {
 	int taille_img = 50;
 	ImageIcon blocIncassable = new ImageIcon("brique_grise.JPG");
 	ImageIcon blocCassable   = new ImageIcon("brique.JPG");
-	ImageIcon img_personnage = new ImageIcon("bob.png");
+	//ImageIcon img_personnage = new ImageIcon("bob.png");
 	ImageIcon img_bomb       = new ImageIcon("bombe.png");
 	ImageIcon img_explosion  = new ImageIcon("explosion.png");
 	
@@ -92,7 +92,8 @@ public class Jeu extends JPanel {
 		// Afficher les personnages.
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
 			Point point = controleur.getPersonnagePosition( id );
-			g2d.drawImage( img_personnage.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+			String img_personnage = controleur.getPersonnageNomImage( id );
+			g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
 	}

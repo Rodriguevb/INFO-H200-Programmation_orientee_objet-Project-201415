@@ -71,6 +71,7 @@ public class Controleur {
 		y -= 1;
 		if ( estLibre(x,y) ) {
 			personnage.move(0, -1);
+			personnage.setNom_image(personnage.getNom()+"Dos.png");
 		}
 	}
 	
@@ -86,6 +87,7 @@ public class Controleur {
 		y += 1;
 		if ( estLibre(x,y) ) {
 			personnage.move(0, 1);
+			personnage.setNom_image(personnage.getNom()+"Face.png");
 		}
 	}
 	
@@ -101,6 +103,7 @@ public class Controleur {
 		x -= 1;
 		if ( estLibre(x,y) ) {
 			personnage.move(-1, 0);
+			personnage.setNom_image(personnage.getNom()+"Gauche.png");
 		}
 	}
 	
@@ -116,6 +119,7 @@ public class Controleur {
 		x += 1;
 		if ( estLibre(x,y) ) {
 			personnage.move(1, 0);
+			personnage.setNom_image(personnage.getNom()+"Droite.png");
 		}
 	}
 
@@ -130,6 +134,12 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		return new Point(x,y);
+	}
+	
+	public String getPersonnageNomImage(int idPersonnage) {
+		Personnage personnage = modele.getPersonnage( idPersonnage );
+		String nom_image = personnage.getNom_image();
+		return nom_image;
 	}
 	
 	
@@ -276,7 +286,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaâ€?ne 
+	 * Ajoute des explosions en chaï¿½?ne 
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnÅ½e de l'explosion
 	 */
@@ -294,7 +304,7 @@ public class Controleur {
 
 	
 	/**
-	 * Ajoute des explosions en chaâ€?ne
+	 * Ajoute des explosions en chaï¿½?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnÅ½e de l'explosion
 	 */
@@ -312,7 +322,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaâ€?ne
+	 * Ajoute des explosions en chaï¿½?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnÅ½e de l'explosion
 	 */
@@ -330,7 +340,7 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en chaâ€?ne
+	 * Ajoute des explosions en chaï¿½?ne
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnÅ½e de l'explosion
 	 */

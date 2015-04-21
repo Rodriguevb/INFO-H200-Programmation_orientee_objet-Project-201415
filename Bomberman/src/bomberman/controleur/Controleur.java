@@ -239,7 +239,7 @@ public class Controleur {
 
 
 	/**
-	 * L‰che une bombe ˆ l'endroit du personnage
+	 * Lache une bombe ˆ l'endroit du personnage
 	 * @param idPersonnage L'ID du personnage
 	 */
 	public void dropBomb(int idPersonnage) {

@@ -53,17 +53,17 @@ public class Jeu extends JPanel {
 	
 	
 	/**
-	 * Afficher les différents éléments du plateau
+	 * Afficher les differents elements du plateau
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		// Afficher le fond d'écran.
+		// Afficher le fond d'ecran.
 		g2d.drawImage(new ImageIcon("chambre.png").getImage(), 0, 0, null);
 		
 		
-		// Afficher le plateau de départ avec les blocs.
+		// Afficher le plateau de depart avec les blocs.
 		for( int x = 0; x < controleur.getMapWidth(); ++x ) {
 			for( int y = 0; y < controleur.getMapHeight(); ++y ) {
 				
@@ -89,6 +89,7 @@ public class Jeu extends JPanel {
 			g2d.drawImage( img_explosion.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
+		
 		// Afficher les personnages.
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
 			Point point = controleur.getPersonnagePosition( id );
@@ -96,6 +97,12 @@ public class Jeu extends JPanel {
 			g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
+		// Afficher les morts.
+		for (int id = 0; id < controleur.getSizeMorts(); ++id){
+			Point point = controleur.getMortPosition( id );
+			String image = "Mort.png";
+			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+		}
 	}
 
 }

@@ -7,6 +7,6 @@ public class Mort extends PossedePosition {
 		
 	public Mort (int x, int y) {
 		super(x,y);
-		this.nom = "Mort.png";
+		this.nom = "mort.png";
 	}
 }

@@ -29,7 +29,7 @@ public class Explosion extends PossedePosition implements ActionListener {
 	 */
 	public Explosion(int x, int y, int duree, int portee, Controleur controleur, Bombe bombe) {
 		super(x,y);
-		this.duree = duree;
+		this.setDuree(duree);
 		this.controleur = controleur;
 		this.bombe = bombe;
 		
@@ -50,6 +50,14 @@ public class Explosion extends PossedePosition implements ActionListener {
 			bombe = null;
 		}
 		this.controleur.makeExplosion( this );
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
 	}
 
 }

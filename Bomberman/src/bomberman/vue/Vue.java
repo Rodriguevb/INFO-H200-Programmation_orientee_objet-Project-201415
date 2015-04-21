@@ -21,7 +21,7 @@ public class Vue extends JFrame{
 		super("Bomberman");
 	    this.setSize(860, 890);
 	    this.setMinimumSize( new Dimension(500,400) );
-	    this.setMaximumSize( new Dimension(800,600) );
+	    this.setMaximumSize( new Dimension(900,1100) );
 	    this.setLocationRelativeTo(null); // Centre la fenetre au milieu de l'Žcran
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Termine le processus lorsqu'on clique sur la croix rouge
 	    this.setVisible(true); // Rend la fenetre visible

@@ -15,6 +15,7 @@ public class Controleur {
 	private Vue vue;
 	private Modele modele;
 	private int nb_joueurs = 1;
+	private int niveau = 1;
 	
 	
 	/**
@@ -63,12 +64,23 @@ public class Controleur {
 	}
 	
 	public void NbJoueurs(Object NbJoueurs){
+		nb_joueurs = 1;
 		if (NbJoueurs == "2 joueurs"){
 			nb_joueurs = 2 ;}
 		if (NbJoueurs == "3 joueurs"){
 			nb_joueurs = 3 ;}
 		if (NbJoueurs == "4 joueurs"){
 			nb_joueurs = 4 ;}
+	}
+	
+	public void Niveau(Object Niveau){
+		niveau = 1;
+		if (Niveau == "Moyen"){
+			niveau = 2;
+		}
+		if (Niveau == "Difficile"){
+			niveau = 3;
+		}
 	}
 	
 	public void creerJoueurs(){

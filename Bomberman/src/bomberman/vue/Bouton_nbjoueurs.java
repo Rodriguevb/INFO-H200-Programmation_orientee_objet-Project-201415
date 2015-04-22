@@ -28,7 +28,12 @@ public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 		this.addItem("4 joueurs");
 	    this.addActionListener(this);
 	    this.setForeground(Color.black);
+	    
 	}
+	
+		/*public void initialise(){
+			controleur.NbJoueurs(new String("1 joueur"));
+		}*/
 
 	    public void actionPerformed(ActionEvent e) {
 	      controleur.NbJoueurs(this.getSelectedItem());

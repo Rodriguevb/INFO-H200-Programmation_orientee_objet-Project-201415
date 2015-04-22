@@ -27,7 +27,10 @@ public class Bombe extends PossedePosition {
 		this.timer.start();
 	}
 	
-	
+	/**
+	 * Savoir la portee de la bombe
+	 * @return La portee de la bombe
+	 */
 	public int getPortee(){
 		return portee;
 	}

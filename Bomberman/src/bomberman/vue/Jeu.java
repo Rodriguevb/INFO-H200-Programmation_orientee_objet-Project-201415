@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
 import bomberman.controleur.ListenerPlayer;
+import bomberman.modele.Modele;
 
 public class Jeu extends JPanel {
 	
@@ -18,6 +19,7 @@ public class Jeu extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
+	private Modele modele;
 	
 	
 	int taille_img = 50;
@@ -32,23 +34,26 @@ public class Jeu extends JPanel {
 	 * Constructeur de la classe Jeu
 	 * @param controleur
 	 */
-	public Jeu(Controleur controleur){
+	public Jeu(Controleur controleur, Modele modele){
 		super();
 		this.controleur  = controleur;
+		this.modele = modele;
 		
 		//kListener1 = new ListenerPlayer(38,40,37,39,32, 0, plateau,bomberman.vue);
 		//kListener2 = new ListenerPlayer(90,87,81,83,10, 1,plateau,bomberman.vue);
 		
 		//this.addKeyListener( new ListenerPlayer(38,40,37,39,32, controleur, 0) );
 		
-		ListenerPlayer listenerPlayer1 = new ListenerPlayer(controleur, 0);
+		/*ListenerPlayer listenerPlayer1 = new ListenerPlayer(controleur, 0);
 		listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
 		listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
 		listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
 		listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
 		listenerPlayer1.setKeyForDrop( KeyEvent.VK_SPACE );
 		
-		this.addKeyListener( listenerPlayer1 );
+		
+		
+		this.addKeyListener( listenerPlayer1 );*/
 	}
 	
 	
@@ -92,9 +97,11 @@ public class Jeu extends JPanel {
 		
 		// Afficher les personnages.
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
-			Point point = controleur.getPersonnagePosition( id );
-			String img_personnage = controleur.getPersonnageNomImage( id );
-			g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+			if (modele.getPersonnage(id).getVivant()){
+			    Point point = controleur.getPersonnagePosition( id );
+			    String img_personnage = controleur.getPersonnageNomImage( id );
+			    g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+			}
 		}
 		
 		// Afficher les morts.

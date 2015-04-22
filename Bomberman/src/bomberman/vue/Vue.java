@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import bomberman.controleur.Controleur;
+import bomberman.modele.Modele;
 
 public class Vue extends JFrame{
 	
@@ -16,8 +17,9 @@ public class Vue extends JFrame{
 	private final Menu menu;
 	private final Jeu  jeu;
 	private final Object option;
+	private Modele modele;
 
-	public Vue (Controleur controleur){
+	public Vue (Controleur controleur, Modele modele){
 		super("Bomberman");
 	    this.setSize(860, 890);
 	    this.setMinimumSize( new Dimension(500,400) );
@@ -26,8 +28,10 @@ public class Vue extends JFrame{
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Termine le processus lorsqu'on clique sur la croix rouge
 	    this.setVisible(true); // Rend la fenetre visible
 	    
+	    this.modele = modele;
+	    
 	    menu = new Menu(controleur);
-	    jeu  = new Jeu(controleur);
+	    jeu  = new Jeu(controleur, modele);
 	    option = null; // TODO: Option(controleur)
 	    
 	    menu.setFocusable(true);
@@ -63,6 +67,10 @@ public class Vue extends JFrame{
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		//TODO option.requestFocus();
 		this.getContentPane().validate();
+	}
+	
+	public Jeu getJeu(){
+		return jeu;
 	}
 	
 }

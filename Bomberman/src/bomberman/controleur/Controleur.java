@@ -1,6 +1,7 @@
 package bomberman.controleur;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 
 import bomberman.modele.Bombe;
 import bomberman.modele.Modele;
@@ -13,6 +14,7 @@ public class Controleur {
 	
 	private Vue vue;
 	private Modele modele;
+	private int nb_joueurs = 1;
 	
 	
 	/**
@@ -61,16 +63,52 @@ public class Controleur {
 	}
 	
 	public void NbJoueurs(Object NbJoueurs){
-		int nb = 1 ;
 		if (NbJoueurs == "2 joueurs"){
-			nb = 2 ;}
+			nb_joueurs = 2 ;}
 		if (NbJoueurs == "3 joueurs"){
-			nb = 3 ;}
+			nb_joueurs = 3 ;}
 		if (NbJoueurs == "4 joueurs"){
-			nb = 4 ;}
-		modele.createPlayers (nb) ;
-	
+			nb_joueurs = 4 ;}
 	}
+	
+	public void creerJoueurs(){
+		modele.createPlayers(nb_joueurs);
+		ListenerPlayer listenerPlayer1 = new ListenerPlayer(this, 0);
+		listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
+		listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
+		listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
+		listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
+		listenerPlayer1.setKeyForDrop( KeyEvent.VK_SPACE );
+		vue.getJeu().addKeyListener( listenerPlayer1 );
+		if (nb_joueurs >= 2){
+			ListenerPlayer listenerPlayer2 = new ListenerPlayer(this, 1);
+			listenerPlayer2.setKeyForUp( KeyEvent.VK_Z );
+			listenerPlayer2.setKeyForDown( KeyEvent.VK_S );
+			listenerPlayer2.setKeyForLeft( KeyEvent.VK_Q );
+			listenerPlayer2.setKeyForRight( KeyEvent.VK_D );
+			listenerPlayer2.setKeyForDrop( KeyEvent.VK_X );
+			vue.getJeu().addKeyListener( listenerPlayer2 );
+		}
+		if (nb_joueurs >= 3){
+			ListenerPlayer listenerPlayer3 = new ListenerPlayer(this, 2);
+			listenerPlayer3.setKeyForUp( KeyEvent.VK_Y );
+			listenerPlayer3.setKeyForDown( KeyEvent.VK_H );
+			listenerPlayer3.setKeyForLeft( KeyEvent.VK_G );
+			listenerPlayer3.setKeyForRight( KeyEvent.VK_J );
+			listenerPlayer3.setKeyForDrop( KeyEvent.VK_N );
+			vue.getJeu().addKeyListener( listenerPlayer3 );
+		}
+		if (nb_joueurs == 4){
+			ListenerPlayer listenerPlayer4 = new ListenerPlayer(this, 3);
+			listenerPlayer4.setKeyForUp( KeyEvent.VK_O );
+			listenerPlayer4.setKeyForDown( KeyEvent.VK_L );
+			listenerPlayer4.setKeyForLeft( KeyEvent.VK_K );
+			listenerPlayer4.setKeyForRight( KeyEvent.VK_M );
+			listenerPlayer4.setKeyForDrop( KeyEvent.VK_P );
+			vue.getJeu().addKeyListener( listenerPlayer4 );
+		}
+	}
+	
 	
 	/**
 	 * Bouge le personnage une case au dessus
@@ -81,7 +119,7 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		y -= 1;
-		if ( estLibre(x,y) ) {
+		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(0, -1);
 			personnage.setNom_image(personnage.getNom()+"Dos.png");
 		}
@@ -97,7 +135,7 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		y += 1;
-		if ( estLibre(x,y) ) {
+		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(0, 1);
 			personnage.setNom_image(personnage.getNom()+"Face.png");
 		}
@@ -113,7 +151,7 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		x -= 1;
-		if ( estLibre(x,y) ) {
+		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(-1, 0);
 			personnage.setNom_image(personnage.getNom()+"Gauche.png");
 		}
@@ -129,7 +167,7 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		x += 1;
-		if ( estLibre(x,y) ) {
+		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(1, 0);
 			personnage.setNom_image(personnage.getNom()+"Droite.png");
 		}
@@ -243,11 +281,12 @@ public class Controleur {
 	 * @param idPersonnage L'ID du personnage
 	 */
 	public void dropBomb(int idPersonnage) {
+		Personnage personnage = modele.getPersonnage( idPersonnage );
 		Point point = getPersonnagePosition( idPersonnage );
 		int x = point.x;
 		int y = point.y;
 		
-		if ( casePasDeBomb( x,y ) ){
+		if ( casePasDeBomb( x,y ) && personnage.getVivant()){
 			modele.getListBomb().add( new Bombe(x,y,this) );
 		}
 	}
@@ -298,6 +337,15 @@ public class Controleur {
 		addExplosionDown(x,y,portee);
 		addExplosionLeft(x,y,portee);
 		addExplosionRight(x,y,portee);
+		if (estPersonnage(x,y)){
+			modele.getPersonnageSurPlateau(x, y).perdreVie();
+			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
+			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
+				modele.getPersonnageSurPlateau(x, y).mourir();
+				/*removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));*/
+			}
+		}
 		vue.repaint();
 	}
 
@@ -324,9 +372,10 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha�?ne 
+	 * Ajoute des explosions en chaine 
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnŽe de l'explosion
+	 * @param y L'ordonnee de l'explosion
+	 * @param portee La portee de l'explosion
 	 */
 	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
@@ -344,8 +393,9 @@ public class Controleur {
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));
+				modele.getPersonnageSurPlateau(x, y).mourir();
+				/*removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
 		}
@@ -355,7 +405,8 @@ public class Controleur {
 	/**
 	 * Ajoute des explosions en chaine
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnŽe de l'explosion
+	 * @param y L'ordonnee de l'explosion
+	 * @param portee La portee de l'explosion
 	 */
 	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
@@ -373,8 +424,9 @@ public class Controleur {
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));
+				modele.getPersonnageSurPlateau(x, y).mourir();
+				/*removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
 		}
@@ -385,6 +437,7 @@ public class Controleur {
 	 * Ajoute des explosions en chaine
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnee de l'explosion
+	 * @param portee La portee de l'explosion
 	 */
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
@@ -402,8 +455,9 @@ public class Controleur {
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));
+				modele.getPersonnageSurPlateau(x, y).mourir();
+				/*removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
 		}
@@ -411,9 +465,10 @@ public class Controleur {
 	
 	
 	/**
-	 * Ajoute des explosions en cha�?ne
+	 * Ajoute des explosions en chaine
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnŽe de l'explosion
+	 * @param y L'ordonnee de l'explosion
+	 * @param portee La portee de l'explosion
 	 */
 	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
@@ -431,8 +486,9 @@ public class Controleur {
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));
+				modele.getPersonnageSurPlateau(x, y).mourir();
+				/*removePersonnage(x,y);
+				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
 		}
@@ -448,9 +504,9 @@ public class Controleur {
 		modele.getCase(x,y).rendreLibre();
 	}
 	
-	private void removePersonnage(int x, int y){
+	/*private void removePersonnage(int x, int y){
 		modele.removePersonnageDuPlateau(x,y);
-	}
+	}*/
 	
 	
 	/**

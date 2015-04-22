@@ -1,9 +1,13 @@
 package bomberman.modele;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import bomberman.controleur.Controleur;
 import bomberman.controleur.Explosion;
+import bomberman.controleur.ListenerPlayer;
+import bomberman.vue.Jeu;
 
 public class Modele {
 	
@@ -15,6 +19,7 @@ public class Modele {
 	private ArrayList<Bombe>       bombs       = new ArrayList<Bombe>();
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
+	private Controleur controleur;
 	
 	public Modele () {
 		plateau.genererTerrain(17, 17);

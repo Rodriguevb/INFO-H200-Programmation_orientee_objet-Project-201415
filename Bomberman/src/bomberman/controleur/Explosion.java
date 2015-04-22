@@ -23,13 +23,15 @@ public class Explosion extends PossedePosition implements ActionListener {
 	/**
 	 * 
 	 * @param x l'abscisse de l'explosion 
-	 * @param y l'ordonnée de l'explosion
+	 * @param y l'ordonnee de l'explosion
+	 * @param duree Le temps d'affichage de l'explosion
+	 * @param duree La duree de l'explosion
 	 * @param controleur
 	 * @param bombe
 	 */
 	public Explosion(int x, int y, int duree, int portee, Controleur controleur, Bombe bombe) {
 		super(x,y);
-		this.setDuree(duree);
+		this.duree = duree;
 		this.controleur = controleur;
 		this.bombe = bombe;
 		
@@ -38,6 +40,10 @@ public class Explosion extends PossedePosition implements ActionListener {
 		this.timer.start();
 	}
 	
+	/**
+	 * Savoir la portee de l'explosion
+	 * @return La portee de l'explosion
+	 */
 	public int getPortee(){
 		return portee;
 	}
@@ -51,13 +57,14 @@ public class Explosion extends PossedePosition implements ActionListener {
 		}
 		this.controleur.makeExplosion( this );
 	}
-
+    
+	/**
+	 * Savoir la duree d'affichage de l'explosion
+	 * @return La duree d'affichage de l'explosion
+	 */
 	public int getDuree() {
 		return duree;
 	}
-
-	public void setDuree(int duree) {
-		this.duree = duree;
-	}
+    
 
 }

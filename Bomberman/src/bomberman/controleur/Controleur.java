@@ -302,19 +302,19 @@ public class Controleur {
 		String type = "sans";
 		Bonus bonus = modele.getBonus( id );
 		if (bonus.getBonus_intensite() == 1){
-			type = "bonus_intensite.png";
+			type = "bonus_intensite1.png";
 		}
 		if (bonus.getBonus_clavier() == 1){
-			type = "bonus_clavier.png";
+			type = "bonus_clavier1.png";
 		}
 		if (bonus.getBonus_bombe() == 1){
-			type = "bonus_bombe.png";
+			type = "bonus_bombe1.png";
 		}
 		if (bonus.getBonus_vie() == 1){
-			type = "bonus_vie.png";
+			type = "bonus_vie1.png";
 		}
 		if (bonus.getBonus_explosion() == 1){
-			type = "bonus_explosion.png";
+			type = "bonus_explosion1.png";
 		}
 		return type;
 	}

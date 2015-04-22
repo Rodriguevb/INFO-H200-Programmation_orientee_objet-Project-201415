@@ -20,8 +20,8 @@ public class Bouton_choixJoueurs extends JComboBox implements ActionListener{
 	public Bouton_choixJoueurs(Controleur controleur) {
 		
 		this.controleur = controleur;
-		this.addItem("Mickey");
 		this.addItem("Bomber");
+		this.addItem("Mickey");
 	    this.addActionListener(this);
 	    this.setForeground(Color.black);
 	    

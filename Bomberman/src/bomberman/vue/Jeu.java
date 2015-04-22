@@ -110,6 +110,13 @@ public class Jeu extends JPanel {
 			String image = "mort.png";
 			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
+		
+		// Afficher les bonus.
+		for (int id = 0; id < controleur.getSizeBonus(); ++id){
+			Point point = controleur.getBonusPosition( id );
+			String image = controleur.getTypeBonus(id);
+			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+		}
 	}
 } 
 

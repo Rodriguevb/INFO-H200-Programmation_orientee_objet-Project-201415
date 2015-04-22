@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import bomberman.modele.Bombe;
+import bomberman.modele.Bonus;
 import bomberman.modele.Modele;
 import bomberman.modele.Mort;
 import bomberman.modele.Personnage;
@@ -273,6 +274,10 @@ public class Controleur {
 	public int getSizeMorts() {
 		return modele.getListMorts().size();
 	}
+	
+	public int getSizeBonus(){
+		return modele.getListBonus().size();
+	}
 
 	/**
 	 * Retourne la position du personnage elimine
@@ -284,6 +289,34 @@ public class Controleur {
 		int x = mort.getX();
 		int y = mort.getY();
 		return new Point(x,y);
+	}
+	
+	public Point getBonusPosition(int id){
+		Bonus bonus = modele.getBonus( id );
+		int x = bonus.getX();
+		int y = bonus.getY();
+		return new Point(x,y);
+	}
+	
+	public String getTypeBonus(int id){
+		String type = "sans";
+		Bonus bonus = modele.getBonus( id );
+		if (bonus.getBonus_intensite() == 1){
+			type = "bonus_intensite.png";
+		}
+		if (bonus.getBonus_clavier() == 1){
+			type = "bonus_clavier.png";
+		}
+		if (bonus.getBonus_bombe() == 1){
+			type = "bonus_bombe.png";
+		}
+		if (bonus.getBonus_vie() == 1){
+			type = "bonus_vie.png";
+		}
+		if (bonus.getBonus_explosion() == 1){
+			type = "bonus_explosion.png";
+		}
+		return type;
 	}
 	
 
@@ -399,6 +432,10 @@ public class Controleur {
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			double random = Math.random();
+					if (random > 0.5){
+						modele.createBonus(x, y);
+					}
 			addExplosion(x,y);
 		}
 		if (estPersonnage(x,y) && p<=portee){
@@ -430,6 +467,10 @@ public class Controleur {
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			double random = Math.random();
+			    if (random > 0.5){
+				    modele.createBonus(x, y);
+			    }
 			addExplosion(x,y);
 		}
 		if (estPersonnage(x,y) && p<=portee){
@@ -461,6 +502,10 @@ public class Controleur {
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			double random = Math.random();
+				if (random > 0.5){
+				    modele.createBonus(x, y);
+			    }
 			addExplosion(x,y);
 		}
 		if (estPersonnage(x,y) && p<=portee){
@@ -492,6 +537,10 @@ public class Controleur {
 		}
 		if( estBlocCassable(x,y) && p<=portee){
 			removeBlocCassable(x,y);
+			double random = Math.random();
+			    if (random > 0.5){
+				    modele.createBonus(x, y);
+			    }
 			addExplosion(x,y);
 		}
 		if (estPersonnage(x,y) && p<=portee){

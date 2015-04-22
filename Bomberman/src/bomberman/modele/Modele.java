@@ -1,13 +1,8 @@
 package bomberman.modele;
 
-import java.awt.Point;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import bomberman.controleur.Controleur;
 import bomberman.controleur.Explosion;
-import bomberman.controleur.ListenerPlayer;
-import bomberman.vue.Jeu;
 
 public class Modele {
 	
@@ -16,10 +11,10 @@ public class Modele {
 	 */
 	private Plateau plateau = new Plateau();
 	private ArrayList<Personnage> personnages;
-	private ArrayList<Bombe>       bombs       = new ArrayList<Bombe>();
+	private ArrayList<Bombe>       bombes       = new ArrayList<Bombe>();
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
-	private Controleur controleur;
+	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	
 	public Modele () {
 		plateau.genererTerrain(17, 17);
@@ -32,13 +27,33 @@ public class Modele {
 
 
 	public void createPlayers(int nb){
-	personnages = new ArrayList<Personnage>();
+	    personnages = new ArrayList<Personnage>();
 		personnages.add(new Personnage(1,1,"Mickey"));
 		if (nb >= 2) { personnages.add(new Personnage(1,15,"Mickey"));
 			if (nb >= 3) { personnages.add(new Personnage (15, 1, "Mickey"));
 				if (nb == 4) { personnages.add(new Personnage (15, 15, "Mickey")); 
 				}
 			}
+		}
+		
+	}
+	
+	public void createBonus(int x, int y){
+		int random = (int)(Math.random()*101);
+		if (random <= 25){
+			bonus.add(new Bonus(x,y,1,0,0,0,0));
+		}
+		if (random > 25 && random <= 50){
+			bonus.add(new Bonus(x,y,0,0,1,0,0));
+		}
+		if (random > 50 && random <= 75){
+			bonus.add(new Bonus(x,y,0,0,0,1,0));
+		}
+		if (random > 75 && random <= 100){
+			bonus.add(new Bonus(x,y,0,0,0,0,1));
+		}
+		if (random > 100){
+			bonus.add(new Bonus(x,y,0,1,0,0,0));
 		}
 		
 	}
@@ -82,11 +97,15 @@ public class Modele {
 	}
 	
 	public Bombe getBomb(int idBomb) {
-		return bombs.get( idBomb );
+		return bombes.get( idBomb );
 	}
 	
 	public Mort getMort(int idMort) {
 		return morts.get( idMort );
+	}
+	
+	public Bonus getBonus(int idBonus){
+		return bonus.get( idBonus );
 	}
 
 	public ArrayList<Personnage> getListPersonnages() {
@@ -94,7 +113,7 @@ public class Modele {
 	}
 
 	public ArrayList<Bombe> getListBomb() {
-		return bombs;
+		return bombes;
 	}
 
 	public ArrayList<Explosion> getListExplosion() {
@@ -103,6 +122,10 @@ public class Modele {
 	
 	public ArrayList<Mort> getListMorts() {
 		return morts;
+	}
+	
+	public ArrayList<Bonus> getListBonus(){
+		return bonus;
 	}
 
 	public Explosion getExplosion(int idExplosion) {

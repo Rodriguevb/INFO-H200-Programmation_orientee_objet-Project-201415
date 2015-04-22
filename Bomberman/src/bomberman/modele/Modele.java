@@ -38,21 +38,21 @@ public class Modele {
 		
 	}
 	
-	public void createBonus(int x, int y){
+	public void createBonus(int x, int y, int niveau){
 		int random = (int)(Math.random()*101);
-		if (random <= 25){
+		if (random <= 5*(4-niveau)){
 			bonus.add(new Bonus(x,y,1,0,0,0,0));
 		}
-		if (random > 25 && random <= 50){
+		if (random > 5*(4-niveau) && random <= 10*(4-niveau)){
 			bonus.add(new Bonus(x,y,0,0,1,0,0));
 		}
-		if (random > 50 && random <= 75){
+		if (random > 10*(4-niveau) && random <= 60+(5*(4-niveau))){
 			bonus.add(new Bonus(x,y,0,0,0,1,0));
 		}
-		if (random > 75 && random <= 100){
+		if (random > 60+(5*(4-niveau)) && random <= 85+(5*(4-niveau))){
 			bonus.add(new Bonus(x,y,0,0,0,0,1));
 		}
-		if (random > 100){
+		if (random > 85+(5*(4-niveau))){
 			bonus.add(new Bonus(x,y,0,1,0,0,0));
 		}
 		

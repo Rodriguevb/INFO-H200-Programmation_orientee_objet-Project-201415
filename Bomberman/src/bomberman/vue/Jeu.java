@@ -94,6 +94,12 @@ public class Jeu extends JPanel {
 			g2d.drawImage( img_explosion.getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
+		// Afficher les bonus.
+		for (int id = 0; id < controleur.getSizeBonus(); ++id){
+			Point point = controleur.getBonusPosition( id );
+			String image = controleur.getTypeBonus(id);
+			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+		}
 		
 		// Afficher les personnages.
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
@@ -111,12 +117,7 @@ public class Jeu extends JPanel {
 			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
-		// Afficher les bonus.
-		for (int id = 0; id < controleur.getSizeBonus(); ++id){
-			Point point = controleur.getBonusPosition( id );
-			String image = controleur.getTypeBonus(id);
-			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
-		}
+		
 	}
 } 
 

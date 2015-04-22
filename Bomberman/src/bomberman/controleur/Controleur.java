@@ -434,7 +434,7 @@ public class Controleur {
 			removeBlocCassable(x,y);
 			double random = Math.random();
 					if (random > 0.5){
-						modele.createBonus(x, y);
+						modele.createBonus(x, y, niveau);
 					}
 			addExplosion(x,y);
 		}
@@ -469,7 +469,7 @@ public class Controleur {
 			removeBlocCassable(x,y);
 			double random = Math.random();
 			    if (random > 0.5){
-				    modele.createBonus(x, y);
+				    modele.createBonus(x, y, niveau);
 			    }
 			addExplosion(x,y);
 		}
@@ -504,7 +504,7 @@ public class Controleur {
 			removeBlocCassable(x,y);
 			double random = Math.random();
 				if (random > 0.5){
-				    modele.createBonus(x, y);
+				    modele.createBonus(x, y, niveau);
 			    }
 			addExplosion(x,y);
 		}
@@ -539,7 +539,7 @@ public class Controleur {
 			removeBlocCassable(x,y);
 			double random = Math.random();
 			    if (random > 0.5){
-				    modele.createBonus(x, y);
+				    modele.createBonus(x, y, niveau);
 			    }
 			addExplosion(x,y);
 		}

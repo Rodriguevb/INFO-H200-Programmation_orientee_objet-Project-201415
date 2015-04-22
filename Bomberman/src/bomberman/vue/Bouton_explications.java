@@ -7,19 +7,19 @@ import javax.swing.JButton;
 
 import bomberman.controleur.Controleur;
 
-public class Bouton_jouer extends JButton implements ActionListener{
+public class Bouton_explications extends JButton implements ActionListener{
 	
 	
 	/**
-	 * Classe du bouton jouer.
+	 * Classe du bouton Explications.
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
 	private int nb_joueurs;
 	
 	
-	public Bouton_jouer(Controleur controleur) {
-		super("Jouer");
+	public Bouton_explications(Controleur controleur) {
+		super("Règles du jeu");
 		this.setLocation(200,300);
 		this.controleur = controleur;
 		this.addActionListener(this); // mets le bouton sur écoute de la souris
@@ -28,6 +28,6 @@ public class Bouton_jouer extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		controleur.switchToSousMenu();
+		controleur.switchToExplications();
 	}
 }

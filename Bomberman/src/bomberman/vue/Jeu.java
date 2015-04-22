@@ -35,9 +35,12 @@ public class Jeu extends JPanel {
 	 * @param controleur
 	 */
 	public Jeu(Controleur controleur, Modele modele){
+	
 		super();
 		this.controleur  = controleur;
 		this.modele = modele;
+		
+		this.add(new Bouton_retour(controleur));
 		
 		//kListener1 = new ListenerPlayer(38,40,37,39,32, 0, plateau,bomberman.vue);
 		//kListener2 = new ListenerPlayer(90,87,81,83,10, 1,plateau,bomberman.vue);

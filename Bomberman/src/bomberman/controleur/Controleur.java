@@ -44,6 +44,21 @@ public class Controleur {
 		vue.switchToMenu();
 	}
 	
+	/**
+	 * Passe l'affichage au sous-menu
+	 */
+	public void switchToSousMenu() {
+		vue.switchToSousMenu();
+	}
+	
+	/**
+	 * Passe l'affichage aux explications
+	 */
+	
+	public void switchToExplications() {
+		vue.switchToExplications();
+	}
+	
 	
 	/**
 	 * Passe l'affichage au jeu

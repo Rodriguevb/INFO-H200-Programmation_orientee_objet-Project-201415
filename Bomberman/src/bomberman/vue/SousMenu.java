@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
 
-public class Menu extends JPanel {
+public class SousMenu extends JPanel {
 	
 	/**
 	 * La classe qui affiche le menu.
@@ -19,10 +19,13 @@ public class Menu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 
-	public Menu(Controleur controleur) {
+	public SousMenu(Controleur controleur) {
 
-		this.add(new Bouton_jouer(controleur));   
-		this.add(new Bouton_explications(controleur));
+		this.add(new Bouton_retour(controleur));
+		this.add(new Bouton_nbjoueurs(controleur));   
+		this.add(new Bouton_niveau(controleur));
+		this.add(new Bouton_go(controleur));
+		
 	}
 	
 	public void paintComponent(Graphics g){

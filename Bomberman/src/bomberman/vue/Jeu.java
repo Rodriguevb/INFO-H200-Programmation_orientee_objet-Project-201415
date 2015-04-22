@@ -3,13 +3,11 @@ package bomberman.vue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
-import bomberman.controleur.ListenerPlayer;
 import bomberman.modele.Modele;
 
 public class Jeu extends JPanel {

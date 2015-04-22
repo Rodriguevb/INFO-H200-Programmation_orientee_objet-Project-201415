@@ -4,7 +4,6 @@ package bomberman.vue;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;

@@ -19,7 +19,7 @@ public class Bouton_explications extends JButton implements ActionListener{
 	
 	
 	public Bouton_explications(Controleur controleur) {
-		super("Règles du jeu");
+		super("Regles du jeu");
 		this.setLocation(200,300);
 		this.controleur = controleur;
 		this.addActionListener(this); // mets le bouton sur écoute de la souris

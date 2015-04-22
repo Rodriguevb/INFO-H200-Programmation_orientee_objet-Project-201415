@@ -42,6 +42,14 @@ public class Bonus extends PossedePosition{
 		this.bonus_explosion = bonus_explosion;
 	}
 
+	public int getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(int niveau) {
+		this.niveau = niveau;
+	}
+	
 	private int niveau = 1;
 	private int bonus_intensite;
 	private int bonus_clavier;
@@ -59,6 +67,5 @@ public class Bonus extends PossedePosition{
 		this.bonus_vie = vie;
 		this.bonus_explosion = explosion;
 	}
-	
 
 }

@@ -1,6 +1,5 @@
 package bomberman.modele;
 
-import java.awt.Point;
 
 public class Case extends PossedePosition {
 	

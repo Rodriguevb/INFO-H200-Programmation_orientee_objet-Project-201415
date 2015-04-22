@@ -15,9 +15,11 @@ public class Modele {
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
+	private ArrayList<String> nomJoueurs = new ArrayList<String>();
 	
 	public Modele () {
 		plateau.genererTerrain(17, 17);
+		creerListeNomBase ("Bomber");
 	}
 	
 	
@@ -28,15 +30,31 @@ public class Modele {
 
 	public void createPlayers(int nb){
 	    personnages = new ArrayList<Personnage>();
-		personnages.add(new Personnage(1,1,"Mickey"));
-		if (nb >= 2) { personnages.add(new Personnage(1,15,"Mickey"));
-			if (nb >= 3) { personnages.add(new Personnage (15, 1, "Mickey"));
-				if (nb == 4) { personnages.add(new Personnage (15, 15, "Mickey")); 
+		personnages.add(new Personnage(1,1,nomJoueurs.get(1)));
+		if (nb >= 2) { personnages.add(new Personnage(1,15,nomJoueurs.get(2)));
+			if (nb >= 3) { personnages.add(new Personnage (15, 1, nomJoueurs.get(3)));
+				if (nb == 4) { personnages.add(new Personnage (15, 15, nomJoueurs.get(4))); 
 				}
 			}
 		}
 		
 	}
+	
+	
+	public void creerListeNomBase (String Nom){
+		for (int i = 0; i <= 4 ; i++){
+			nomJoueurs.add(Nom);
+		}
+	}
+	
+	public void creerListeNomJoueurs (String Nom){
+		for (int i = 0; i <= 4 ; i++){
+			nomJoueurs.set(i,Nom);
+		}
+		
+		
+	}
+	
 	
 	public void createBonus(int x, int y, int niveau){
 		int random = (int)(Math.random()*101);

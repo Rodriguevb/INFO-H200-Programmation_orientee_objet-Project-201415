@@ -89,6 +89,17 @@ public class Controleur {
 			nb_joueurs = 4 ;}
 	}
 	
+	
+	public int getNbJoueurs(){
+		return nb_joueurs;
+	}
+	
+	public void ChoixJoueurs(Object Choix){
+		String nom = "Mickey" ;
+		if (Choix == "Bomber") nom = "Bomber" ;
+		modele.creerListeNomJoueurs(nom);
+	}
+	
 	public void Niveau(Object Niveau){
 		niveau = 1;
 		if (Niveau == "Moyen"){

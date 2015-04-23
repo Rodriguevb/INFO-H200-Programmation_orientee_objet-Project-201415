@@ -22,12 +22,22 @@ public class Bouton_explications extends JButton implements ActionListener{
 		super("Regles du jeu");
 		this.setLocation(200,300);
 		this.controleur = controleur;
-		this.addActionListener(this); // mets le bouton sur écoute de la souris
+		this.addActionListener(this); // mets le bouton sur ecoute de la souris
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToExplications();
+	}
+
+
+	public int getNb_joueurs() {
+		return nb_joueurs;
+	}
+
+
+	public void setNb_joueurs(int nb_joueurs) {
+		this.nb_joueurs = nb_joueurs;
 	}
 }

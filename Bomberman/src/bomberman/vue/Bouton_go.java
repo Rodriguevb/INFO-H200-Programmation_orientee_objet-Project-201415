@@ -23,7 +23,7 @@ public class Bouton_go extends JButton implements ActionListener{
 		this.setLocation(200,300);
 		this.controleur = controleur;
 		this.addActionListener(this); // mets le bouton sur écoute de la souris
-		this.nb_joueurs = 1;
+		this.setNb_joueurs(1);
 	}
 
 
@@ -31,5 +31,15 @@ public class Bouton_go extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToJeu();
 		controleur.creerJoueurs();
+	}
+
+
+	public int getNb_joueurs() {
+		return nb_joueurs;
+	}
+
+
+	public void setNb_joueurs(int nb_joueurs) {
+		this.nb_joueurs = nb_joueurs;
 	}
 }

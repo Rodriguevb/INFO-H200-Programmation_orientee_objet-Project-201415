@@ -30,4 +30,14 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToSousMenu();
 	}
+
+
+	public int getNb_joueurs() {
+		return nb_joueurs;
+	}
+
+
+	public void setNb_joueurs(int nb_joueurs) {
+		this.nb_joueurs = nb_joueurs;
+	}
 }

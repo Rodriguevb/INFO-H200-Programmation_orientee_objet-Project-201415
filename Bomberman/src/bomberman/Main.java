@@ -14,7 +14,7 @@ public class Main {
 		Vue vue               = new Vue(controleur,modele);
 		
 		controleur.link( vue ); // lier la vue au controleur
-		controleur.link( modele ); // lier le mod�le au controleur
+		controleur.link( modele ); // lier le modele au controleur
 		
 	}
 

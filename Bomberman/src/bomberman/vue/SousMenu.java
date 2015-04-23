@@ -4,10 +4,8 @@ package bomberman.vue;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;

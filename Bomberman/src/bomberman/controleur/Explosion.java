@@ -34,6 +34,7 @@ public class Explosion extends PossedePosition implements ActionListener {
 		this.duree = duree;
 		this.controleur = controleur;
 		this.bombe = bombe;
+		this.portee = portee;
 		
 		this.timer = new Timer(duree, new SuppressionExplosion(controleur, this) );
 		this.timer.setRepeats(false);

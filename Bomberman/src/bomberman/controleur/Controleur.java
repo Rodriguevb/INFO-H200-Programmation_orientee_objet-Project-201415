@@ -162,9 +162,40 @@ public class Controleur {
 			personnage.move(0, -1);
 			personnage.setNom_image(personnage.getNom()+"Dos.png");
 		}
+		if ( estBonus(x,y) ){
+			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
+			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
+			int idBonus = modele.getIdBonus(x, y);
+			addBonus(personnage,idBonus,x,y);
+			modele.removeBonusDuPlateau(x,y);
+			personnage.activerBonus();
+		}
 	}
 	
+	private void addBonus(Personnage personnage, int idBonus, int x, int y){
+		String type_bonus = getTypeBonus(idBonus);
+		if (type_bonus == "bonus_intensite1.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0));
+		}
+		if (type_bonus == "bonus_clavier1.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0));
+		}
+		if (type_bonus == "bonus_bombe1.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0));
+		}
+		if (type_bonus == "bonus_vie1.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0));
+		}
+		if (type_bonus == "bonus_explosion1.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1));
+		}
+	}
 	
+	private boolean estBonus(int x, int y) {
+		return modele.bonusSurCase(x, y);
+	}
+
+
 	/**
 	 * Bouge le personnage une case vers le bas
 	 * @param idPersonnage L'ID du personnage
@@ -177,6 +208,14 @@ public class Controleur {
 		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(0, 1);
 			personnage.setNom_image(personnage.getNom()+"Face.png");
+		}
+		if ( estBonus(x,y) ){
+			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
+			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
+			int idBonus = modele.getIdBonus(x, y);
+			addBonus(personnage,idBonus,x,y);
+			modele.removeBonusDuPlateau(x,y);
+			personnage.activerBonus();
 		}
 	}
 	
@@ -194,6 +233,14 @@ public class Controleur {
 			personnage.move(-1, 0);
 			personnage.setNom_image(personnage.getNom()+"Gauche.png");
 		}
+		if ( estBonus(x,y) ){
+			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
+			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
+			int idBonus = modele.getIdBonus(x, y);
+			addBonus(personnage,idBonus,x,y);
+			modele.removeBonusDuPlateau(x,y);
+			personnage.activerBonus();
+		}
 	}
 	
 	
@@ -210,8 +257,15 @@ public class Controleur {
 			personnage.move(1, 0);
 			personnage.setNom_image(personnage.getNom()+"Droite.png");
 		}
+		if ( estBonus(x,y) ){
+			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
+			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
+			int idBonus = modele.getIdBonus(x, y);
+			addBonus(personnage,idBonus,x,y);
+			modele.removeBonusDuPlateau(x,y);
+			personnage.activerBonus();
+		}
 	}
-
 
 	/**
 	 * Retourne la position du personnage
@@ -348,7 +402,7 @@ public class Controleur {
 
 
 	/**
-	 * Lache une bombe ˆ l'endroit du personnage
+	 * Lache une bombe a l'endroit du personnage
 	 * @param idPersonnage L'ID du personnage
 	 */
 	public void dropBomb(int idPersonnage) {
@@ -356,10 +410,42 @@ public class Controleur {
 		Point point = getPersonnagePosition( idPersonnage );
 		int x = point.x;
 		int y = point.y;
-		
+		int portee = getPortee(personnage);
+		int duree = getDuree(personnage);
+		System.out.println(portee);
 		if ( casePasDeBomb( x,y ) && personnage.getVivant()){
-			modele.getListBomb().add( new Bombe(x,y,this) );
+			modele.getListBomb().add( new Bombe(x,y,portee,duree,this) );
 		}
+	}
+	
+	public int getPortee(Personnage personnage){
+		int porteeBombe = 1;
+		int idBonus = 0;
+		while (idBonus < personnage.getBonus_personnage().size()){
+			if (bonus_provisoire(personnage, idBonus).getBonus_intensite() == 1){
+				porteeBombe++;
+				personnage.removeBonus(idBonus);
+			}
+			else idBonus++;
+		}
+		return porteeBombe;
+	}
+	
+	public int getDuree(Personnage personnage){
+		int dureeBombe = 3000;
+		int idBonus = 0;
+		while (idBonus < personnage.getBonus_personnage().size()){
+			if (bonus_provisoire(personnage, idBonus).getBonus_explosion() == 1){
+				dureeBombe = dureeBombe - 500;
+				personnage.removeBonus(idBonus);
+			}
+			else idBonus++;
+		}
+		return dureeBombe;
+	}
+	
+	public Bonus bonus_provisoire(Personnage personnage, int idBonus){
+		return personnage.getBonus_personnage().get(idBonus);
 	}
 	
 	
@@ -451,12 +537,12 @@ public class Controleur {
 	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
 			addExplosion(x,y);
 			y -= 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) && p<=portee){
+		if( estBlocCassable(x,y) && p<portee){
 			removeBlocCassable(x,y);
 			double random = Math.random();
 					if (random > 0.5){
@@ -464,7 +550,7 @@ public class Controleur {
 					}
 			addExplosion(x,y);
 		}
-		if (estPersonnage(x,y) && p<=portee){
+		if (estPersonnage(x,y) && p<portee){
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
@@ -486,12 +572,12 @@ public class Controleur {
 	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
 			addExplosion(x,y);
 			y += 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) && p<=portee){
+		if( estBlocCassable(x,y) && p<portee){
 			removeBlocCassable(x,y);
 			double random = Math.random();
 			    if (random > 0.5){
@@ -499,7 +585,7 @@ public class Controleur {
 			    }
 			addExplosion(x,y);
 		}
-		if (estPersonnage(x,y) && p<=portee){
+		if (estPersonnage(x,y) && p<portee){
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
@@ -521,12 +607,12 @@ public class Controleur {
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
 			addExplosion(x,y);
 			x -= 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) && p<=portee){
+		if( estBlocCassable(x,y) && p<portee){
 			removeBlocCassable(x,y);
 			double random = Math.random();
 				if (random > 0.5){
@@ -534,7 +620,7 @@ public class Controleur {
 			    }
 			addExplosion(x,y);
 		}
-		if (estPersonnage(x,y) && p<=portee){
+		if (estPersonnage(x,y) && p<portee){
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
@@ -556,12 +642,12 @@ public class Controleur {
 	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<=portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
 			addExplosion(x,y);
 			x += 1;
 			p += 1;
 		}
-		if( estBlocCassable(x,y) && p<=portee){
+		if( estBlocCassable(x,y) && p<portee){
 			removeBlocCassable(x,y);
 			double random = Math.random();
 			    if (random > 0.5){
@@ -569,7 +655,7 @@ public class Controleur {
 			    }
 			addExplosion(x,y);
 		}
-		if (estPersonnage(x,y) && p<=portee){
+		if (estPersonnage(x,y) && p<portee){
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){

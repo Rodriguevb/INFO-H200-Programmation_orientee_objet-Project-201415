@@ -91,6 +91,16 @@ public class Modele {
 		return idPersonnage;
 	}
 	
+	public int getIdBonus(int x, int y){
+		int idBonus = -1;
+		for (int id = 0; id < bonus.size(); ++id){
+			if (bonus.get(id).getX() == x && bonus.get(id).getY() == y){
+				idBonus = id;
+			}
+		}
+		return idBonus;
+	}
+	
 	public Personnage getPersonnageSurPlateau(int x, int y){
 		for (Personnage personnage: personnages){
 			if (personnage.getX()==x && personnage.getY() == y){
@@ -102,15 +112,21 @@ public class Modele {
 	
 	public boolean PersonnageSurCase(int x, int y){
 		boolean surCase = false;
-		String SsurCase = "false";
 		for (Personnage personnage: personnages){
 			if (personnage.getX() == x && personnage.getY() == y){
 				surCase = true;
-				SsurCase = "true";
 			}
 		}
-
-		System.out.println(SsurCase);
+		return surCase;
+	}
+	
+	public boolean bonusSurCase(int x, int y){
+		boolean surCase = false;
+		for (Bonus bon: bonus){
+			if (bon.getX() == x && bon.getY() == y){
+				surCase = true;
+			}
+		}
 		return surCase;
 	}
 	
@@ -157,5 +173,10 @@ public class Modele {
 	public void removePersonnageDuPlateau(int x, int y){
 		int id = getIdPersonnage(x,y);
 		personnages.remove(id);
+	}
+	
+	public void removeBonusDuPlateau(int x, int y){
+		int id = getIdBonus(x,y);
+		bonus.remove(id);
 	}
 }

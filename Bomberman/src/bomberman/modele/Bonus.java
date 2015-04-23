@@ -2,6 +2,24 @@ package bomberman.modele;
 
 public class Bonus extends PossedePosition{
 	
+	private int niveau = 1;
+	private int bonus_intensite;
+	private int bonus_clavier;
+	private int bonus_bombe;
+	private int bonus_vie;
+	private int bonus_explosion;
+	//private int bonus_bloc;
+	//private int bonus_tunnel;
+	
+	public Bonus(int x, int y, int intensite, int clavier, int bombe, int vie, int explosion){
+		super(x,y);
+		this.bonus_intensite = intensite;
+		this.bonus_clavier = clavier;
+		this.bonus_bombe = bombe;
+		this.bonus_vie = vie;
+		this.bonus_explosion = explosion;
+	}
+	
 	public int getBonus_intensite() {
 		return bonus_intensite;
 	}
@@ -48,24 +66,6 @@ public class Bonus extends PossedePosition{
 
 	public void setNiveau(int niveau) {
 		this.niveau = niveau;
-	}
-	
-	private int niveau = 1;
-	private int bonus_intensite;
-	private int bonus_clavier;
-	private int bonus_bombe;
-	private int bonus_vie;
-	private int bonus_explosion;
-	//private int bonus_bloc;
-	//private int bonus_tunnel;
-	
-	public Bonus(int x, int y, int intensite, int clavier, int bombe, int vie, int explosion){
-		super(x,y);
-		this.bonus_intensite = intensite;
-		this.bonus_clavier = clavier;
-		this.bonus_bombe = bombe;
-		this.bonus_vie = vie;
-		this.bonus_explosion = explosion;
 	}
 
 }

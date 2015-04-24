@@ -22,7 +22,7 @@ public class Bouton_go extends JButton implements ActionListener{
 		super("C'est parti !");
 		this.setLocation(200,300);
 		this.controleur = controleur;
-		this.addActionListener(this); // mets le bouton sur écoute de la souris
+		this.addActionListener(this); // mets le bouton sur ecoute de la souris
 		this.setNb_joueurs(1);
 	}
 

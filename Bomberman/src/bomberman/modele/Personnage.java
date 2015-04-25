@@ -2,6 +2,10 @@ package bomberman.modele;
 
 import java.util.ArrayList;
 
+import javax.swing.Timer;
+
+import bomberman.controleur.Tunnel;
+
 
 public class Personnage extends PossedePosition {
 	
@@ -11,6 +15,7 @@ public class Personnage extends PossedePosition {
 	private int nb_bombes;
 	private boolean vivant;
 	private ArrayList<Bonus> bonus_personnage;
+	private boolean tunnel;
 	
 	public Personnage(int x, int y, String nom) {
 		super(x,y);
@@ -20,6 +25,15 @@ public class Personnage extends PossedePosition {
 		this.nb_bombes = 10;
 		this.vivant = true;
 		this.bonus_personnage = new ArrayList<Bonus>();
+		this.tunnel = false;
+	}
+
+	public boolean isTunnel() {
+		return tunnel;
+	}
+
+	public void setTunnel(boolean tunnel) {
+		this.tunnel = tunnel;
 	}
 
 	public String getNom() {
@@ -68,6 +82,13 @@ public class Personnage extends PossedePosition {
 			else if (bonus_personnage.get(idBonus).getBonus_bombe() == 1){
 				nb_bombes++;
 				bonus_personnage.remove(idBonus);
+			}
+			else if (bonus_personnage.get(idBonus).getBonus_tunnel() == 1){
+				tunnel = true;
+				bonus_personnage.remove(idBonus);
+				Timer timerTunnel = new Timer(10000, new Tunnel(this));
+				timerTunnel.setRepeats(false);
+				timerTunnel.start();
 			}
 			else {
 				idBonus++;

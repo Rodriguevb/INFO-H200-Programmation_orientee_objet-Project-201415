@@ -165,13 +165,15 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		y -= 1;
-		if ( estLibre(x,y) && personnage.getVivant()) {
+		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
+			personnage.setY(15);
+			y = 15;
+		}
+		else if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(0, -1);
 			personnage.setNom_image(personnage.getNom()+"Dos.png");
 		}
 		if ( estBonus(x,y) ){
-			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
-			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
 			int idBonus = modele.getIdBonus(x, y);
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
@@ -250,19 +252,22 @@ public class Controleur {
 	private void addBonus(Personnage personnage, int idBonus, int x, int y){
 		String type_bonus = getTypeBonus(idBonus);
 		if (type_bonus == "bonus_intensite1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0,0));
 		}
 		if (type_bonus == "bonus_clavier1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0,0));
 		}
 		if (type_bonus == "bonus_bombe1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0,0));
 		}
 		if (type_bonus == "bonus_vie1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0,0));
 		}
 		if (type_bonus == "bonus_explosion1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1,0));
+		}
+		if (type_bonus == "bonus_tunnel.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,1));
 		}
 	}
 	
@@ -280,13 +285,15 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		y += 1;
-		if ( estLibre(x,y) && personnage.getVivant()) {
+		if (y == 16 && personnage.isTunnel() && estLibre(x,1)){
+			personnage.setY(1);
+			y = 1;
+		}
+		else if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(0, 1);
 			personnage.setNom_image(personnage.getNom()+"Face.png");
 		}
 		if ( estBonus(x,y) ){
-			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
-			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
 			int idBonus = modele.getIdBonus(x, y);
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
@@ -305,13 +312,15 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		x -= 1;
-		if ( estLibre(x,y) && personnage.getVivant()) {
+		if (x == 0 && personnage.isTunnel() && estLibre(15,y)){
+			personnage.setX(15);
+			x = 15;
+		}
+		else if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(-1, 0);
 			personnage.setNom_image(personnage.getNom()+"Gauche.png");
 		}
 		if ( estBonus(x,y) ){
-			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
-			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
 			int idBonus = modele.getIdBonus(x, y);
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
@@ -330,13 +339,15 @@ public class Controleur {
 		int x = personnage.getX();
 		int y = personnage.getY();
 		x += 1;
-		if ( estLibre(x,y) && personnage.getVivant()) {
+		if (x == 16 && personnage.isTunnel() && estLibre(1,y)){
+			personnage.setX(1);
+			x = 1;
+		}
+		else if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(1, 0);
 			personnage.setNom_image(personnage.getNom()+"Droite.png");
 		}
 		if ( estBonus(x,y) ){
-			/*Bonus bonus = modele.getBonus(modele.getIdBonus(x,y));
-			personnage.getBonus_personnage().add(new Bonus(bonus.getX(), bonus.getY(), bonus.get))*/
 			int idBonus = modele.getIdBonus(x, y);
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
@@ -473,6 +484,9 @@ public class Controleur {
 		}
 		if (bonus.getBonus_explosion() == 1){
 			type = "bonus_explosion1.png";
+		}
+		if (bonus.getBonus_tunnel() == 1){
+			type = "bonus_tunnel.png";
 		}
 		return type;
 	}

@@ -11,7 +11,7 @@ import bomberman.modele.PossedePosition;
 public class Explosion extends PossedePosition implements ActionListener {
 	
 	/**
-	 * Classe qui représente une explosion
+	 * Classe qui represente une explosion
 	 */
 	private Controleur controleur;
 	private Bombe bombe;

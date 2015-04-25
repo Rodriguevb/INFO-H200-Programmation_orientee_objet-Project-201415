@@ -3,6 +3,8 @@ package bomberman.controleur;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Timer;
+
 import bomberman.modele.Bombe;
 import bomberman.modele.Bonus;
 import bomberman.modele.Modele;
@@ -17,6 +19,10 @@ public class Controleur {
 	private Modele modele;
 	private int nb_joueurs = 1;
 	private int niveau = 1;
+	private ListenerPlayer listenerPlayer1;
+	private ListenerPlayer listenerPlayer2;
+	private ListenerPlayer listenerPlayer3;
+	private ListenerPlayer listenerPlayer4;
 	
 	
 	/**
@@ -110,9 +116,10 @@ public class Controleur {
 		}
 	}
 	
+	// Essayer de réduire la méthode plus tard.
 	public void creerJoueurs(){
 		modele.createPlayers(nb_joueurs);
-		ListenerPlayer listenerPlayer1 = new ListenerPlayer(this, 0);
+		listenerPlayer1 = new ListenerPlayer(this, 0);
 		listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
 		listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
 		listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
@@ -120,7 +127,7 @@ public class Controleur {
 		listenerPlayer1.setKeyForDrop( KeyEvent.VK_SPACE );
 		vue.getJeu().addKeyListener( listenerPlayer1 );
 		if (nb_joueurs >= 2){
-			ListenerPlayer listenerPlayer2 = new ListenerPlayer(this, 1);
+			listenerPlayer2 = new ListenerPlayer(this, 1);
 			listenerPlayer2.setKeyForUp( KeyEvent.VK_Z );
 			listenerPlayer2.setKeyForDown( KeyEvent.VK_S );
 			listenerPlayer2.setKeyForLeft( KeyEvent.VK_Q );
@@ -129,7 +136,7 @@ public class Controleur {
 			vue.getJeu().addKeyListener( listenerPlayer2 );
 		}
 		if (nb_joueurs >= 3){
-			ListenerPlayer listenerPlayer3 = new ListenerPlayer(this, 2);
+			listenerPlayer3 = new ListenerPlayer(this, 2);
 			listenerPlayer3.setKeyForUp( KeyEvent.VK_Y );
 			listenerPlayer3.setKeyForDown( KeyEvent.VK_H );
 			listenerPlayer3.setKeyForLeft( KeyEvent.VK_G );
@@ -138,7 +145,7 @@ public class Controleur {
 			vue.getJeu().addKeyListener( listenerPlayer3 );
 		}
 		if (nb_joueurs == 4){
-			ListenerPlayer listenerPlayer4 = new ListenerPlayer(this, 3);
+			listenerPlayer4 = new ListenerPlayer(this, 3);
 			listenerPlayer4.setKeyForUp( KeyEvent.VK_O );
 			listenerPlayer4.setKeyForDown( KeyEvent.VK_L );
 			listenerPlayer4.setKeyForLeft( KeyEvent.VK_K );
@@ -169,9 +176,77 @@ public class Controleur {
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
+			changerTouches(personnage);
 		}
 	}
 	
+	private void changerTouches(Personnage personnage){
+		if (personnage.ownBonusClavier()){
+			int idPersonnage = modele.getIdPersonnage(personnage.getX(), personnage.getY());
+			recupererTouches(idPersonnage);
+		}
+	}
+	
+	
+	
+	private void recupererTouches(int idPersonnage) {
+		if (idPersonnage == 0){
+			listenerPlayer1.setKeyForUp( KeyEvent.VK_DOWN );
+			listenerPlayer1.setKeyForDown( KeyEvent.VK_UP );
+			listenerPlayer1.setKeyForLeft( KeyEvent.VK_RIGHT );
+			listenerPlayer1.setKeyForRight( KeyEvent.VK_LEFT );
+		}
+		if (idPersonnage == 1){
+			listenerPlayer2.setKeyForUp( KeyEvent.VK_S );
+			listenerPlayer2.setKeyForDown( KeyEvent.VK_Z );
+			listenerPlayer2.setKeyForLeft( KeyEvent.VK_D );
+			listenerPlayer2.setKeyForRight( KeyEvent.VK_Q );
+		}
+		if (idPersonnage == 2){
+			listenerPlayer3.setKeyForUp( KeyEvent.VK_H );
+			listenerPlayer3.setKeyForDown( KeyEvent.VK_Y );
+			listenerPlayer3.setKeyForLeft( KeyEvent.VK_J );
+			listenerPlayer3.setKeyForRight( KeyEvent.VK_G );
+		}
+		if (idPersonnage == 3){
+			listenerPlayer4.setKeyForUp( KeyEvent.VK_L );
+			listenerPlayer4.setKeyForDown( KeyEvent.VK_O );
+			listenerPlayer4.setKeyForLeft( KeyEvent.VK_M );
+			listenerPlayer4.setKeyForRight( KeyEvent.VK_K );
+		}
+		Timer timerTouches = new Timer(10000, new Clavier(this, idPersonnage));
+		timerTouches.setRepeats(false);
+		timerTouches.start();
+	}
+	
+	public void resetTouches(int idPersonnage){
+		if (idPersonnage == 0){
+			listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
+			listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
+			listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
+			listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
+		}
+		if (idPersonnage == 1){
+			listenerPlayer2.setKeyForUp( KeyEvent.VK_Z );
+			listenerPlayer2.setKeyForDown( KeyEvent.VK_S );
+			listenerPlayer2.setKeyForLeft( KeyEvent.VK_Q );
+			listenerPlayer2.setKeyForRight( KeyEvent.VK_D );
+		}
+		if (idPersonnage == 2){
+			listenerPlayer3.setKeyForUp( KeyEvent.VK_Y );
+			listenerPlayer3.setKeyForDown( KeyEvent.VK_H );
+			listenerPlayer3.setKeyForLeft( KeyEvent.VK_G );
+			listenerPlayer3.setKeyForRight( KeyEvent.VK_J );
+		}
+		if (idPersonnage == 3){
+			listenerPlayer4.setKeyForUp( KeyEvent.VK_O );
+			listenerPlayer4.setKeyForDown( KeyEvent.VK_L );
+			listenerPlayer4.setKeyForLeft( KeyEvent.VK_K );
+			listenerPlayer4.setKeyForRight( KeyEvent.VK_M );
+		}
+	}
+
+
 	private void addBonus(Personnage personnage, int idBonus, int x, int y){
 		String type_bonus = getTypeBonus(idBonus);
 		if (type_bonus == "bonus_intensite1.png"){
@@ -216,6 +291,7 @@ public class Controleur {
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
+			changerTouches(personnage);
 		}
 	}
 	
@@ -240,6 +316,7 @@ public class Controleur {
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
+			changerTouches(personnage);
 		}
 	}
 	
@@ -264,6 +341,7 @@ public class Controleur {
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
+			changerTouches(personnage);
 		}
 	}
 

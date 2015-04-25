@@ -75,6 +75,19 @@ public class Personnage extends PossedePosition {
 		}
 	}
 	
+	public boolean ownBonusClavier(){
+		boolean bonus = false;
+		int idBonus = 0;
+		while (idBonus < bonus_personnage.size()){
+			if (bonus_personnage.get(idBonus).getBonus_clavier() == 1){
+				bonus = true;
+				bonus_personnage.remove(idBonus);
+			}
+			else idBonus++;
+		}
+		return bonus;
+	}
+	
 	public void removeBonus(int idBonus){
 		bonus_personnage.remove(idBonus);
 	}

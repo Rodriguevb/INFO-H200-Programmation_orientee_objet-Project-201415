@@ -10,6 +10,7 @@ public class Bombe extends PossedePosition {
 	private Timer timer;
 	private int portee;
 	private int duree;
+	private Explosion explosion;
 
 	
 	/**
@@ -22,13 +23,22 @@ public class Bombe extends PossedePosition {
 		super(x,y);
 		this.portee = portee;
 		this.duree = duree;
+		this.explosion = new Explosion(x,y,duree+1000,this.getPortee(),controleur, this);
 		
 		
-		this.timer = new Timer(duree, new Explosion(x,y,duree+1000,this.getPortee(),controleur, this) );
+		this.timer = new Timer(duree, explosion );
 		this.timer.setRepeats(false);
 		this.timer.start();
 	}
 	
+	public Explosion getExplosion() {
+		return explosion;
+	}
+
+	public void setExplosion(Explosion explosion) {
+		this.explosion = explosion;
+	}
+
 	/**
 	 * Savoir la portee de la bombe
 	 * @return La portee de la bombe

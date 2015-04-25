@@ -18,6 +18,7 @@ public class Explosion extends PossedePosition implements ActionListener {
 	private Timer timer;
 	private int duree;
 	private int portee;
+	private boolean bombeExplosee;
 
 	
 	/**
@@ -35,6 +36,7 @@ public class Explosion extends PossedePosition implements ActionListener {
 		this.controleur = controleur;
 		this.bombe = bombe;
 		this.portee = portee;
+		this.bombeExplosee = false;
 		
 		this.timer = new Timer(duree, new SuppressionExplosion(controleur, this) );
 		this.timer.setRepeats(false);
@@ -52,13 +54,23 @@ public class Explosion extends PossedePosition implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		if ( bombe != null ){
-			this.controleur.removeBombe( bombe );
-			bombe = null;
+		if (!bombeExplosee){
+		    if ( bombe != null ){
+			    this.controleur.removeBombe( bombe );
+    			bombe = null;
+	    	}
+		    this.controleur.makeExplosion( this );
 		}
-		this.controleur.makeExplosion( this );
 	}
     
+	public boolean isBombeExplosee() {
+		return bombeExplosee;
+	}
+
+	public void setBombeExplosee(boolean bombeExplosee) {
+		this.bombeExplosee = bombeExplosee;
+	}
+
 	/**
 	 * Savoir la duree d'affichage de l'explosion
 	 * @return La duree d'affichage de l'explosion

@@ -103,6 +103,16 @@ public class Modele {
 		return idBonus;
 	}
 	
+	public int getIdBombe(int x, int y){
+		int idBombe = -1;
+		for (int id = 0; id < bombes.size(); id++){
+			if (bombes.get(id).getX() == x && bombes.get(id).getY() == y){
+				idBombe = id;
+			}
+		}
+		return idBombe;
+	}
+	
 	public Personnage getPersonnageSurPlateau(int x, int y){
 		for (Personnage personnage: personnages){
 			if (personnage.getX()==x && personnage.getY() == y){
@@ -132,6 +142,16 @@ public class Modele {
 		return surCase;
 	}
 	
+	public boolean BombeSurCase(int x, int y){
+		boolean surCase = false;
+		for (Bombe bombe: bombes){
+			if (bombe.getX() == x && bombe.getY() == y){
+				surCase = true;
+			}
+		}
+		return surCase;
+	}
+	
 	public Bombe getBomb(int idBomb) {
 		return bombes.get( idBomb );
 	}
@@ -148,7 +168,7 @@ public class Modele {
 		return personnages;
 	}
 
-	public ArrayList<Bombe> getListBomb() {
+	public ArrayList<Bombe> getListBombe() {
 		return bombes;
 	}
 

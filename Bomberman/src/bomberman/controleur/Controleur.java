@@ -408,6 +408,10 @@ public class Controleur {
 		return modele.PersonnageSurCase(x,y);
 	}
 	
+	public boolean estBombe(int x, int y){
+		return modele.BombeSurCase(x,y);
+	}
+	
 
 	/**
 	 * Savoir la longueur du plateau
@@ -506,7 +510,7 @@ public class Controleur {
 		int duree = getDuree(personnage);
 		System.out.println(portee);
 		if ( casePasDeBomb( x,y ) && personnage.getVivant()){
-			modele.getListBomb().add( new Bombe(x,y,portee,duree,this) );
+			modele.getListBombe().add( new Bombe(x,y,portee,duree,this) );
 		}
 	}
 	
@@ -556,7 +560,7 @@ public class Controleur {
 	 * @return Le nombre de bombes
 	 */
 	public int getSizeBomb() {
-		return modele.getListBomb().size();
+		return modele.getListBombe().size();
 	}
 
 
@@ -591,8 +595,6 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				modele.getPersonnageSurPlateau(x, y).mourir();
-				/*removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));*/
 			}
 		}
 		vue.repaint();
@@ -600,7 +602,7 @@ public class Controleur {
 
 
 	/**
-	 * Savoir le nombre d'explosions prŽsentes sur le plateau
+	 * Savoir le nombre d'explosions presentes sur le plateau
 	 * @return Le nombre d'explosions
 	 */
 	public int getSizeExplosion() {
@@ -629,7 +631,7 @@ public class Controleur {
 	public void addExplosionUp(int x, int y, int portee){
 		y -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
 			addExplosion(x,y);
 			y -= 1;
 			p += 1;
@@ -647,10 +649,16 @@ public class Controleur {
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
 			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
 				modele.getPersonnageSurPlateau(x, y).mourir();
-				/*removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
+		}
+		if (estBombe(x,y) && p<portee){
+			int idBombe = modele.getIdBombe(x, y);
+			Bombe bombe = modele.getListBombe().get(idBombe);
+			int porteeBombe = bombe.getPortee();
+			bombe.getExplosion().setBombeExplosee(true);
+			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
+			removeBombe(modele.getListBombe().get(idBombe));
 		}
 	}
 
@@ -664,7 +672,7 @@ public class Controleur {
 	public void addExplosionDown(int x, int y, int portee){
 		y += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
 			addExplosion(x,y);
 			y += 1;
 			p += 1;
@@ -687,6 +695,14 @@ public class Controleur {
 			}
 			addExplosion(x,y);
 		}
+		if (estBombe(x,y) && p<portee){
+			int idBombe = modele.getIdBombe(x, y);
+			Bombe bombe = modele.getListBombe().get(idBombe);
+			int porteeBombe = bombe.getPortee();
+			bombe.getExplosion().setBombeExplosee(true);
+			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
+			removeBombe(modele.getListBombe().get(idBombe));
+		}
 	}
 	
 	
@@ -699,7 +715,7 @@ public class Controleur {
 	public void addExplosionLeft(int x, int y, int portee){
 		x -= 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
 			addExplosion(x,y);
 			x -= 1;
 			p += 1;
@@ -722,6 +738,14 @@ public class Controleur {
 			}
 			addExplosion(x,y);
 		}
+		if (estBombe(x,y) && p<portee){
+			int idBombe = modele.getIdBombe(x, y);
+			Bombe bombe = modele.getListBombe().get(idBombe);
+			int porteeBombe = bombe.getPortee();
+			bombe.getExplosion().setBombeExplosee(true);
+			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
+			removeBombe(modele.getListBombe().get(idBombe));
+		}
 	}
 	
 	
@@ -734,7 +758,7 @@ public class Controleur {
 	public void addExplosionRight(int x, int y, int portee){
 		x += 1;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
 			addExplosion(x,y);
 			x += 1;
 			p += 1;
@@ -756,6 +780,14 @@ public class Controleur {
 				modele.getListMorts().add(new Mort(x,y));*/
 			}
 			addExplosion(x,y);
+		}
+		if (estBombe(x,y) && p<portee){
+			int idBombe = modele.getIdBombe(x, y);
+			Bombe bombe = modele.getListBombe().get(idBombe);
+			int porteeBombe = bombe.getPortee();
+			bombe.getExplosion().setBombeExplosee(true);
+			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
+			removeBombe(modele.getListBombe().get(idBombe));
 		}
 	}
 	
@@ -789,7 +821,7 @@ public class Controleur {
 	 * @param bombe 
 	 */
 	public void removeBombe(Bombe bombe) {
-		modele.getListBomb().remove( bombe );
+		modele.getListBombe().remove( bombe );
 		repaint();
 	}
 	

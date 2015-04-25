@@ -19,6 +19,7 @@ public class Controleur {
 	private Modele modele;
 	private int nb_joueurs = 1;
 	private int niveau = 1;
+	boolean EtatJeu = false ;
 	private ListenerPlayer listenerPlayer1;
 	private ListenerPlayer listenerPlayer2;
 	private ListenerPlayer listenerPlayer3;
@@ -83,6 +84,14 @@ public class Controleur {
 	 */
 	public void repaint() {
 		vue.repaint();
+	}
+	
+	public void jeuEnMarche(boolean etat){
+		EtatJeu = etat ;
+	}
+	
+	public boolean isJeuEnCours(){
+		return EtatJeu;
 	}
 	
 	public void NbJoueurs(Object NbJoueurs){

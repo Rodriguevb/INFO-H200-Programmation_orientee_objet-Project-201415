@@ -21,8 +21,10 @@ public class Vue extends JFrame{
 	private final SousMenu sousmenu;
 	private final Explications explications ;
 	private final Jeu  jeu;
+	private final Points points;
 	private final Object option;
 	private Modele modele;
+	
 	
 	CardLayout cl = new CardLayout();
 	String[] listContent = {"Menu", "SousMenu", "Explications", "Jeu"};
@@ -33,16 +35,17 @@ public class Vue extends JFrame{
 		
 		super("Bomberman");
 	    this.setSize(860, 890);
-	    this.setMinimumSize( new Dimension(500,400) );
+	    this.setMinimumSize( new Dimension(860,890) );
 	    this.setMaximumSize( new Dimension(900,1100) );
 	    this.setLocationRelativeTo(null); // Centre la fenetre au milieu de l'Žcran
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Termine le processus lorsqu'on clique sur la croix rouge
 	    
 	    
-
+	    
 		menu = new Menu(controleur);
 		sousmenu = new SousMenu (controleur);
-		jeu  = new Jeu(controleur, modele);
+		points = new Points(controleur,modele);
+		jeu  = new Jeu(controleur, modele,points);
 		explications = new Explications (controleur);  
 		option = null; // TODO: Option(controleur)
 		
@@ -53,6 +56,7 @@ public class Vue extends JFrame{
 	    content.add(sousmenu, listContent[1]);
 	    content.add(explications, listContent[2]);
 	    content.add(jeu,listContent[3]);
+
 	
 	    //menu.setFocusable(true);
 	    //jeu.setFocusable(true);
@@ -62,6 +66,10 @@ public class Vue extends JFrame{
 	    this.setVisible(true); // Rend la fenetre visible
 	}
 	
+	
+	public Points getPoints(){
+		return points;
+	}
 	
 	public void switchToMenu() {
 		/*this.getContentPane().removeAll();
@@ -103,9 +111,11 @@ public class Vue extends JFrame{
 		
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();
-		this.getContentPane().validate();
-	*/
+		this.getContentPane().validate();*/
+	
 		cl.show(content, listContent[3]);
+		this.setSize(1200,890);
+		 this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();

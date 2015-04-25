@@ -31,6 +31,7 @@ public class Bouton_go extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToJeu();
 		controleur.creerJoueurs();
+		controleur.jeuEnMarche(true);
 	}
 
 

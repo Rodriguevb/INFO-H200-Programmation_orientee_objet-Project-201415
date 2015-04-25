@@ -1,5 +1,6 @@
 package bomberman.vue;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -18,6 +19,7 @@ public class Jeu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
 	private Modele modele;
+	private Points points;
 	
 	
 	int taille_img = 50;
@@ -32,29 +34,17 @@ public class Jeu extends JPanel {
 	 * Constructeur de la classe Jeu
 	 * @param controleur
 	 */
-	public Jeu(Controleur controleur, Modele modele){
+	public Jeu(Controleur controleur, Modele modele, Points points){
 	
 		super();
+		setLayout(null);
 		this.controleur  = controleur;
 		this.modele = modele;
-		
+		this.points = new Points(controleur, modele);
+		this.add(points);
+		points.setBounds(850,0,350,900);
 		this.add(new Bouton_retour(controleur));
 		
-		//kListener1 = new ListenerPlayer(38,40,37,39,32, 0, plateau,bomberman.vue);
-		//kListener2 = new ListenerPlayer(90,87,81,83,10, 1,plateau,bomberman.vue);
-		
-		//this.addKeyListener( new ListenerPlayer(38,40,37,39,32, controleur, 0) );
-		
-		/*ListenerPlayer listenerPlayer1 = new ListenerPlayer(controleur, 0);
-		listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
-		listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
-		listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
-		listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
-		listenerPlayer1.setKeyForDrop( KeyEvent.VK_SPACE );
-		
-		
-		
-		this.addKeyListener( listenerPlayer1 );*/
 	}
 	
 	
@@ -66,7 +56,8 @@ public class Jeu extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		
 		// Afficher le fond d'ecran.
-		g2d.drawImage(new ImageIcon("chambre.png").getImage(), 0, 0, null);
+		this.setBackground(new Color(0,0,0));
+		//g2d.drawImage(new ImageIcon("chambre.png").getImage(), 0, 0, null);
 		
 		
 		// Afficher le plateau de depart avec les blocs.

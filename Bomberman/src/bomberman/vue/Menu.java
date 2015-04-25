@@ -2,10 +2,12 @@ package bomberman.vue;
 
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
@@ -19,8 +21,15 @@ public class Menu extends JPanel {
 	
 
 	public Menu(Controleur controleur) {
-	
-		this.add(new Bouton_jouer(controleur));
+		
+		setLayout(null);
+		JButton bouton_jouer = new Bouton_jouer(controleur);
+		JButton bouton_explications = new Bouton_explications(controleur);
+		bouton_jouer.setBounds(290,170,240,70);
+		bouton_explications.setBounds(290, 280, 240, 70);
+		this.add(bouton_jouer);
+		this.add(bouton_explications);
+		
 		this.add(new Bouton_explications(controleur));
 	}
 	

@@ -16,6 +16,10 @@ public class Main {
 		controleur.link( vue ); // lier la vue au controleur
 		controleur.link( modele ); // lier le modele au controleur
 		
+		Audio son = new Audio();
+		son.start();
+		
+		
 	}
 
 }

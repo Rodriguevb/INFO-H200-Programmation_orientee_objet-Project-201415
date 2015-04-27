@@ -2,7 +2,6 @@ package bomberman.vue;
 
 
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 

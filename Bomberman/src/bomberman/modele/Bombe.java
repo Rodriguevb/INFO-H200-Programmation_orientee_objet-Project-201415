@@ -22,7 +22,7 @@ public class Bombe extends PossedePosition {
 	public Bombe(int x, int y, int portee, int duree, Controleur controleur) {
 		super(x,y);
 		this.portee = portee;
-		this.duree = duree;
+		this.setDuree(duree);
 		this.explosion = new Explosion(x,y,duree+1000,this.getPortee(),controleur, this);
 		
 		
@@ -45,6 +45,14 @@ public class Bombe extends PossedePosition {
 	 */
 	public int getPortee(){
 		return portee;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
 	}
 
 }

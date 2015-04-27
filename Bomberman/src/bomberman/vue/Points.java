@@ -1,19 +1,16 @@
 package bomberman.vue;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Label;
-import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
-import bomberman.modele.Modele ;
+import bomberman.modele.Modele;
 
 public class Points extends JPanel {
 	

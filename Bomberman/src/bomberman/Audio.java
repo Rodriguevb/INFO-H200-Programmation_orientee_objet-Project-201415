@@ -9,12 +9,13 @@ public class Audio extends Thread{
      
     AudioInputStream audioInputStream = null;
     SourceDataLine line;
+	private AudioFileFormat format;
      
     public void run(){
     	while (true){
         File fichier = new File("swtheme.wav");
         try {
-        AudioFileFormat format = AudioSystem.getAudioFileFormat(fichier);
+        setFormat(AudioSystem.getAudioFileFormat(fichier));
         } catch (UnsupportedAudioFileException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
@@ -65,6 +66,14 @@ public class Audio extends Thread{
         }
     	}
     }
+
+	public AudioFileFormat getFormat() {
+		return format;
+	}
+
+	public void setFormat(AudioFileFormat format) {
+		this.format = format;
+	}
 	
     
 }

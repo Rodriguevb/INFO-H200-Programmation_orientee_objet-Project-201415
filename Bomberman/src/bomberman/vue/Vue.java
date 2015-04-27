@@ -49,7 +49,7 @@ public class Vue extends JFrame{
 		explications = new Explications (controleur);  
 		option = null; // TODO: Option(controleur)
 		
-		this.modele = modele;
+		this.setModele(modele);
 	    
 	    content.setLayout(cl); 
 	    content.add(menu, listContent[0]);
@@ -135,6 +135,21 @@ public class Vue extends JFrame{
 	
 	public Jeu getJeu(){
 		return jeu;
+	}
+
+
+	public Object getOption() {
+		return option;
+	}
+
+
+	public Modele getModele() {
+		return modele;
+	}
+
+
+	public void setModele(Modele modele) {
+		this.modele = modele;
 	}
 	
 }

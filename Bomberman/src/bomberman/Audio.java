@@ -2,18 +2,23 @@ package bomberman;
 import  java.io.*;
 import javax.sound.sampled.*;
  
- 
-public class Audio extends Thread{
-     
+
 	
-     
+public class Audio extends Thread{
+	
+	String nom_fichier ;
+      
     AudioInputStream audioInputStream = null;
     SourceDataLine line;
 	private AudioFileFormat format;
+	
+	public Audio(String nom_fichier){
+		this.nom_fichier = nom_fichier ;
+	}
      
     public void run(){
     	while (true){
-        File fichier = new File("swtheme.wav");
+        File fichier = new File(nom_fichier);
         try {
         setFormat(AudioSystem.getAudioFileFormat(fichier));
         } catch (UnsupportedAudioFileException e1) {

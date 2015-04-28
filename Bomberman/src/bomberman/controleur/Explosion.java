@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import bomberman.Audio_simple;
 import bomberman.modele.Bombe;
 import bomberman.modele.PossedePosition;
 
@@ -60,6 +61,8 @@ public class Explosion extends PossedePosition implements ActionListener {
     			bombe = null;
 	    	}
 		    this.controleur.makeExplosion( this );
+		    Audio_simple son = new Audio_simple("Explosion.wav");
+			son.start();
 		}
 	}
     

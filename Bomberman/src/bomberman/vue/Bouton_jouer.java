@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import bomberman.Audio;
 import bomberman.controleur.Controleur;
 
 public class Bouton_jouer extends JButton implements ActionListener{
@@ -28,12 +29,6 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	}
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		controleur.switchToSousMenu();
-	}
-
-
 	public int getNb_joueurs() {
 		return nb_joueurs;
 	}
@@ -41,5 +36,10 @@ public class Bouton_jouer extends JButton implements ActionListener{
 
 	public void setNb_joueurs(int nb_joueurs) {
 		this.nb_joueurs = nb_joueurs;
+	}
+	
+
+	public void actionPerformed(ActionEvent e) {
+		controleur.switchToSousMenu();
 	}
 }

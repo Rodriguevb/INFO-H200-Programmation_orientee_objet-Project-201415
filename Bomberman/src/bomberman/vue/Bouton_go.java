@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import bomberman.Audio;
 import bomberman.controleur.Controleur;
 
 public class Bouton_go extends JButton implements ActionListener{
@@ -31,6 +32,8 @@ public class Bouton_go extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToJeu();
 		controleur.creerJoueurs();
+		Audio son = new Audio("SonMario.wav");
+		son.start();
 		controleur.jeuEnMarche(true);
 	}
 

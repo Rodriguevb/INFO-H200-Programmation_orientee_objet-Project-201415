@@ -592,7 +592,7 @@ public class Controleur {
 			Bombe bombe = modele.getListBombe().get(idBombe);
 			int porteeBombe = bombe.getPortee();
 			bombe.getExplosion().setBombeExplosee(true);
-			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
+			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
 			removeBombe(modele.getListBombe().get(idBombe));
 		}
 	}
@@ -618,7 +618,7 @@ public class Controleur {
 	 * @param y L'ordonnŽe de l'explosion
 	 */
 	private void addExplosion(int x, int y){
-		modele.getListExplosion().add( new Explosion(x,y,1000,0,this,null) );
+		modele.getListExplosion().add( new Explosion(x,y,500,0,this,null) );
 	}
 
 

@@ -32,7 +32,7 @@ public class Bouton_go extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToJeu();
 		controleur.creerJoueurs();
-		Audio son = new Audio("SonMario.wav");
+		Audio son = new Audio("Tetris.wav");
 		son.start();
 		controleur.jeuEnMarche(true);
 	}

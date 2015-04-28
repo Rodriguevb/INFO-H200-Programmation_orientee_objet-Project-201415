@@ -23,8 +23,8 @@ public class Jeu extends JPanel {
 	
 	
 	int taille_img = 50;
-	ImageIcon blocIncassable = new ImageIcon("brique_grise.JPG");
-	ImageIcon blocCassable   = new ImageIcon("brique.JPG");
+	ImageIcon blocIncassable = new ImageIcon("bloc_tetris_incassable.png");
+	ImageIcon blocCassable   = new ImageIcon("bloc_tetris_cassable.png");
 	//ImageIcon img_personnage = new ImageIcon("bob.png");
 	ImageIcon img_bomb       = new ImageIcon("bombe.png");
 	ImageIcon img_explosion  = new ImageIcon("explosion.png");

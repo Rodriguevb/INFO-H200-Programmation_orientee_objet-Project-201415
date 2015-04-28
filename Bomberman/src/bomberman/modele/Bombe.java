@@ -23,7 +23,7 @@ public class Bombe extends PossedePosition {
 		super(x,y);
 		this.portee = portee;
 		this.setDuree(duree);
-		this.explosion = new Explosion(x,y,duree+1000,this.getPortee(),controleur, this);
+		this.explosion = new Explosion(x,y,duree+500,this.getPortee(),controleur, this);
 		
 		
 		this.timer = new Timer(duree, explosion );

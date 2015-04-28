@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
+import bomberman.Audio_simple;
 import bomberman.controleur.Tunnel;
 
 
@@ -58,6 +59,8 @@ public class Personnage extends PossedePosition {
 	
 	public void perdreVie(){
 		this.nb_vies -= 1;
+		Audio_simple son = new Audio_simple("ouch.wav");
+			son.start();
 	}
 	
 	public boolean getVivant(){

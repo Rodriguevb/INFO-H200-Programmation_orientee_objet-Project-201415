@@ -1,4 +1,5 @@
 package bomberman.vue;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,7 @@ public class Bouton_retour extends JButton implements ActionListener{
 	public Bouton_retour(Controleur controleur) {
 		super("Retour au menu");
 		this.controleur = controleur;
+		this.setFont(new java.awt.Font("Serif",1,12));
 		this.addActionListener(this); // met le bouton sur ecoute de la souris
 	}
 

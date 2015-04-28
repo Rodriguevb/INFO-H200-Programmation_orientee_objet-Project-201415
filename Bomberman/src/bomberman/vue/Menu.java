@@ -29,7 +29,6 @@ public class Menu extends JPanel {
 		this.add(bouton_jouer);
 		this.add(bouton_explications);
 		
-		this.add(new Bouton_explications(controleur));
 	}
 	
 	public void paintComponent(Graphics g){

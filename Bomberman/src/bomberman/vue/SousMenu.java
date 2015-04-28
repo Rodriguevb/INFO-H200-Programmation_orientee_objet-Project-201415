@@ -24,7 +24,7 @@ public class SousMenu extends JPanel {
 		this.add(new Bouton_retour(controleur));
 		this.add(new Bouton_nbjoueurs(controleur));   
 	    this.add(new Bouton_niveau(controleur));
-		this.add(new Bouton_choixJoueurs(controleur));
+		this.add(new Bouton_choixTheme(controleur));
 		this.add(new Bouton_go(controleur));
 	
 	

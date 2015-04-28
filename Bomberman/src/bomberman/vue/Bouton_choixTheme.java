@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 
 import bomberman.controleur.Controleur;
 
-public class Bouton_choixJoueurs extends JComboBox implements ActionListener{
+public class Bouton_choixTheme extends JComboBox implements ActionListener{
 
 	/**
 	 * Classe du bouton Choix des joueurs.
@@ -17,21 +17,20 @@ public class Bouton_choixJoueurs extends JComboBox implements ActionListener{
 	private Controleur controleur = null;
 	private int numJoueur ;
 	
-	public Bouton_choixJoueurs(Controleur controleur) {
+	public Bouton_choixTheme(Controleur controleur) {
 		
 		this.controleur = controleur;
-		this.addItem("Bomber");
-		this.addItem("Mickey");
+		this.addItem("Classique");
+		this.addItem("Mario");
+		this.addItem("Tetris");
 	    this.addActionListener(this);
 	    this.setForeground(Color.black);
 	    
 	}
 	
-		/*public void initialise(){
-			controleur.NbJoueurs(new String("1 joueur"));
-		}*/
 
-	    public void actionPerformed(ActionEvent e) {
-	      controleur.ChoixJoueurs(this.getSelectedItem());
+	public void actionPerformed(ActionEvent e) {
+	    controleur.ChoixTheme(this.getSelectedItem());
+	    
 	    }               
 	  }

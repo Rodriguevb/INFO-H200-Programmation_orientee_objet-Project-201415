@@ -24,6 +24,7 @@ public class Controleur {
 	private ListenerPlayer listenerPlayer2;
 	private ListenerPlayer listenerPlayer3;
 	private ListenerPlayer listenerPlayer4;
+
 	
 	
 	/**
@@ -109,10 +110,11 @@ public class Controleur {
 		return nb_joueurs;
 	}
 	
-	public void ChoixJoueurs(Object Choix){
-		String nom = "Mickey" ;
-		if (Choix == "Bomber") nom = "Bomber" ;
-		modele.creerListeNomJoueurs(nom);
+	public void ChoixTheme(Object Choix){
+		int Choixtheme = 0 ;
+		if (Choix == "Tetris") Choixtheme = 1 ;
+		
+		modele.creerTheme(Choixtheme);
 	}
 	
 	public void Niveau(Object Niveau){

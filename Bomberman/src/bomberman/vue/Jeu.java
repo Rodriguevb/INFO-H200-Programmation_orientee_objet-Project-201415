@@ -40,7 +40,7 @@ public class Jeu extends JPanel {
 		setLayout(null);
 		this.controleur  = controleur;
 		this.modele = modele;
-		this.setPoints(new Points(controleur, modele));
+		this.points = new Points(controleur, modele);
 		this.add(points);
 		points.setBounds(850,0,350,900);
 		this.add(new Bouton_retour(controleur));

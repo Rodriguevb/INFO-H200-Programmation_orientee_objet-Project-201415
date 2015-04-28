@@ -18,8 +18,11 @@ public class Explications extends JPanel {
 	
 
 	public Explications(Controleur controleur) {
-
-		this.add(new Bouton_retour(controleur));   
+		
+		setLayout(null);
+		this.add(new Bouton_retour(controleur)); 
+		
+		
 	}
 	
 	public void paintComponent(Graphics g){

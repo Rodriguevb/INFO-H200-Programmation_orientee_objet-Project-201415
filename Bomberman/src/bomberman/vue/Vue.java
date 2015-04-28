@@ -68,51 +68,28 @@ public class Vue extends JFrame{
 	
 	
 	public Points getPoints(){
+		
 		return points;
 	}
 	
 	public void switchToMenu() {
-		/*this.getContentPane().removeAll();
-		this.getContentPane().add( menu );
-		this.getContentPane().setFocusable( true );
-		this.getContentPane().requestFocus();
-		menu.requestFocus();
-		this.getContentPane().validate();
-		*/
+		
 		cl.show(content, listContent[0]);
 	}
 	
 
 	public void switchToSousMenu() {
-	/*	this.getContentPane().removeAll();
-		this.getContentPane().add( sousmenu );
-		this.getContentPane().setFocusable( true );
-		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
-		sousmenu.requestFocus();
-		this.getContentPane().validate();
-	*/	
+		
 		cl.show(content, listContent[1]);
 	}
 	
 	public void switchToExplications() {
-	/*	this.getContentPane().removeAll();
-		this.getContentPane().add( explications );
-		this.getContentPane().setFocusable( true );
-		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
-		explications.requestFocus();
-		this.getContentPane().validate();
-	*/
+		
 		cl.show(content, listContent[2]);
 	}
 	
 	public void switchToJeu() {
-		/*this.getContentPane().removeAll();
-		this.getContentPane().add( jeu );
 		
-		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
-		jeu.requestFocus();
-		this.getContentPane().validate();*/
-	
 		cl.show(content, listContent[3]);
 		this.setSize(1200,890);
 		 this.setLocationRelativeTo(null);
@@ -125,6 +102,7 @@ public class Vue extends JFrame{
 
 
 	public void switchToOptions() {
+		
 		this.getContentPane().removeAll();
 		//TODO this.getContentPane().add( option );
 		this.getContentPane().setFocusable( true );

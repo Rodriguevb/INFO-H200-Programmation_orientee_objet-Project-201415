@@ -47,16 +47,16 @@ public class ListenerPlayer implements KeyListener{
 	public void keyPressed(KeyEvent keyEvent) {
 		
 		if (keyEvent.getKeyCode() == key_up ) {
-			controleur.movePersonnageUp( idPersonnage );
+			controleur.movePersonnage( idPersonnage, 0, -1 );
 		}
 		if (keyEvent.getKeyCode() == key_down ) {
-			controleur.movePersonnageDown( idPersonnage );
+			controleur.movePersonnage( idPersonnage, 0, 1 );
 		}
 		if (keyEvent.getKeyCode() == key_left ) {
-			controleur.movePersonnageLeft( idPersonnage );
+			controleur.movePersonnage( idPersonnage, -1, 0 );
 		}
 		if (keyEvent.getKeyCode() == key_right ) {
-			controleur.movePersonnageRight( idPersonnage );
+			controleur.movePersonnage( idPersonnage, 1, 0 );
 		}
 		if (keyEvent.getKeyCode() == key_drop ) {
 			controleur.dropBomb( idPersonnage );

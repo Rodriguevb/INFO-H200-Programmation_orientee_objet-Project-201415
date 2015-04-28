@@ -1,6 +1,7 @@
 package bomberman.vue;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -20,9 +21,12 @@ public class Explications extends JPanel {
 	public Explications(Controleur controleur) {
 		
 		setLayout(null);
-		this.add(new Bouton_retour(controleur)); 
+		Bouton_retour bouton = new Bouton_retour(controleur);
+		bouton.setBounds(10, 800, 120, 30);
+		bouton.setBackground(new Color(60,160,81));
+		this.add(bouton); 
 		
-		
+	
 	}
 	
 	public void paintComponent(Graphics g){

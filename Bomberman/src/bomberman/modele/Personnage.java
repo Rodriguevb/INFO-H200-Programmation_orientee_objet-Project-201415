@@ -72,6 +72,15 @@ public class Personnage extends PossedePosition {
 		return bonus_personnage;
 	}
 	
+	public void move(int avance_x, int avance_y) {
+		this.x += avance_x;
+		this.y += avance_y;
+		if (avance_x == 1) this.nom_image = nom + "Droite.png";
+		else if (avance_x == -1) this.nom_image = nom + "Gauche.png";
+		else if (avance_y == 1) this.nom_image = nom + "Face.png" ;
+		else if (avance_y == -1) this.nom_image = nom + "Dos.png" ;
+	}
+	
 	public void activerBonus(){
 		int idBonus = 0;
 		while (idBonus < bonus_personnage.size()){

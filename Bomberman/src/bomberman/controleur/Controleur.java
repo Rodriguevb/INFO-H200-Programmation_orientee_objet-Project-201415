@@ -169,18 +169,19 @@ public class Controleur {
 	 * Bouge le personnage une case au dessus
 	 * @param idPersonnage L'ID du personnage
 	 */
-	public void movePersonnageUp(int idPersonnage) {
+	public void movePersonnage(int idPersonnage, int avance_x, int avance_y) {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
 		int x = personnage.getX();
 		int y = personnage.getY();
-		y -= 1;
-		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
+		x += avance_x;
+		y += avance_y;
+		
+		/*if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
 			personnage.setY(15);
 			y = 15;
-		}
-		else if ( estLibre(x,y) && personnage.getVivant()) {
-			personnage.move(0, -1);
-			personnage.setNom_image(personnage.getNom()+"Dos.png");
+		} */
+		if ( estLibre(x,y) && personnage.getVivant()) {
+			personnage.move(avance_x, avance_y);
 		}
 		if ( estBonus(x,y) ){
 			int idBonus = modele.getIdBonus(x, y);
@@ -285,86 +286,7 @@ public class Controleur {
 	}
 
 
-	/**
-	 * Bouge le personnage une case vers le bas
-	 * @param idPersonnage L'ID du personnage
-	 */
-	public void movePersonnageDown(int idPersonnage) {
-		Personnage personnage = modele.getPersonnage( idPersonnage );
-		int x = personnage.getX();
-		int y = personnage.getY();
-		y += 1;
-		if (y == 16 && personnage.isTunnel() && estLibre(x,1)){
-			personnage.setY(1);
-			y = 1;
-		}
-		else if ( estLibre(x,y) && personnage.getVivant()) {
-			personnage.move(0, 1);
-			personnage.setNom_image(personnage.getNom()+"Face.png");
-		}
-		if ( estBonus(x,y) ){
-			int idBonus = modele.getIdBonus(x, y);
-			addBonus(personnage,idBonus,x,y);
-			modele.removeBonusDuPlateau(x,y);
-			personnage.activerBonus();
-			changerTouches(personnage);
-		}
-	}
 	
-	
-	/**
-	 * Bouge le personnage vers la gauche
-	 * @param idPersonnage L'ID du personnage
-	 */
-	public void movePersonnageLeft(int idPersonnage) {
-		Personnage personnage = modele.getPersonnage( idPersonnage );
-		int x = personnage.getX();
-		int y = personnage.getY();
-		x -= 1;
-		if (x == 0 && personnage.isTunnel() && estLibre(15,y)){
-			personnage.setX(15);
-			x = 15;
-		}
-		else if ( estLibre(x,y) && personnage.getVivant()) {
-			personnage.move(-1, 0);
-			personnage.setNom_image(personnage.getNom()+"Gauche.png");
-		}
-		if ( estBonus(x,y) ){
-			int idBonus = modele.getIdBonus(x, y);
-			addBonus(personnage,idBonus,x,y);
-			modele.removeBonusDuPlateau(x,y);
-			personnage.activerBonus();
-			changerTouches(personnage);
-		}
-	}
-	
-	
-	/**
-	 * Bouge le personnage vers la droite
-	 * @param idPersonnage L'ID du personnage
-	 */
-	public void movePersonnageRight(int idPersonnage) {
-		Personnage personnage = modele.getPersonnage( idPersonnage );
-		int x = personnage.getX();
-		int y = personnage.getY();
-		x += 1;
-		if (x == 16 && personnage.isTunnel() && estLibre(1,y)){
-			personnage.setX(1);
-			x = 1;
-		}
-		else if ( estLibre(x,y) && personnage.getVivant()) {
-			personnage.move(1, 0);
-			personnage.setNom_image(personnage.getNom()+"Droite.png");
-		}
-		if ( estBonus(x,y) ){
-			int idBonus = modele.getIdBonus(x, y);
-			addBonus(personnage,idBonus,x,y);
-			modele.removeBonusDuPlateau(x,y);
-			personnage.activerBonus();
-			changerTouches(personnage);
-		}
-	}
-
 	/**
 	 * Retourne la position du personnage
 	 * @param idPersonnage L'ID du personnage

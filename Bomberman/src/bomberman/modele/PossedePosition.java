@@ -4,8 +4,8 @@ package bomberman.modele;
 public abstract class PossedePosition {
 	
 	
-	private int x = 0;
-	private int y = 0;
+	protected int x = 0;
+	protected int y = 0;
 	
 	public PossedePosition(int x, int y) {
 		this.x = x;

@@ -459,7 +459,7 @@ public class Controleur {
 	}
 	
 	public int getDuree(Personnage personnage){
-		int dureeBombe = 3000;
+		int dureeBombe = 1500;
 		int idBonus = 0;
 		while (idBonus < personnage.getBonus_personnage().size()){
 			if (bonus_provisoire(personnage, idBonus).getBonus_explosion() == 1){
@@ -517,10 +517,10 @@ public class Controleur {
 		int x = explosion.getX();
 		int y = explosion.getY();
 		int portee = explosion.getPortee();
-		addExplosionUp(x,y,portee);
-		addExplosionDown(x,y,portee);
-		addExplosionLeft(x,y,portee);
-		addExplosionRight(x,y,portee);
+		addExplosion(x,y, 1, 0, portee);
+		addExplosion(x,y, -1, 0, portee);
+		addExplosion(x,y, 0, 1, portee);
+		addExplosion(x,y, 0, -1, portee);
 		if (estPersonnage(x,y)){
 			modele.getPersonnageSurPlateau(x, y).perdreVie();
 			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
@@ -559,12 +559,14 @@ public class Controleur {
 	 * @param y L'ordonnee de l'explosion
 	 * @param portee La portee de l'explosion
 	 */
-	public void addExplosionUp(int x, int y, int portee){
-		y -= 1;
+	public void addExplosion(int x, int y, int direction_x, int direction_y, int portee){
+		x += direction_x ;
+		y += direction_y;
 		int p = 0;
 		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
 			addExplosion(x,y);
-			y -= 1;
+			x += direction_x ;
+			y += direction_y;
 			p += 1;
 		}
 		if( estBlocCassable(x,y) && p<portee){
@@ -593,136 +595,7 @@ public class Controleur {
 		}
 	}
 
-	
-	/**
-	 * Ajoute des explosions en chaine
-	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnee de l'explosion
-	 * @param portee La portee de l'explosion
-	 */
-	public void addExplosionDown(int x, int y, int portee){
-		y += 1;
-		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
-			addExplosion(x,y);
-			y += 1;
-			p += 1;
-		}
-		if( estBlocCassable(x,y) && p<portee){
-			removeBlocCassable(x,y);
-			double random = Math.random();
-			    if (random > 0.5){
-				    modele.createBonus(x, y, niveau);
-			    }
-			addExplosion(x,y);
-		}
-		if (estPersonnage(x,y) && p<portee){
-			modele.getPersonnageSurPlateau(x, y).perdreVie();
-			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
-			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				modele.getPersonnageSurPlateau(x, y).mourir();
-				/*removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));*/
-			}
-			addExplosion(x,y);
-		}
-		if (estBombe(x,y) && p<portee){
-			int idBombe = modele.getIdBombe(x, y);
-			Bombe bombe = modele.getListBombe().get(idBombe);
-			int porteeBombe = bombe.getPortee();
-			bombe.getExplosion().setBombeExplosee(true);
-			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
-			removeBombe(modele.getListBombe().get(idBombe));
-		}
-	}
-	
-	
-	/**
-	 * Ajoute des explosions en chaine
-	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnee de l'explosion
-	 * @param portee La portee de l'explosion
-	 */
-	public void addExplosionLeft(int x, int y, int portee){
-		x -= 1;
-		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
-			addExplosion(x,y);
-			x -= 1;
-			p += 1;
-		}
-		if( estBlocCassable(x,y) && p<portee){
-			removeBlocCassable(x,y);
-			double random = Math.random();
-				if (random > 0.5){
-				    modele.createBonus(x, y, niveau);
-			    }
-			addExplosion(x,y);
-		}
-		if (estPersonnage(x,y) && p<portee){
-			modele.getPersonnageSurPlateau(x, y).perdreVie();
-			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
-			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				modele.getPersonnageSurPlateau(x, y).mourir();
-				/*removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));*/
-			}
-			addExplosion(x,y);
-		}
-		if (estBombe(x,y) && p<portee){
-			int idBombe = modele.getIdBombe(x, y);
-			Bombe bombe = modele.getListBombe().get(idBombe);
-			int porteeBombe = bombe.getPortee();
-			bombe.getExplosion().setBombeExplosee(true);
-			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
-			removeBombe(modele.getListBombe().get(idBombe));
-		}
-	}
-	
-	
-	/**
-	 * Ajoute des explosions en chaine
-	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnee de l'explosion
-	 * @param portee La portee de l'explosion
-	 */
-	public void addExplosionRight(int x, int y, int portee){
-		x += 1;
-		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
-			addExplosion(x,y);
-			x += 1;
-			p += 1;
-		}
-		if( estBlocCassable(x,y) && p<portee){
-			removeBlocCassable(x,y);
-			double random = Math.random();
-			    if (random > 0.5){
-				    modele.createBonus(x, y, niveau);
-			    }
-			addExplosion(x,y);
-		}
-		if (estPersonnage(x,y) && p<portee){
-			modele.getPersonnageSurPlateau(x, y).perdreVie();
-			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
-			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				modele.getPersonnageSurPlateau(x, y).mourir();
-				/*removePersonnage(x,y);
-				modele.getListMorts().add(new Mort(x,y));*/
-			}
-			addExplosion(x,y);
-		}
-		if (estBombe(x,y) && p<portee){
-			int idBombe = modele.getIdBombe(x, y);
-			Bombe bombe = modele.getListBombe().get(idBombe);
-			int porteeBombe = bombe.getPortee();
-			bombe.getExplosion().setBombeExplosee(true);
-			makeExplosion(new Explosion(x,y,1000,porteeBombe,this,null));
-			removeBombe(modele.getListBombe().get(idBombe));
-		}
-	}
-	
-	
+
 	/**
 	 * Supprimer le bloc cassable
 	 * @param x L'abscisse du bloc cassable

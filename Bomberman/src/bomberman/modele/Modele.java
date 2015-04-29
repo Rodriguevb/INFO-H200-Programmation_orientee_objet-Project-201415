@@ -72,8 +72,8 @@ public class Modele {
 
 	public void creerTheme (int i){
 		if (i == 1) {
-			theme = new Theme(new String[] {"Mario", "Mario", "Mario", "Mario"}, 
-				"bloc_tetris_cassable.png", "bloc_tetris_incassable.png", "SonMario.wav", new int[] {255, 255, 255});	
+			theme = new Theme(new String[] {"Mario", "Luigi", "Mario", "Mario"}, 
+				"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
 		}
 		
 		if (i == 2) {

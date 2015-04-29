@@ -17,6 +17,7 @@ public class Modele {
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
+	private ArrayList<Malus> malus = new ArrayList<Malus>();
 	private Theme theme = new Theme(new String[] {"Bomber", "Bomber", "Bomber", "Bomber"}, 
 			"brique.jpg", "brique_grise.jpg", "Bomberman.wav", new int[] {255, 255, 255});
 	
@@ -39,10 +40,36 @@ public class Modele {
 				}
 			}
 		}
-		
 	}
 	
+	public void createMalus(int niveau){
+		malus = new ArrayList<Malus>();
+		int x = -1;
+		int y = -1;
+		ArrayList<Integer[]> acces = placesAccessibles();
+		for (int i = 0; i < (niveau-1)*2; i++){
+			int pos = (int) (Math.random()*acces.size());
+			x = acces.get(pos)[0];
+			y = acces.get(pos)[1];
+			if (x!=-1 && y!=-1){
+				malus.add(new Malus(x,y,"pingouinFace.png"));
+			}
+		}	
+	}
 	
+	public ArrayList<Integer[]> placesAccessibles(){
+		ArrayList<Integer[]> accessible = new ArrayList<Integer[]>();
+		for (int l = 3; l <= 13; l+=2){
+			for (int c = 3; c <= 13; c+=2){
+				if (getCase(l,c).estLibre()){
+					accessible.add(new Integer[] {l,c});
+				}
+			}
+		}
+		return accessible;
+	}
+
+
 	public void creerTheme (int i){
 		if (i == 1) {
 			theme = new Theme(new String[] {"Mario", "Mario", "Mario", "Mario"}, 
@@ -155,6 +182,16 @@ public class Modele {
 		return surCase;
 	}
 	
+	public boolean malusSurCase(int x, int y){
+		boolean surCase = false;
+		for (Malus mal: malus){
+			if (mal.getX() == x && mal.getY() == y){
+				surCase = true;
+			}
+		}
+		return surCase;
+	}
+	
 	public Bombe getBomb(int idBomb) {
 		return bombes.get( idBomb );
 	}
@@ -186,9 +223,21 @@ public class Modele {
 	public ArrayList<Bonus> getListBonus(){
 		return bonus;
 	}
+	
+	public ArrayList<Malus> getMalus() {
+		return malus;
+	}
+
+	public void setMalus(ArrayList<Malus> malus) {
+		this.malus = malus;
+	}
 
 	public Explosion getExplosion(int idExplosion) {
 		return explosions.get( idExplosion );
+	}
+	
+	public Malus getMal(int idMalus){
+		return malus.get( idMalus );
 	}
 
 	public Case getCase(int x, int y) {

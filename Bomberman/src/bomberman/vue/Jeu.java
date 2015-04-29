@@ -104,6 +104,12 @@ public class Jeu extends JPanel {
 			    g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 			}
 		}
+		// Afficher les personnages mechants (malus)
+		for ( int id = 0; id < modele.getMalus().size(); ++id ){
+		    Point point = controleur.getMalusPosition( id );
+		    String img_malus = modele.getMalus().get(id).getNom_image();
+		    g2d.drawImage(new ImageIcon(img_malus).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
+		}
 		
 		// Afficher les morts.
 		for (int id = 0; id < controleur.getSizeMorts(); ++id){

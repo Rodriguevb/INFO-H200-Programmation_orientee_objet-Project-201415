@@ -3,8 +3,11 @@ package bomberman.controleur;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Timer;
+
 import bomberman.modele.Bombe;
 import bomberman.modele.Bonus;
+import bomberman.modele.Malus;
 import bomberman.modele.Modele;
 import bomberman.modele.Mort;
 import bomberman.modele.Personnage;
@@ -140,9 +143,21 @@ public class Controleur {
 
 	}
 	
+	public void creerMalus() {
+		modele.createMalus(niveau);
+	}
+	
+	public void moveMalus(){
+		for (int i = 0; i < modele.getMalus().size(); i++){
+			Malus mal = modele.getMalus().get(i);
+		    Timer timerMalus = new Timer(500, new BougerMalus(mal, this));
+		    timerMalus.start();
+		} 
+	}
+	
 	
 	/**
-	 * Bouge le personnage une case au dessus
+	 * Bouge le personnage d une case
 	 * @param idPersonnage L'ID du personnage
 	 */
 	public void movePersonnage(int idPersonnage, int avance_x, int avance_y) {
@@ -230,9 +245,16 @@ public class Controleur {
 		return nom_image;
 	}
 	
+	public Point getMalusPosition(int idMalus){
+		Malus mal = modele.getMal( idMalus );
+		int x = mal.getX();
+		int y = mal.getY();
+		return new Point(x,y);
+	}
+	
 	
 	/**
-	 * Savoir si la case est libre
+	 * Verifier si la case est libre
 	 * @param x,y La position de la case.
 	 * @return Vrai si la case est libre
 	 */
@@ -538,7 +560,7 @@ public class Controleur {
 	/**
 	 * Ajouter une explosion 
 	 * @param x L'abscisse de l'explosion
-	 * @param y L'ordonnŽe de l'explosion
+	 * @param y L'ordonnee de l'explosion
 	 */
 	private void addExplosion(int x, int y){
 		modele.getListExplosion().add( new Explosion(x,y,500,0,this,null) );

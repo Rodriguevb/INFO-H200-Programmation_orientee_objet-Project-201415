@@ -9,12 +9,13 @@ public class Case extends PossedePosition {
 	private boolean possedeBlocIncassable = false;
 	private boolean possedeBombe = false;
 	private boolean possedePersonnage = false;
+	private boolean possedeMalus = false;
 
 
 	/**
 	 * Constructeur de la classe Case
 	 * @param x l'abscisse de la case
-	 * @param y l'ordonnée de la case
+	 * @param y l'ordonnee de la case
 	 */
 	public Case(int x, int y) {
 		super(x,y);
@@ -22,8 +23,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Indiquer si la case possède un bloc cassable.
-	 * @param valeur Bloc cassable présent ou non.
+	 * Indiquer si la case possede un bloc cassable.
+	 * @param valeur Bloc cassable present ou non.
 	 */
 	public void setPossedeBlocCassable(boolean valeur) {
 		possedeBlocCassable = valeur;
@@ -31,13 +32,14 @@ public class Case extends PossedePosition {
 			possedeBlocIncassable = false;
 			possedeBombe = false;
 			possedePersonnage = false;
+			possedeMalus = false;
 		}
 	}
 	
 	
 	/**
-	 * Indiquer si la case possède un bloc incassable.
-	 * @param valeur Bloc incassable présent ou non.
+	 * Indiquer si la case possede un bloc incassable.
+	 * @param valeur Bloc incassable present ou non.
 	 */
 	public void setPossedeBlocIncassable(boolean valeur) {
 		possedeBlocIncassable = valeur;
@@ -45,13 +47,14 @@ public class Case extends PossedePosition {
 			possedeBlocCassable = false;
 			possedeBombe = false;
 			possedePersonnage = false;
+			possedeMalus = false;
 		}
 	}
 	
 	
 	/**
-	 * Indiquer si la case possède une bombe.
-	 * @param valeur Bombe présente ou non.
+	 * Indiquer si la case possede une bombe.
+	 * @param valeur Bombe presente ou non.
 	 */
 	public void setPossedeBombe(boolean valeur) {
 		possedeBombe = valeur;
@@ -59,13 +62,14 @@ public class Case extends PossedePosition {
 			possedeBlocIncassable = false;
 			possedeBlocCassable = false;
 			possedePersonnage = false;
+			possedeMalus = false;
 		}
 	}
 	
 	
 	/**
-	 * Indiquer si la case possède un personnage.
-	 * @param valeur Personnage présent ou non.
+	 * Indiquer si la case possede un personnage.
+	 * @param valeur Personnage present ou non.
 	 */
 	public void setPossedePersonnage(boolean valeur) {
 		possedePersonnage = valeur;
@@ -73,6 +77,20 @@ public class Case extends PossedePosition {
 			possedeBlocIncassable = false;
 			possedeBombe = false;
 			possedeBlocCassable = false;
+			possedeMalus = false;
+		}
+	}
+	/**
+	 * Indiquer si la case possede un malus.
+	 * @param valeur Malus present ou non.
+	 */
+	public void setPossedeMalus(boolean valeur) {
+		possedeMalus = valeur;
+		if ( possedeMalus ){
+			possedeBlocIncassable = false;
+			possedeBombe = false;
+			possedeBlocCassable = false;
+			possedePersonnage = false;
 		}
 	}
 	
@@ -82,12 +100,12 @@ public class Case extends PossedePosition {
 	 * @return Vrai si le contenu est vide.
 	 */
 	public boolean estLibre() {
-		return !getPossedeBlocCassable() && !getPossedeBlocIncassable() && !getPossedeBombe() && !getPossedePersonnage();
+		return !getPossedeBlocCassable() && !getPossedeBlocIncassable() && !getPossedeBombe() && !getPossedePersonnage() && !getPossedeMalus();
 	}
 	
 	
 	/**
-	 * Savoir si la case est occupée par un bloc incassable.
+	 * Savoir si la case est occupee par un bloc incassable.
 	 * @return Vrai si il a un bloc incassable.
 	 */
 	public boolean getPossedeBlocIncassable() {
@@ -96,7 +114,7 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupée par un bloc cassable.
+	 * Savoir si la case est occupee par un bloc cassable.
 	 * @return Vrai si il a un bloc cassable.
 	 */
 	public boolean getPossedeBlocCassable() {
@@ -105,7 +123,7 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupée par une bombe.
+	 * Savoir si la case est occupee par une bombe.
 	 * @return Vrai si il a une bombe.
 	 */
 	public boolean getPossedeBombe() {
@@ -114,11 +132,19 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupée par un personnage.
+	 * Savoir si la case est occupee par un personnage.
 	 * @return Vrai si il a un personnage.
 	 */
 	public boolean getPossedePersonnage() {
 		return possedePersonnage;
+	}
+	
+	/**
+	 * Savoir si la case est occupee par un malus.
+	 * @return Vrai si il a un malus.
+	 */
+	public boolean getPossedeMalus() {
+		return possedeMalus;
 	}
 	
 	
@@ -130,5 +156,6 @@ public class Case extends PossedePosition {
 		possedeBlocIncassable = false;
 		possedeBombe = false;
 		possedeBlocCassable = false;
+		possedeMalus = false;
 	}
 }

@@ -43,8 +43,8 @@ public class Vue extends JFrame{
 	    
 	    
 		menu = new Menu(controleur);
-		sousmenu = new SousMenu (controleur);
-		points = new Points(controleur,modele);
+		sousmenu = new SousMenu (controleur, modele);
+		points = new Points(controleur, modele);
 		jeu  = new Jeu(controleur, modele,points);
 		explications = new Explications (controleur);  
 		option = null; // TODO: Option(controleur)

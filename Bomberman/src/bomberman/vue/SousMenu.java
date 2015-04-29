@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
+import bomberman.modele.Modele ;
 
 public class SousMenu extends JPanel {
 	
@@ -18,14 +19,14 @@ public class SousMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 		
-	public SousMenu(Controleur controleur) {
+	public SousMenu(Controleur controleur, Modele modele) {
 
 		
 		this.add(new Bouton_retour(controleur));
 		this.add(new Bouton_nbjoueurs(controleur));   
 	    this.add(new Bouton_niveau(controleur));
 		this.add(new Bouton_choixTheme(controleur));
-		this.add(new Bouton_go(controleur));
+		this.add(new Bouton_go(controleur, modele));
 	
 	
 		}

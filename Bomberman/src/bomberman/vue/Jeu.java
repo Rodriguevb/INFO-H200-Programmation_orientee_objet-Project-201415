@@ -23,12 +23,10 @@ public class Jeu extends JPanel {
 	
 	
 	int taille_img = 50;
-	ImageIcon blocIncassable = new ImageIcon("bloc_tetris_incassable.png");
-	ImageIcon blocCassable   = new ImageIcon("bloc_tetris_cassable.png");
-	//ImageIcon img_personnage = new ImageIcon("bob.png");
+	
 	ImageIcon img_bomb       = new ImageIcon("bombe.png");
 	ImageIcon img_explosion  = new ImageIcon("explosion.png");
-	
+
 	
 	/**
 	 * Constructeur de la classe Jeu
@@ -55,6 +53,10 @@ public class Jeu extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
+		String img_blocCassable = modele.getTheme().getImage_bloc_cassable();
+		String img_blocIncassable = modele.getTheme().getImage_bloc_incassable();
+		
+		
 		// Afficher le fond d'ecran.
 		this.setBackground(new Color(0,0,0));
 		//g2d.drawImage(new ImageIcon("chambre.png").getImage(), 0, 0, null);
@@ -65,10 +67,11 @@ public class Jeu extends JPanel {
 			for( int y = 0; y < controleur.getMapHeight(); ++y ) {
 				
 				if ( controleur.estBlocIncassable(x,y) ) {
-					g2d.drawImage( blocIncassable.getImage(), x*taille_img, y*taille_img, null);
+					
+					g2d.drawImage( new ImageIcon(img_blocIncassable).getImage(), x*taille_img, y*taille_img, null);
 				}
 				if ( controleur.estBlocCassable(x,y) ) {
-					g2d.drawImage( blocCassable.getImage(), x*taille_img, y*taille_img, null);
+					g2d.drawImage( new ImageIcon(img_blocCassable).getImage(), x*taille_img, y*taille_img, null);
 				}
 				
 			}

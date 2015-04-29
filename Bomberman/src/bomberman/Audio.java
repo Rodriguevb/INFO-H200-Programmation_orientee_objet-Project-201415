@@ -72,6 +72,8 @@ public class Audio extends Thread{
     	}
     }
 
+    
+
 	public AudioFileFormat getFormat() {
 		return format;
 	}
@@ -79,6 +81,8 @@ public class Audio extends Thread{
 	public void setFormat(AudioFileFormat format) {
 		this.format = format;
 	}
+	
+	
 	
     
 }

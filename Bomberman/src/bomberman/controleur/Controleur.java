@@ -3,8 +3,6 @@ package bomberman.controleur;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
-import javax.swing.Timer;
-
 import bomberman.modele.Bombe;
 import bomberman.modele.Bonus;
 import bomberman.modele.Modele;
@@ -20,13 +18,12 @@ public class Controleur {
 	private int nb_joueurs = 1;
 	private int niveau = 1;
 	boolean EtatJeu = false ;
-	private ListenerPlayer listenerPlayer1;
-	private ListenerPlayer listenerPlayer2;
-	private ListenerPlayer listenerPlayer3;
-	private ListenerPlayer listenerPlayer4;
+	private int[][] touches = {{KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_LEFT,KeyEvent.VK_RIGHT,KeyEvent.VK_SPACE},
+			{KeyEvent.VK_Z,KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_D,KeyEvent.VK_X},
+			{KeyEvent.VK_Y,KeyEvent.VK_H,KeyEvent.VK_G,KeyEvent.VK_J,KeyEvent.VK_N},
+			{KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_K,KeyEvent.VK_M,KeyEvent.VK_P}};
 
-	
-	
+
 	/**
 	 * Lie la vue au controleur
 	 * @param vue La vue.
@@ -129,43 +126,18 @@ public class Controleur {
 		}
 	}
 	
-	// Essayer de réduire la méthode plus tard.
 	public void creerJoueurs(){
 		modele.createPlayers(nb_joueurs);
-		listenerPlayer1 = new ListenerPlayer(this, 0);
-		listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
-		listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
-		listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
-		listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
-		listenerPlayer1.setKeyForDrop( KeyEvent.VK_SPACE );
-		vue.getJeu().addKeyListener( listenerPlayer1 );
-		if (nb_joueurs >= 2){
-			listenerPlayer2 = new ListenerPlayer(this, 1);
-			listenerPlayer2.setKeyForUp( KeyEvent.VK_Z );
-			listenerPlayer2.setKeyForDown( KeyEvent.VK_S );
-			listenerPlayer2.setKeyForLeft( KeyEvent.VK_Q );
-			listenerPlayer2.setKeyForRight( KeyEvent.VK_D );
-			listenerPlayer2.setKeyForDrop( KeyEvent.VK_X );
-			vue.getJeu().addKeyListener( listenerPlayer2 );
+		for (int i=0; i< nb_joueurs; i++){
+			ListenerPlayer listenerPlayer = new ListenerPlayer (this, i, modele.getPersonnage(i));
+			listenerPlayer.setKeyForUp(touches[i][0]);
+			listenerPlayer.setKeyForDown(touches[i][1]);
+			listenerPlayer.setKeyForLeft(touches[i][2]);
+			listenerPlayer.setKeyForRight(touches[i][3]);
+			listenerPlayer.setKeyForDrop(touches[i][4]);
+			vue.getJeu().addKeyListener(listenerPlayer);
 		}
-		if (nb_joueurs >= 3){
-			listenerPlayer3 = new ListenerPlayer(this, 2);
-			listenerPlayer3.setKeyForUp( KeyEvent.VK_Y );
-			listenerPlayer3.setKeyForDown( KeyEvent.VK_H );
-			listenerPlayer3.setKeyForLeft( KeyEvent.VK_G );
-			listenerPlayer3.setKeyForRight( KeyEvent.VK_J );
-			listenerPlayer3.setKeyForDrop( KeyEvent.VK_N );
-			vue.getJeu().addKeyListener( listenerPlayer3 );
-		}
-		if (nb_joueurs == 4){
-			listenerPlayer4 = new ListenerPlayer(this, 3);
-			listenerPlayer4.setKeyForUp( KeyEvent.VK_O );
-			listenerPlayer4.setKeyForDown( KeyEvent.VK_L );
-			listenerPlayer4.setKeyForLeft( KeyEvent.VK_K );
-			listenerPlayer4.setKeyForRight( KeyEvent.VK_M );
-			listenerPlayer4.setKeyForDrop( KeyEvent.VK_P );
-			vue.getJeu().addKeyListener( listenerPlayer4 );
-		}
+
 	}
 	
 	
@@ -179,11 +151,7 @@ public class Controleur {
 		int y = personnage.getY();
 		x += avance_x;
 		y += avance_y;
-		
-		/*if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
-			personnage.setY(15);
-			y = 15;
-		} */
+		activerTunnel(personnage, x,y);
 		if ( estLibre(x,y) && personnage.getVivant()) {
 			personnage.move(avance_x, avance_y);
 		}
@@ -192,73 +160,26 @@ public class Controleur {
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
-			changerTouches(personnage);
-		}
-	}
-	
-	private void changerTouches(Personnage personnage){
-		if (personnage.ownBonusClavier()){
-			int idPersonnage = modele.getIdPersonnage(personnage.getX(), personnage.getY());
-			recupererTouches(idPersonnage);
 		}
 	}
 	
 	
-	
-	private void recupererTouches(int idPersonnage) {
-		if (idPersonnage == 0){
-			listenerPlayer1.setKeyForUp( KeyEvent.VK_DOWN );
-			listenerPlayer1.setKeyForDown( KeyEvent.VK_UP );
-			listenerPlayer1.setKeyForLeft( KeyEvent.VK_RIGHT );
-			listenerPlayer1.setKeyForRight( KeyEvent.VK_LEFT );
+	private void activerTunnel(Personnage personnage, int x, int y) {
+		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
+			personnage.setY(15);
+			y = 15;
 		}
-		if (idPersonnage == 1){
-			listenerPlayer2.setKeyForUp( KeyEvent.VK_S );
-			listenerPlayer2.setKeyForDown( KeyEvent.VK_Z );
-			listenerPlayer2.setKeyForLeft( KeyEvent.VK_D );
-			listenerPlayer2.setKeyForRight( KeyEvent.VK_Q );
+		else if (y == 16 && personnage.isTunnel() && estLibre(x,1)){
+			personnage.setY(1);
+			y = 1;
 		}
-		if (idPersonnage == 2){
-			listenerPlayer3.setKeyForUp( KeyEvent.VK_H );
-			listenerPlayer3.setKeyForDown( KeyEvent.VK_Y );
-			listenerPlayer3.setKeyForLeft( KeyEvent.VK_J );
-			listenerPlayer3.setKeyForRight( KeyEvent.VK_G );
+		else if (x == 0 && personnage.isTunnel() && estLibre(15,y)){
+			personnage.setX(15);
+			x = 15;
 		}
-		if (idPersonnage == 3){
-			listenerPlayer4.setKeyForUp( KeyEvent.VK_L );
-			listenerPlayer4.setKeyForDown( KeyEvent.VK_O );
-			listenerPlayer4.setKeyForLeft( KeyEvent.VK_M );
-			listenerPlayer4.setKeyForRight( KeyEvent.VK_K );
-		}
-		Timer timerTouches = new Timer(10000, new Clavier(this, idPersonnage));
-		timerTouches.setRepeats(false);
-		timerTouches.start();
-	}
-	
-	public void resetTouches(int idPersonnage){
-		if (idPersonnage == 0){
-			listenerPlayer1.setKeyForUp( KeyEvent.VK_UP );
-			listenerPlayer1.setKeyForDown( KeyEvent.VK_DOWN );
-			listenerPlayer1.setKeyForLeft( KeyEvent.VK_LEFT );
-			listenerPlayer1.setKeyForRight( KeyEvent.VK_RIGHT );
-		}
-		if (idPersonnage == 1){
-			listenerPlayer2.setKeyForUp( KeyEvent.VK_Z );
-			listenerPlayer2.setKeyForDown( KeyEvent.VK_S );
-			listenerPlayer2.setKeyForLeft( KeyEvent.VK_Q );
-			listenerPlayer2.setKeyForRight( KeyEvent.VK_D );
-		}
-		if (idPersonnage == 2){
-			listenerPlayer3.setKeyForUp( KeyEvent.VK_Y );
-			listenerPlayer3.setKeyForDown( KeyEvent.VK_H );
-			listenerPlayer3.setKeyForLeft( KeyEvent.VK_G );
-			listenerPlayer3.setKeyForRight( KeyEvent.VK_J );
-		}
-		if (idPersonnage == 3){
-			listenerPlayer4.setKeyForUp( KeyEvent.VK_O );
-			listenerPlayer4.setKeyForDown( KeyEvent.VK_L );
-			listenerPlayer4.setKeyForLeft( KeyEvent.VK_K );
-			listenerPlayer4.setKeyForRight( KeyEvent.VK_M );
+		else if (x == 16 && personnage.isTunnel() && estLibre(1,y)){
+			personnage.setX(1);
+			x = 1;
 		}
 	}
 

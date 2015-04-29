@@ -3,18 +3,18 @@ package bomberman.controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import bomberman.modele.Personnage;
+
 public class Clavier implements ActionListener{
 	
-	private Controleur controleur;
-	private int idPersonnage;
+	private Personnage personnage;
 	
-	public Clavier(Controleur controleur, int idPersonnage){
-		this.controleur = controleur;
-		this.idPersonnage = idPersonnage;
+	public Clavier(Personnage personnage){
+		this.personnage = personnage;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		controleur.resetTouches(idPersonnage);
+		personnage.setClavier(false);
 	}
 
 }

@@ -2,6 +2,8 @@ package bomberman.controleur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import bomberman.modele.Personnage;
+
 
 public class ListenerPlayer implements KeyListener{
 	
@@ -15,11 +17,13 @@ public class ListenerPlayer implements KeyListener{
 	private int key_drop;
 	private final Controleur controleur;
 	private final int idPersonnage;
+	private Personnage personnage;
 	
 
-	public ListenerPlayer(Controleur controleur, int idPersonnage){
+	public ListenerPlayer(Controleur controleur, int idPersonnage, Personnage personnage){
 		this.idPersonnage  = idPersonnage;
 		this.controleur = controleur;
+		this.personnage = personnage;
 	}
 	
 	public void setKeyForUp(int key_up) {
@@ -47,23 +51,35 @@ public class ListenerPlayer implements KeyListener{
 	public void keyPressed(KeyEvent keyEvent) {
 		
 		if (keyEvent.getKeyCode() == key_up ) {
-			controleur.movePersonnage( idPersonnage, 0, -1 );
+			if (personnage.isClavier()) {
+				controleur.movePersonnage( idPersonnage, 0, 1 );
+			}
+			else controleur.movePersonnage( idPersonnage, 0, -1 );
 		}
 		if (keyEvent.getKeyCode() == key_down ) {
-			controleur.movePersonnage( idPersonnage, 0, 1 );
+			if (personnage.isClavier()) {
+				controleur.movePersonnage( idPersonnage, 0, -1 );
+			}
+			else controleur.movePersonnage( idPersonnage, 0, 1 );
 		}
 		if (keyEvent.getKeyCode() == key_left ) {
-			controleur.movePersonnage( idPersonnage, -1, 0 );
+			if (personnage.isClavier()) {
+				controleur.movePersonnage( idPersonnage, 1, 0 );
+			}
+			else controleur.movePersonnage( idPersonnage, -1, 0 );
 		}
 		if (keyEvent.getKeyCode() == key_right ) {
-			controleur.movePersonnage( idPersonnage, 1, 0 );
+			if (personnage.isClavier()) {
+				controleur.movePersonnage( idPersonnage, -1, 0 );
+			}
+			else controleur.movePersonnage( idPersonnage, 1, 0 );
 		}
 		if (keyEvent.getKeyCode() == key_drop ) {
 			controleur.dropBomb( idPersonnage );
 		}
-		if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE ) {
+		/*if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE ) {
 			controleur.switchToMenu();
-		}
+		}*/
 		
 		
 		controleur.repaint();

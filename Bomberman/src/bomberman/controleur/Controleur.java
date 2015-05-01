@@ -569,8 +569,8 @@ public class Controleur {
 			Bombe bombe = modele.getListBombe().get(idBombe);
 			int porteeBombe = bombe.getPortee();
 			bombe.getExplosion().setBombeExplosee(true);
-			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
 			removeBombe(modele.getListBombe().get(idBombe));
+			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
 		}
 		if (estMalus(x,y) && p<portee){
 			modele.removeMalusDuPlateau(x, y);

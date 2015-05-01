@@ -58,7 +58,7 @@ public class Plateau {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
 		
-		int toAdd = (width-2)*(height-2)/8*5; // On remplit les 5/8 de la map.
+		int toAdd = (width-2)*(height-2)/2; // On remplit la moitie de la map.
 		int added = 0;
 		
 		while ( added < toAdd ) {

@@ -51,10 +51,9 @@ public class Modele {
 			int pos = (int) (Math.random()*acces.size());
 			x = acces.get(pos)[0];
 			y = acces.get(pos)[1];
-			if (x!=-1 && y!=-1 && !malusSurCase(x,y)){
-				malus.add(new Malus(x,y,"pingouinFace.png",i+1));
+			if (x!=-1 && y!=-1){
+				malus.add(new Malus(x,y,"pingouinFace.png"));
 			}
-			else i--;
 		}	
 	}
 	
@@ -142,16 +141,6 @@ public class Modele {
 			}
 		}
 		return idBombe;
-	}
-	
-	public int getIdMalus(int x, int y){
-		int idMalus = -1;
-		for (int id = 0; id < malus.size(); id++){
-			if (malus.get(id).getX() == x && malus.get(id).getY() == y){
-				idMalus = id;
-			}
-		}
-		return idMalus;
 	}
 	
 	public Personnage getPersonnageSurPlateau(int x, int y){
@@ -263,19 +252,5 @@ public class Modele {
 	public void removeBonusDuPlateau(int x, int y){
 		int id = getIdBonus(x,y);
 		bonus.remove(id);
-	}
-	
-	public void removeMalusDuPlateau(int x, int y){
-		int id = getIdMalus(x,y);
-		malus.remove(id);
-	}
-	
-	public Malus getMalusDepuisId(int identifiant){
-		for (Malus mal: malus){
-			if (mal.getIdentifiant() == identifiant){
-				return mal;
-			}
-		}
-		return null;
 	}
 }

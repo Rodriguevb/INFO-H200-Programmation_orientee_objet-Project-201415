@@ -10,7 +10,6 @@ public class Bombe extends PossedePosition {
 	private Timer timer;
 	private int portee;
 	private int duree;
-	private int idPersonnage;
 	private Explosion explosion;
 
 	
@@ -20,11 +19,10 @@ public class Bombe extends PossedePosition {
 	 * @param y L'ordonnee de la bombe
 	 * @param controleur
 	 */
-	public Bombe(int x, int y, int portee, int duree, Controleur controleur, int idPersonnage) {
+	public Bombe(int x, int y, int portee, int duree, Controleur controleur) {
 		super(x,y);
 		this.portee = portee;
-		this.duree = duree;
-		this.idPersonnage = idPersonnage;
+		this.setDuree(duree);
 		this.explosion = new Explosion(x,y,duree+500,this.getPortee(),controleur, this);
 		
 		
@@ -33,17 +31,6 @@ public class Bombe extends PossedePosition {
 		this.timer.start();
 	}
 	
-
-	public int getIdPersonnage() {
-		return idPersonnage;
-	}
-
-
-	public void setIdPersonnage(int idPersonnage) {
-		this.idPersonnage = idPersonnage;
-	}
-
-
 	public Explosion getExplosion() {
 		return explosion;
 	}

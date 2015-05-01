@@ -18,7 +18,7 @@ public class Modele {
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
-	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Mario", "Mario"}, 
+	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Mario"}, 
 			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
 	
 	public Modele () {
@@ -73,7 +73,7 @@ public class Modele {
 
 	public void creerTheme (int i){
 		if (i == 0){
-			theme = new Theme(new String[] {"Mario", "Luigi", "Mario", "Mario"}, 
+			theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Mario"}, 
 				"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
 			
 		}

@@ -24,8 +24,8 @@ public class Personnage extends PossedePosition {
 		super(x,y);
 		this.nom = nom;
 		this.nom_image = nom+"Face.png";
-		this.nb_vies = 2;
-		this.nb_bombes = 10;
+		this.nb_vies = 1;
+		this.nb_bombes = 1;
 		this.vivant = true;
 		this.bonus_personnage = new ArrayList<Bonus>();
 		this.tunnel = false;
@@ -72,6 +72,14 @@ public class Personnage extends PossedePosition {
 		this.nb_vies -= 1;
 		Audio_simple son = new Audio_simple("ouch.wav");
 			son.start();
+	}
+	
+	public void perdreBombe(){
+		nb_bombes -= 1;
+	}
+	
+	public void gagnerBombe(){
+		nb_bombes += 1;
 	}
 	
 	public boolean getVivant(){

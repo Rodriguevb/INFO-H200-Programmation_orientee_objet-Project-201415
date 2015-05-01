@@ -7,6 +7,7 @@ import javax.swing.Timer;
 
 import bomberman.Audio_simple;
 import bomberman.modele.Bombe;
+import bomberman.modele.Personnage;
 import bomberman.modele.PossedePosition;
 
 public class Explosion extends PossedePosition implements ActionListener {

@@ -150,7 +150,7 @@ public class Controleur {
 	public void moveMalus(){
 		for (int i = 0; i < modele.getMalus().size(); i++){
 			Malus mal = modele.getMalus().get(i);
-		    Timer timerMalus = new Timer(500, new BougerMalus(mal, this));
+		    Timer timerMalus = new Timer(500, new BougerMalus(this, modele, mal.getIdentifiant()));
 		    timerMalus.start();
 		} 
 	}
@@ -167,18 +167,38 @@ public class Controleur {
 		x += avance_x;
 		y += avance_y;
 		activerTunnel(personnage, x,y);
-		if ( estLibre(x,y) && personnage.getVivant()) {
+		if ( estLibre(x,y) && personnage.getVivant() && bombePersonnage(x,y,idPersonnage)) {
 			personnage.move(avance_x, avance_y);
 		}
-		if ( estBonus(x,y) ){
+		if ( estBonus(x,y) && personnage.getVivant()){
 			int idBonus = modele.getIdBonus(x, y);
 			addBonus(personnage,idBonus,x,y);
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
 		}
+		if ( estMalus(x,y) && personnage.getVivant()){
+			personnage.perdreVie();
+			if (personnage.getNb_vies() <= 0){
+				personnage.mourir();
+			}
+		}
 	}
 	
 	
+	
+	
+	private boolean bombePersonnage(int x, int y, int idPersonnage) {
+		int idBombe = modele.getIdBombe(x, y);
+		if (idBombe != -1){
+		    Bombe bombe = modele.getListBombe().get(idBombe);
+	    	if (bombe.getIdPersonnage() != idPersonnage){
+	    		return false;
+	    	}
+		}
+		return true;
+	}
+
+
 	private void activerTunnel(Personnage personnage, int x, int y) {
 		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
 			personnage.setY(15);
@@ -223,6 +243,10 @@ public class Controleur {
 	
 	private boolean estBonus(int x, int y) {
 		return modele.bonusSurCase(x, y);
+	}
+	
+	private boolean estMalus(int x, int y){
+		return modele.malusSurCase(x, y);
 	}
 
 
@@ -386,9 +410,9 @@ public class Controleur {
 		int y = point.y;
 		int portee = getPortee(personnage);
 		int duree = getDuree(personnage);
-		System.out.println(portee);
-		if ( casePasDeBomb( x,y ) && personnage.getVivant()){
-			modele.getListBombe().add( new Bombe(x,y,portee,duree,this) );
+		if ( casePasDeBomb( x,y ) && personnage.getVivant() && personnage.getNb_bombes() > 0){
+			modele.getListBombe().add( new Bombe(x,y,portee,duree,this,idPersonnage) );
+			personnage.perdreBombe();
 		}
 	}
 	
@@ -410,7 +434,8 @@ public class Controleur {
 		int idBonus = 0;
 		while (idBonus < personnage.getBonus_personnage().size()){
 			if (bonus_provisoire(personnage, idBonus).getBonus_explosion() == 1){
-				dureeBombe = dureeBombe - 500;
+				int deltaDuree = (int) (Math.random()*2000)-1000;
+				dureeBombe = dureeBombe + deltaDuree;
 				personnage.removeBonus(idBonus);
 			}
 			else idBonus++;
@@ -469,11 +494,16 @@ public class Controleur {
 		addExplosion(x,y, 0, 1, portee);
 		addExplosion(x,y, 0, -1, portee);
 		if (estPersonnage(x,y)){
-			modele.getPersonnageSurPlateau(x, y).perdreVie();
-			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
-			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				modele.getPersonnageSurPlateau(x, y).mourir();
+			Personnage personnage = modele.getPersonnageSurPlateau(x, y);
+			if (personnage.getVivant()){
+	    		personnage.perdreVie();
+    			if (personnage.getNb_vies()<=0){
+				    personnage.mourir();
+			    }
 			}
+		}
+		if (estMalus(x,y)){
+			modele.removeMalusDuPlateau(x, y);
 		}
 		vue.repaint();
 	}
@@ -510,7 +540,7 @@ public class Controleur {
 		x += direction_x ;
 		y += direction_y;
 		int p = 0;
-		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && p<portee){
+		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && !estMalus(x,y) && p<portee){
 			addExplosion(x,y);
 			x += direction_x ;
 			y += direction_y;
@@ -525,10 +555,12 @@ public class Controleur {
 			addExplosion(x,y);
 		}
 		if (estPersonnage(x,y) && p<portee){
-			modele.getPersonnageSurPlateau(x, y).perdreVie();
-			System.out.println(modele.getPersonnageSurPlateau(x, y).getNb_vies());
-			if (modele.getPersonnageSurPlateau(x, y).getNb_vies()==0){
-				modele.getPersonnageSurPlateau(x, y).mourir();
+			Personnage personnage = modele.getPersonnageSurPlateau(x,y);
+			if (personnage.getVivant()){
+		    	personnage.perdreVie();
+	    		if (personnage.getNb_vies()<=0){
+	            personnage.mourir();
+		    	}
 			}
 			addExplosion(x,y);
 		}
@@ -539,6 +571,10 @@ public class Controleur {
 			bombe.getExplosion().setBombeExplosee(true);
 			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
 			removeBombe(modele.getListBombe().get(idBombe));
+		}
+		if (estMalus(x,y) && p<portee){
+			modele.removeMalusDuPlateau(x, y);
+			addExplosion(x,y);
 		}
 	}
 
@@ -572,6 +608,8 @@ public class Controleur {
 	 * @param bombe 
 	 */
 	public void removeBombe(Bombe bombe) {
+		int idPersonnage = bombe.getIdPersonnage();
+		modele.getPersonnage(idPersonnage).gagnerBombe();
 		modele.getListBombe().remove( bombe );
 		repaint();
 	}

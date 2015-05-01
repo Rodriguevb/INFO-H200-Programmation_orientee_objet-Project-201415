@@ -25,7 +25,7 @@ public class Personnage extends PossedePosition {
 		this.nom = nom;
 		this.nom_image = nom+"Face.png";
 		this.nb_vies = 1;
-		this.nb_bombes = 1;
+		this.nb_bombes = 5;
 		this.vivant = true;
 		this.bonus_personnage = new ArrayList<Bonus>();
 		this.tunnel = false;

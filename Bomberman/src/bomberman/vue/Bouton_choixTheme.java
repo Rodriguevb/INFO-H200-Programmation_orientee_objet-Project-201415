@@ -19,6 +19,7 @@ public class Bouton_choixTheme extends JComboBox implements ActionListener{
 	public Bouton_choixTheme(Controleur controleur) {
 		
 		this.controleur = controleur;
+		this.addItem("Classique");
 		this.addItem("Mario");
 		this.addItem("Tetris");
 	    this.addActionListener(this);

@@ -112,9 +112,7 @@ public class Controleur {
 	
 	public void ChoixTheme(Object Choix){
 		int Choixtheme = 0 ;
-		if (Choix == "Mario") Choixtheme = 1 ;
-		if (Choix == "Tetris") Choixtheme = 2 ;
-
+		if (Choix == "Tetris") Choixtheme = 1 ;
 		
 		modele.creerTheme(Choixtheme);
 	}

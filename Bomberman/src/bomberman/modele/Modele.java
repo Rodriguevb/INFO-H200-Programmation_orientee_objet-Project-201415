@@ -18,8 +18,8 @@ public class Modele {
 	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
-	private Theme theme = new Theme(new String[] {"Bomber", "Bomber", "Bomber", "Bomber"}, 
-			"brique.jpg", "brique_grise.jpg", "Bomberman.wav", new int[] {255, 255, 255});
+	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Mario", "Mario"}, 
+			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
 	
 	public Modele () {
 		plateau.genererTerrain(17, 17);
@@ -73,13 +73,8 @@ public class Modele {
 
 	public void creerTheme (int i){
 		if (i == 1) {
-			theme = new Theme(new String[] {"Mario", "Luigi", "Mario", "Mario"}, 
-				"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
-		}
-		
-		if (i == 2) {
-			theme = new Theme(new String[] {"Bomber", "Bomber", "Bomber", "Bomber"}, 
-				"bloc_tetris_cassable.png", "bloc_tetris_incassable.png", "Tetris.wav", new int[] {255, 255, 255});
+		theme = new Theme(new String[] {"Bomber", "Bomber", "Bomber", "Bomber"}, 
+			"bloc_tetris_cassable.png", "bloc_tetris_incassable.png", "Tetris.wav", new int[] {255, 255, 255});
 		}
 	}
 	

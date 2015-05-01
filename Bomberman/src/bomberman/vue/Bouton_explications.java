@@ -16,7 +16,8 @@ public class Bouton_explications extends JButton implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
-
+	private int nb_joueurs;
+	
 	
 	public Bouton_explications(Controleur controleur) {
 		super("Comment jouer ?");
@@ -30,5 +31,15 @@ public class Bouton_explications extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToExplications();
+	}
+
+
+	public int getNb_joueurs() {
+		return nb_joueurs;
+	}
+
+
+	public void setNb_joueurs(int nb_joueurs) {
+		this.nb_joueurs = nb_joueurs;
 	}
 }

@@ -112,7 +112,9 @@ public class Controleur {
 	
 	public void ChoixTheme(Object Choix){
 		int Choixtheme = 0 ;
-		if (Choix == "Tetris") Choixtheme = 1 ;
+		if (Choix == "Mario") Choixtheme = 1 ;
+		if (Choix == "Tetris") Choixtheme = 2 ;
+
 		
 		modele.creerTheme(Choixtheme);
 	}
@@ -567,8 +569,8 @@ public class Controleur {
 			Bombe bombe = modele.getListBombe().get(idBombe);
 			int porteeBombe = bombe.getPortee();
 			bombe.getExplosion().setBombeExplosee(true);
-			removeBombe(modele.getListBombe().get(idBombe));
 			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
+			removeBombe(modele.getListBombe().get(idBombe));
 		}
 		if (estMalus(x,y) && p<portee){
 			modele.removeMalusDuPlateau(x, y);

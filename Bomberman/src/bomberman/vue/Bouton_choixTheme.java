@@ -15,10 +15,12 @@ public class Bouton_choixTheme extends JComboBox implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
+	private int numJoueur ;
 	
 	public Bouton_choixTheme(Controleur controleur) {
 		
 		this.controleur = controleur;
+		this.addItem("Classique");
 		this.addItem("Mario");
 		this.addItem("Tetris");
 	    this.addActionListener(this);

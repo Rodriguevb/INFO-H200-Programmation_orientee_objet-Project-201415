@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import bomberman.Audio;
 import bomberman.controleur.Controleur;
 
 public class Bouton_jouer extends JButton implements ActionListener{
@@ -22,7 +23,7 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	public Bouton_jouer(Controleur controleur) {
 		super("Jouer");
 		this.setBackground(new Color(151,201,59));
-		this.setFont(new java.awt.Font("Serif",1,35));
+		this.setFont(new java.awt.Font("Serif",1,30));
 		this.controleur = controleur;
 		this.addActionListener(this); // mets le bouton sur ecoute de la souris
 	}

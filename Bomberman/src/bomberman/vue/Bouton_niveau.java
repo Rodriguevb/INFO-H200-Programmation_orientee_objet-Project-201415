@@ -24,6 +24,7 @@ public class Bouton_niveau extends JComboBox implements ActionListener{
 		this.addItem("Difficile");
 	    this.addActionListener(this);
 	    this.setForeground(Color.black);
+	    this.setFont(new java.awt.Font("Serif",1,25));
 	    
 	}
 	

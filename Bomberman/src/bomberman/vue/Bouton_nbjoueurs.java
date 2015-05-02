@@ -25,6 +25,7 @@ public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 		this.addItem("4 joueurs");
 	    this.addActionListener(this);
 	    this.setForeground(Color.black);
+	    this.setFont(new java.awt.Font("Serif",1,25));
 	    
 	}
 	

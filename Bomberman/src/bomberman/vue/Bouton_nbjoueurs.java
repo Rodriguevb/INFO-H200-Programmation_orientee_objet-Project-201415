@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 import bomberman.controleur.Controleur;
 
@@ -24,7 +25,8 @@ public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 		this.addItem("3 joueurs");
 		this.addItem("4 joueurs");
 	    this.addActionListener(this);
-	    this.setForeground(Color.black);
+	   // this.setForeground(new Color(130,189,49));
+	    this.setBackground(new Color(151,201,59));
 	    this.setFont(new java.awt.Font("Serif",1,25));
 	    
 	}

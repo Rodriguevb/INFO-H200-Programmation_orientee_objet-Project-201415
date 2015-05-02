@@ -42,7 +42,7 @@ public class Menu extends JPanel {
 	    gbc.gridheight = 1;
 	    gbc.insets = new Insets(-125,0,25,0) ;
 	    this.add(bouton_jouer, gbc);
-	    //---------------------------------------------
+	    //--------------------------------------------
 	    gbc.insets = new Insets(0,0,0,0) ;
 	    gbc.gridwidth = GridBagConstraints.REMAINDER;
 	    gbc.gridy = 1 ;	

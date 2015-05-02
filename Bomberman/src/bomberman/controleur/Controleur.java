@@ -175,7 +175,7 @@ public class Controleur {
 			modele.removeBonusDuPlateau(x,y);
 			personnage.activerBonus();
 		}
-		if ( estMalus(x,y) && personnage.getVivant()){
+		if ( estMalus(x,y) && personnage.getVivant() && !personnage.isGilet()){
 			personnage.perdreVie();
 			if (personnage.getNb_vies() <= 0){
 				personnage.mourir();
@@ -221,22 +221,25 @@ public class Controleur {
 	private void addBonus(Personnage personnage, int idBonus, int x, int y){
 		String type_bonus = getTypeBonus(idBonus);
 		if (type_bonus == "bonus_intensite1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0,0,0));
 		}
 		if (type_bonus == "bonus_clavier1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0,0,0));
 		}
 		if (type_bonus == "bonus_bombe1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0,0,0));
 		}
 		if (type_bonus == "bonus_vie1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0,0,0));
 		}
 		if (type_bonus == "bonus_explosion1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1,0));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1,0,0));
 		}
 		if (type_bonus == "bonus_tunnel.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,1));
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,1,0));
+		}
+		if (type_bonus == "jacket.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,0,1));
 		}
 	}
 	
@@ -393,6 +396,9 @@ public class Controleur {
 		if (bonus.getBonus_tunnel() == 1){
 			type = "bonus_tunnel.png";
 		}
+		if (bonus.getBonus_bouclier() == 1){
+			type = "jacket.png";
+		}
 		return type;
 	}
 	
@@ -494,7 +500,7 @@ public class Controleur {
 		addExplosion(x,y, 0, -1, portee);
 		if (estPersonnage(x,y)){
 			Personnage personnage = modele.getPersonnageSurPlateau(x, y);
-			if (personnage.getVivant()){
+			if (personnage.getVivant() && !personnage.isGilet()){
 	    		personnage.perdreVie();
     			if (personnage.getNb_vies()<=0){
 				    personnage.mourir();
@@ -555,7 +561,7 @@ public class Controleur {
 		}
 		if (estPersonnage(x,y) && p<portee){
 			Personnage personnage = modele.getPersonnageSurPlateau(x,y);
-			if (personnage.getVivant()){
+			if (personnage.getVivant() && !personnage.isGilet()){
 		    	personnage.perdreVie();
 	    		if (personnage.getNb_vies()<=0){
 	            personnage.mourir();

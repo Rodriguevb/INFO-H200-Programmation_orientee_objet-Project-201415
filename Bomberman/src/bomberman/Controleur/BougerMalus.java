@@ -40,7 +40,7 @@ public class BougerMalus implements ActionListener{
 			mal.setY(y+v_y);
 			if (modele.PersonnageSurCase(x, y)){
 				Personnage personnage = modele.getPersonnageSurPlateau(x, y);
-				if (personnage.getVivant()){
+				if (personnage.getVivant() && !personnage.isGilet()){
 				    personnage.perdreVie();
 		    		if (personnage.getNb_vies() <= 0){
 			    		personnage.mourir();

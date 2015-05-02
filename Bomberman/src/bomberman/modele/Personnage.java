@@ -6,6 +6,7 @@ import javax.swing.Timer;
 
 import bomberman.Audio_simple;
 import bomberman.controleur.Clavier;
+import bomberman.controleur.Gilet;
 import bomberman.controleur.Tunnel;
 
 
@@ -19,6 +20,7 @@ public class Personnage extends PossedePosition {
 	private ArrayList<Bonus> bonus_personnage;
 	private boolean tunnel;
 	private boolean clavier;
+	private boolean gilet;
 	
 	public Personnage(int x, int y, String nom) {
 		super(x,y);
@@ -30,7 +32,19 @@ public class Personnage extends PossedePosition {
 		this.bonus_personnage = new ArrayList<Bonus>();
 		this.tunnel = false;
 		this.clavier = false;
+		this.gilet = false;
 	}
+	
+
+	public boolean isGilet() {
+		return gilet;
+	}
+
+
+	public void setGilet(boolean gilet) {
+		this.gilet = gilet;
+	}
+
 
 	public boolean isClavier() {
 		return clavier;
@@ -127,6 +141,13 @@ public class Personnage extends PossedePosition {
 				Timer timerClavier = new Timer(10000, new Clavier(this));
 				timerClavier.setRepeats(false);
 				timerClavier.start();
+			}
+			else if (bonus_personnage.get(idBonus).getBonus_bouclier() == 1){
+				gilet = true;
+				bonus_personnage.remove(idBonus);
+				Timer timerGilet = new Timer(10000, new Gilet(this));
+				timerGilet.setRepeats(false);
+				timerGilet.start();
 			}
 			else {
 				idBonus++;

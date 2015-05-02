@@ -10,8 +10,9 @@ public class Bonus extends PossedePosition{
 	private int bonus_explosion;
 	//private int bonus_bloc;
 	private int bonus_tunnel;
+	private int bonus_bouclier;
 	
-	public Bonus(int x, int y, int intensite, int clavier, int bombe, int vie, int explosion, int bonus_tunnel){
+	public Bonus(int x, int y, int intensite, int clavier, int bombe, int vie, int explosion, int bonus_tunnel, int bonus_bouclier){
 		super(x,y);
 		this.bonus_intensite = intensite;
 		this.bonus_clavier = clavier;
@@ -19,6 +20,7 @@ public class Bonus extends PossedePosition{
 		this.bonus_vie = vie;
 		this.bonus_explosion = explosion;
 		this.bonus_tunnel = bonus_tunnel;
+		this.bonus_bouclier = bonus_bouclier;
 	}
 	
 	public int getBonus_tunnel() {
@@ -75,6 +77,14 @@ public class Bonus extends PossedePosition{
 
 	public void setNiveau(int niveau) {
 		this.niveau = niveau;
+	}
+
+	public int getBonus_bouclier() {
+		return bonus_bouclier;
+	}
+
+	public void setBonus_bouclier(int bonus_bouclier) {
+		this.bonus_bouclier = bonus_bouclier;
 	}
 
 }

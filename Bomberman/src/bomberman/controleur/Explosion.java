@@ -24,13 +24,13 @@ public class Explosion extends PossedePosition implements ActionListener {
 
 	
 	/**
-	 * 
-	 * @param x l'abscisse de l'explosion 
-	 * @param y l'ordonnee de l'explosion
+	 * Constructeur de la classe Explosion
+	 * @param x L'abscisse de l'explosion 
+	 * @param y L'ordonnee de l'explosion
 	 * @param duree Le temps d'affichage de l'explosion
-	 * @param duree La duree de l'explosion
-	 * @param controleur
-	 * @param bombe
+	 * @param portee La portee de l'explosion
+	 * @param controleur Le controleur
+	 * @param bombe La bombe
 	 */
 	public Explosion(int x, int y, int duree, int portee, Controleur controleur, Bombe bombe) {
 		super(x,y);
@@ -45,8 +45,9 @@ public class Explosion extends PossedePosition implements ActionListener {
 		this.timer.start();
 	}
 	
+	
 	/**
-	 * Savoir la portee de l'explosion
+	 * Determine la portee de l'explosion
 	 * @return La portee de l'explosion
 	 */
 	public int getPortee(){
@@ -54,7 +55,9 @@ public class Explosion extends PossedePosition implements ActionListener {
 	}
 
 
-	@Override
+	/**
+	 * Provoque l'explosion
+	 */
 	public void actionPerformed(ActionEvent actionEvent) {
 		if (!bombeExplosee){
 		    if ( bombe != null ){
@@ -67,14 +70,25 @@ public class Explosion extends PossedePosition implements ActionListener {
 		}
 	}
     
+	
+	/**
+	 * Savoir si une bombe a explose
+	 * @return Vrai si la bombe a explose
+	 */
 	public boolean isBombeExplosee() {
 		return bombeExplosee;
 	}
 
+	
+	/**
+	 * Change la valeur de l'attribut bombeExplosee
+	 * @param bombeExplosee L'attribut modifie
+	 */
 	public void setBombeExplosee(boolean bombeExplosee) {
 		this.bombeExplosee = bombeExplosee;
 	}
 
+	
 	/**
 	 * Savoir la duree d'affichage de l'explosion
 	 * @return La duree d'affichage de l'explosion
@@ -82,6 +96,5 @@ public class Explosion extends PossedePosition implements ActionListener {
 	public int getDuree() {
 		return duree;
 	}
-    
 
 }

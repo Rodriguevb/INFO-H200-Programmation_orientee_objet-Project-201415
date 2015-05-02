@@ -9,24 +9,39 @@ import bomberman.modele.Personnage;
 
 public class BougerMalus implements ActionListener{
 	
+	
+	/**
+	 * Classe permettant le mouvement des malus
+	 */
 	private Controleur controleur;
 	private Modele modele;
 	private int identifiant;
 	
+	
+	/**
+	 * Constructeur de la classe BougerMalus
+	 * @param controleur Le controleur
+	 * @param modele Le modele
+	 * @param identifiant L'identifiant du Malus
+	 */
 	public BougerMalus(Controleur controleur, Modele modele, int identifiant){
 		this.controleur = controleur;
 		this.modele = modele;
 		this.identifiant = identifiant;
 	}
-
+    
+	
+	/**
+	 * Appelle la methode move()
+	 */
 	public void actionPerformed(ActionEvent arg0) {
-		try {
-			move();
-		} catch (Exception e) {
-			
-		}
+		move();
 	}
 	
+	
+	/**
+	 * Faire bouger le Malus qui a le meme identifiant
+	 */
 	public void move(){
 		Malus mal = modele.getMalusDepuisId(identifiant);
 		int x = mal.getX();

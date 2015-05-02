@@ -4,9 +4,14 @@ import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
 import bomberman.vue.Vue;
 
+
 public class Main {
 	
 	
+	/**
+	 * Lancer le programme.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		Controleur controleur = new Controleur();

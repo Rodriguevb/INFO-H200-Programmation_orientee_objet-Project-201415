@@ -179,4 +179,5 @@ public class Personnage extends PossedePosition {
 	public void setNb_bombes(int nb_bombes) {
 		this.nb_bombes = nb_bombes;
 	}
+
 }

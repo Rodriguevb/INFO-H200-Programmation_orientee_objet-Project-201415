@@ -28,6 +28,7 @@ public class Bouton_go extends JButton implements ActionListener{
 		this.modele = modele;
 		this.addActionListener(this); // mets le bouton sur ecoute de la souris
 		this.setNb_joueurs(1);
+		this.setFont(new java.awt.Font("Serif",1,25));
 	}
 
 

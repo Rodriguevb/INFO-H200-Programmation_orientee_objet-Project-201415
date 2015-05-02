@@ -31,10 +31,13 @@ public class BougerMalus implements ActionListener{
 		Malus mal = modele.getMalusDepuisId(identifiant);
 		int x = mal.getX();
 		int y = mal.getY();
-		int v = mal.getVitesse();
-		if (controleur.estLibre(x, y+v)){
-			mal.setY(y+v);
-			y = y+v;
+		int[] dir_x = new int[] {1,-1,0,0};
+		int[] dir_y = new int[] {0,0,1,-1};
+		int v_x = mal.getV_x();
+		int v_y = mal.getV_y();
+		if (controleur.estLibre(x+v_x, y+v_y)){
+			mal.setX(x+v_x);
+			mal.setY(y+v_y);
 			if (modele.PersonnageSurCase(x, y)){
 				Personnage personnage = modele.getPersonnageSurPlateau(x, y);
 				if (personnage.getVivant()){
@@ -46,9 +49,9 @@ public class BougerMalus implements ActionListener{
 			}
 		}
 		else {
-			mal.setVitesse(-v);
-			if (v < 0) mal.setNom_image("pingouinFace.png");
-			else mal.setNom_image("pingouinDos.png");
+			int n = (int) (Math.random()*4);
+			mal.setV_x(dir_x[n]);
+			mal.setV_y(dir_y[n]);
 		}
 		controleur.repaint();
 	}

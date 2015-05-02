@@ -149,7 +149,7 @@ public class Controleur {
 	public void moveMalus(){
 		for (int i = 0; i < modele.getMalus().size(); i++){
 			Malus mal = modele.getMalus().get(i);
-		    Timer timerMalus = new Timer(500, new BougerMalus(this, modele, mal.getIdentifiant()));
+		    Timer timerMalus = new Timer(300, new BougerMalus(this, modele, mal.getIdentifiant()));
 		    timerMalus.start();
 		} 
 	}

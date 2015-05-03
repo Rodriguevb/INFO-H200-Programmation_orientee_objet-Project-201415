@@ -19,7 +19,7 @@ public class Controleur {
 	private Vue vue;
 	private Modele modele;
 	private int nb_joueurs = 1;
-	private int niveau = 1;
+	private int niveau = 2;
 	boolean EtatJeu = false ;
 	private int[][] touches = {{KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_LEFT,KeyEvent.VK_RIGHT,KeyEvent.VK_SPACE},
 			{KeyEvent.VK_Z,KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_D,KeyEvent.VK_X},

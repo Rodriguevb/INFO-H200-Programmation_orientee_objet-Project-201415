@@ -16,6 +16,10 @@ import bomberman.vue.Vue;
 
 public class Controleur {
 	
+	
+	/**
+	 * Classe 
+	 */
 	private Vue vue;
 	private Modele modele;
 	private int nb_joueurs = 2;
@@ -29,7 +33,7 @@ public class Controleur {
 
 	/**
 	 * Lie la vue au controleur
-	 * @param vue La vue.
+	 * @param vue La vue
 	 */
 	public void link(Vue vue) {
 		this.vue = vue;
@@ -38,7 +42,7 @@ public class Controleur {
 	
 	/**
 	 * Lie le modele au controleur
-	 * @param modele Le modele.
+	 * @param modele Le modele
 	 */
 	public void link(Modele modele) {
 		this.modele = modele;
@@ -52,6 +56,7 @@ public class Controleur {
 		vue.switchToMenu();
 	}
 	
+	
 	/**
 	 * Passe l'affichage au sous-menu
 	 */
@@ -59,10 +64,10 @@ public class Controleur {
 		vue.switchToSousMenu();
 	}
 	
+	
 	/**
 	 * Passe l'affichage aux explications
 	 */
-	
 	public void switchToExplications() {
 		vue.switchToExplications();
 	}
@@ -75,26 +80,45 @@ public class Controleur {
 		vue.switchToJeu();
 	}
 	
+	
+	/**
+	 * Passe l'affichage aux options
+	 */
 	public void switchToOptions() {
 		vue.switchToOptions();
 	}
 	
 	
 	/**
-	 * Redessine
+	 * Redessine/actualise l'affichage
 	 */
 	public void repaint() {
 		vue.repaint();
 	}
 	
+	
+	/**
+	 * Precise l'etat du jeu
+	 * @param etat L'etat du jeu
+	 */
 	public void jeuEnMarche(boolean etat){
 		EtatJeu = etat ;
 	}
 	
+	
+	/**
+	 * Permet de connaitre l'etat du jeu
+	 * @return Vrai si le jeu est en marche
+	 */
 	public boolean isJeuEnCours(){
 		return EtatJeu;
 	}
 	
+	
+	/**
+	 * Initialise le nombre de joueurs
+	 * @param NbJoueurs Le nombre de joueurs
+	 */
 	public void NbJoueurs(Object NbJoueurs){
 		nb_joueurs = 2;
 		if (NbJoueurs == "2 joueurs"){
@@ -106,10 +130,19 @@ public class Controleur {
 	}
 	
 	
+	/**
+	 * Permet de connaitre le nombre de joueurs
+	 * @return Le nombre de joueurs
+	 */
 	public int getNbJoueurs(){
 		return nb_joueurs;
 	}
 	
+	
+	/**
+	 * Choisit le theme du jeu
+	 * @param Choix Le choix du theme
+	 */
 	public void ChoixTheme(Object Choix){
 		int Choixtheme = 0 ;
 		if (Choix == "Tetris") Choixtheme = 1 ;
@@ -118,6 +151,11 @@ public class Controleur {
 		modele.creerTheme(Choixtheme);
 	}
 	
+	
+	/**
+	 * Choisit le niveau de difficulte
+	 * @param Niveau Le niveau de la partie
+	 */
 	public void Niveau(Object Niveau){
 		niveau = 1;
 		if (Niveau == "Moyen"){
@@ -128,6 +166,10 @@ public class Controleur {
 		}
 	}
 	
+	
+	/**
+	 * Cree les joueurs et attribue a chaque joueur des touches
+	 */
 	public void creerJoueurs(){
 		modele.createPlayers(nb_joueurs);
 		for (int i=0; i< nb_joueurs; i++){
@@ -142,10 +184,18 @@ public class Controleur {
 
 	}
 	
+	
+	/**
+	 * Cree les Malus dans le modele
+	 */
 	public void creerMalus() {
 		modele.createMalus(niveau);
 	}
 	
+	
+	/**
+	 * Cree un timer a chaque Malus pour qu'il puisse se deplacer
+	 */
 	public void moveMalus(){
 		for (int i = 0; i < modele.getMalus().size(); i++){
 			Malus mal = modele.getMalus().get(i);
@@ -156,8 +206,10 @@ public class Controleur {
 	
 	
 	/**
-	 * Bouge le personnage d une case
+	 * Bouge le personnage d'une case
 	 * @param idPersonnage L'ID du personnage
+	 * @param avance_x Direction en x
+	 * @param avance_y Direction en y
 	 */
 	public void movePersonnage(int idPersonnage, int avance_x, int avance_y) {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
@@ -184,8 +236,13 @@ public class Controleur {
 	}
 	
 	
-	
-	
+	/**
+	 * Savoir quel personnage a depose la bombe
+	 * @param x Position de la bombe en x
+	 * @param y Position de la bombe en y
+	 * @param idPersonnage L'ID du personnage
+	 * @return Vrai si la bombe appartient au personnage
+	 */
 	private boolean bombePersonnage(int x, int y, int idPersonnage) {
 		int idBombe = modele.getIdBombe(x, y);
 		if (idBombe != -1){
@@ -197,7 +254,13 @@ public class Controleur {
 		return true;
 	}
 
-
+	
+    /**
+     * Active le bonus_tunnel lorsqu'un personnage en a recupere un
+     * @param personnage Le personnage
+     * @param x La position en x ou le personnage souhaite aller
+     * @param y La position en y ou le personnage souhaite aller
+     */
 	private void activerTunnel(Personnage personnage, int x, int y) {
 		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
 			personnage.setY(15);
@@ -217,7 +280,14 @@ public class Controleur {
 		}
 	}
 
-
+	
+    /**
+     * Permet au personnage de recuperer un bonus
+     * @param personnage Le personnage
+     * @param idBonus L'ID du bonus
+     * @param x La position du personnage en x
+     * @param y La position du personnage en y
+     */
 	private void addBonus(Personnage personnage, int idBonus, int x, int y){
 		String type_bonus = getTypeBonus(idBonus);
 		if (type_bonus == "bonus_intensite1.png"){
@@ -238,25 +308,38 @@ public class Controleur {
 		if (type_bonus == "bonus_tunnel.png"){
 			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,1,0));
 		}
-	if (type_bonus == "jacket.png"){
-		personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,0,1));
-	}
+		if (type_bonus == "jacket.png"){
+			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,0,1));
+		}
 	}
 	
+	
+	/**
+	 * Permet de savoir si un bonus est present sur une case
+	 * @param x La position en x de la case
+	 * @param y La position en y de la case
+	 * @return Vrai si presence d'un bonus sur la case
+	 */
 	private boolean estBonus(int x, int y) {
 		return modele.bonusSurCase(x, y);
 	}
 	
+	
+	/**
+	 * Permet de savoir si un malus est present sur une case
+	 * @param x La position en x de la case
+	 * @param y La position en y de la case
+	 * @return Vrai si presence d'un malus sur la case
+	 */
 	private boolean estMalus(int x, int y){
 		return modele.malusSurCase(x, y);
 	}
-
 
 	
 	/**
 	 * Retourne la position du personnage
 	 * @param idPersonnage L'ID du personnage
- 	 * @return La position
+ 	 * @return La position du personnage
 	 */
 	public Point getPersonnagePosition(int idPersonnage) {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
@@ -265,12 +348,24 @@ public class Controleur {
 		return new Point(x,y);
 	}
 	
+	
+	/**
+	 * Recupere le nom_image d'un personnage
+	 * @param idPersonnage L'ID du personnage
+	 * @return Le nom_image du personnage
+	 */
 	public String getPersonnageNomImage(int idPersonnage) {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
 		String nom_image = personnage.getNom_image();
 		return nom_image;
 	}
 	
+	
+	/**
+	 * Recupere la position d'un malus
+	 * @param idMalus L'ID du malus
+	 * @return La position du malus
+	 */
 	public Point getMalusPosition(int idMalus){
 		Malus mal = modele.getMal( idMalus );
 		int x = mal.getX();
@@ -280,8 +375,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Verifier si la case est libre
-	 * @param x,y La position de la case.
+	 * Verifie si la case est libre
+	 * @param x La position de la case en x
+	 * @param y La position de la case en y
 	 * @return Vrai si la case est libre
 	 */
 	public boolean estLibre(int x, int y) {
@@ -291,7 +387,8 @@ public class Controleur {
 	
 	/**
 	 * Savoir si la case contient un bloc incassable
-	 * @param x,y Position de la case.
+	 * @param x La position de la case en x
+	 * @param y La position de la case en y
 	 * @return Vrai si le case contient un bloc incassable
 	 */
 	public boolean estBlocIncassable(int x, int y) {
@@ -301,17 +398,32 @@ public class Controleur {
 	
 	/**
 	 * Savoir si la case contient un bloc cassable
-	 * @param x,y Position de la case.
+	 * @param x La position de la case en x
+	 * @param y La position de la case en y
 	 * @return Vrai si la case contient un bloc cassable
 	 */
 	public boolean estBlocCassable(int x, int y) {
 		return modele.getCase( x,y ).getPossedeBlocCassable();
 	}
 	
+	
+	/**
+	 * Savoir si la case contient un personnage
+	 * @param x La position de la case en x
+	 * @param y La position de la case en y
+	 * @return Vrai si la case contient un personnage
+	 */
 	public boolean estPersonnage(int x, int y){
 		return modele.PersonnageSurCase(x,y);
 	}
 	
+	
+	/**
+	 * Savoir si la case contient une bombe
+	 * @param x La position de la case en x
+	 * @param y La position de la case en y
+	 * @return Vrai si la case contient une bombe
+	 */
 	public boolean estBombe(int x, int y){
 		return modele.BombeSurCase(x,y);
 	}
@@ -336,14 +448,15 @@ public class Controleur {
 
 
 	/**
-	 * Savoir le nombre de personnage
-	 * @return Le nombre de personnage
+	 * Savoir le nombre de personnages
+	 * @return Le nombre de personnages
 	 */
 	public int getNumberPersonnage() {
 		return modele.getListPersonnages().size();
 	}
 	
-
+	
+    //utile?
 	/**
 	 * Savoir le nombre de morts sur le tableau
 	 * @return Le nombre de morts
@@ -352,14 +465,20 @@ public class Controleur {
 		return modele.getListMorts().size();
 	}
 	
+	
+	/**
+	 * Savoir le nombre de bonus sur le tableau
+	 * @return Le nombre de bonus
+	 */
 	public int getSizeBonus(){
 		return modele.getListBonus().size();
 	}
 
+	//utile?
 	/**
 	 * Retourne la position du personnage elimine
 	 * @param idPersonnage L'ID du personnage elimine
- 	 * @return La position
+ 	 * @return La position du personnage
 	 */
 	public Point getMortPosition(int id) {
 		Mort mort = modele.getMort( id );
@@ -368,6 +487,12 @@ public class Controleur {
 		return new Point(x,y);
 	}
 	
+	
+	/**
+	 * Recupere la position d'un bonus
+	 * @param id L'ID du bonus
+	 * @return La position du bonus
+	 */
 	public Point getBonusPosition(int id){
 		Bonus bonus = modele.getBonus( id );
 		int x = bonus.getX();
@@ -375,6 +500,12 @@ public class Controleur {
 		return new Point(x,y);
 	}
 	
+	
+	/**
+	 * Savoir le type de bonus et lui attribuer une image
+	 * @param id L'ID du bonus
+	 * @return Le type du bonus
+	 */
 	public String getTypeBonus(int id){
 		String type = "sans";
 		Bonus bonus = modele.getBonus( id );
@@ -403,7 +534,6 @@ public class Controleur {
 	}
 	
 
-
 	/**
 	 * Lache une bombe a l'endroit du personnage
 	 * @param idPersonnage L'ID du personnage
@@ -421,6 +551,12 @@ public class Controleur {
 		}
 	}
 	
+	
+	/**
+	 * Savoir la portee d'une bombe qu'un personnage va poser
+	 * @param personnage Le personnage
+	 * @return La portee de la bombe
+	 */
 	public int getPortee(Personnage personnage){
 		int porteeBombe = 1;
 		int idBonus = 0;
@@ -434,6 +570,12 @@ public class Controleur {
 		return porteeBombe;
 	}
 	
+	
+	/**
+	 * Savoir la duree d'une bombe qu'un personnage va poser
+	 * @param personnage Le personnage
+	 * @return La duree de la bombe
+	 */
 	public int getDuree(Personnage personnage){
 		int dureeBombe = 1500;
 		int idBonus = 0;
@@ -448,15 +590,23 @@ public class Controleur {
 		return dureeBombe;
 	}
 	
+	
+	/**
+	 * Permet de recuperer un bonus detenu par un personnage
+	 * @param personnage Le personnage
+	 * @param idBonus L'ID du bonus
+	 * @return Le bonus
+	 */
 	public Bonus bonus_provisoire(Personnage personnage, int idBonus){
 		return personnage.getBonus_personnage().get(idBonus);
 	}
 	
 	
 	/**
-	 * Savoir si la case possede une bombe ou non.
-	 * @param x,y Position de la case ˆ verifier.
-	 * @return Vrai si il y a une bombe ˆ l'emplacement.
+	 * Savoir si la case possede une bombe
+	 * @param x La position en x de la case a verifier
+	 * @param y La position en y de la case a verifier
+	 * @return Vrai s'il y a une bombe a l'emplacement
 	 */
 	private boolean casePasDeBomb(int x, int y) {	
 		return !modele.getCase(x,y).getPossedeBombe();
@@ -464,7 +614,7 @@ public class Controleur {
 
 
 	/**
-	 * Savoir le nombre de bombes sur le plateau
+	 * Savoir le nombre de bombes sur le tableau
 	 * @return Le nombre de bombes
 	 */
 	public int getSizeBomb() {
@@ -486,7 +636,7 @@ public class Controleur {
 
 
 	/**
-	 * Provoque une explosion en croix.
+	 * Provoque une explosion en croix
 	 * @param explosion L'origine de l'explosion en chaine
 	 */
 	public void makeExplosion(Explosion explosion) {
@@ -515,13 +665,14 @@ public class Controleur {
 
 
 	/**
-	 * Savoir le nombre d'explosions presentes sur le plateau
+	 * Savoir le nombre d'explosions presentes sur le tableau
 	 * @return Le nombre d'explosions
 	 */
 	public int getSizeExplosion() {
 		return modele.getListExplosion().size();
 	}
 
+	
 	/**
 	 * Savoir la position de l'explosion
 	 * @param idExplosion L'ID de l'explosion
@@ -539,6 +690,8 @@ public class Controleur {
 	 * Ajoute des explosions en chaine 
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnee de l'explosion
+	 * @param direction_x Direction de propagation en x
+	 * @param direction_y Direction de propagation en y
 	 * @param portee La portee de l'explosion
 	 */
 	public void addExplosion(int x, int y, int direction_x, int direction_y, int portee){
@@ -585,21 +738,17 @@ public class Controleur {
 
 
 	/**
-	 * Supprimer le bloc cassable
+	 * Supprime le bloc cassable
 	 * @param x L'abscisse du bloc cassable
-	 * @param y L'ordonnŽe du bloc cassable
+	 * @param y L'ordonnee du bloc cassable
 	 */
 	private void removeBlocCassable(int x, int y) {
 		modele.getCase(x,y).rendreLibre();
 	}
 	
-	/*private void removePersonnage(int x, int y){
-		modele.removePersonnageDuPlateau(x,y);
-	}*/
-	
 	
 	/**
-	 * Ajouter une explosion 
+	 * Ajoute une explosion 
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnee de l'explosion
 	 */
@@ -609,8 +758,8 @@ public class Controleur {
 
 
 	/**
-	 * Supprimer la bombe
-	 * @param bombe 
+	 * Supprime la bombe
+	 * @param bombe La bombe
 	 */
 	public void removeBombe(Bombe bombe) {
 		int idPersonnage = bombe.getIdPersonnage();
@@ -621,8 +770,8 @@ public class Controleur {
 	
 	
 	/**
-	 * Supprimer l'explosion
-	 * @param explosion
+	 * Supprime l'explosion
+	 * @param explosion L'explosion
 	 */
 	public void removeExplosion(Explosion explosion){
 		modele.getListExplosion().remove(explosion);

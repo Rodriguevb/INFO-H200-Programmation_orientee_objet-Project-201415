@@ -26,11 +26,7 @@ public class SousMenu extends JPanel {
 		
 	public SousMenu(Controleur controleur, Modele modele) {
 
-		//JPanel panelTransp = new JPanel();
-		//panelTransp.setPreferredSize(new Dimension(500,400));
-		//panelTransp.setBackground(new Color(0,0,0,100));
-		//this.add(panelTransp);
-		//panelTransp.setLocation(null);
+
 				
 		Bouton_retour bouton_retour = new Bouton_retour(controleur);
 		bouton_retour.setPreferredSize(new Dimension(200, 40));

@@ -30,11 +30,7 @@ public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 	    
 	}
 	
-		/*public void initialise(){
-			controleur.NbJoueurs(new String("1 joueur"));
-		}*/
-
-	    public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 	      controleur.NbJoueurs(this.getSelectedItem());
 	    }               
 	  }

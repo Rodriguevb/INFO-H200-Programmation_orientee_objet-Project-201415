@@ -127,6 +127,10 @@ public class Modele {
 		return idPersonnage;
 	}
 	
+	public String getNomPersonnage(int idPersonnage) {
+		return personnages.get( idPersonnage ).getNom();
+	}
+	
 	public int getIdBonus(int x, int y){
 		int idBonus = -1;
 		for (int id = 0; id < bonus.size(); ++id){

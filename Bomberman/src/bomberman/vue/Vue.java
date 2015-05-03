@@ -57,13 +57,8 @@ public class Vue extends JFrame{
 	    content.add(explications, listContent[2]);
 	    content.add(jeu,listContent[3]);
 
-	
-	    //menu.setFocusable(true);
-	    //jeu.setFocusable(true);
-	    
-	    //this.switchToMenu();
 	    this.getContentPane().add(content, BorderLayout.CENTER);
-	    this.setVisible(true); // Rend la fenetre visible
+	    this.setVisible(true); 
 	}
 	
 	
@@ -91,7 +86,7 @@ public class Vue extends JFrame{
 	public void switchToJeu() {
 		
 		cl.show(content, listContent[3]);
-		this.setSize(1200,890);
+		this.setSize(1100,890);
 		 this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel

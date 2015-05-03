@@ -20,7 +20,6 @@ public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 	
 	public Bouton_nbjoueurs(Controleur controleur) {
 		this.controleur = controleur;
-		this.addItem("1 joueur");
 		this.addItem("2 joueurs");
 		this.addItem("3 joueurs");
 		this.addItem("4 joueurs");

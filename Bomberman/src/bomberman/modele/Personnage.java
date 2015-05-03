@@ -152,6 +152,8 @@ public class Personnage extends PossedePosition {
 			else {
 				idBonus++;
 			}
+			Audio_simple son = new Audio_simple("sonBonus.wav");
+			son.start();
 		}
 	}
 	

@@ -199,7 +199,7 @@ public class Controleur {
 	public void moveMalus(){
 		for (int i = 0; i < modele.getMalus().size(); i++){
 			Malus mal = modele.getMalus().get(i);
-		    Timer timerMalus = new Timer(300, new BougerMalus(this, modele, mal.getIdentifiant()));
+		    Timer timerMalus = new Timer(600, new BougerMalus(this, modele, mal.getIdentifiant()));
 		    timerMalus.start();
 		} 
 	}
@@ -360,6 +360,17 @@ public class Controleur {
 		return nom_image;
 	}
 	
+	/**
+	 * Recupere le nom d'un personnage
+	 * @param idPersonnage L'ID du personnage
+	 * @return Le nom du personnage
+	 */
+	public String getPersonnageNom(int idPersonnage) {
+		Personnage personnage = modele.getPersonnage( idPersonnage );
+		String nom = personnage.getNom();
+		return nom;
+	}
+	
 	
 	/**
 	 * Recupere la position d'un malus
@@ -455,16 +466,7 @@ public class Controleur {
 		return modele.getListPersonnages().size();
 	}
 	
-	
-    //utile?
-	/**
-	 * Savoir le nombre de morts sur le tableau
-	 * @return Le nombre de morts
-	 */
-	/*public int getSizeMorts() {
-		return modele.getListMorts().size();
-	}*/
-	
+
 	
 	/**
 	 * Savoir le nombre de bonus sur le tableau
@@ -474,19 +476,6 @@ public class Controleur {
 		return modele.getListBonus().size();
 	}
 
-	//utile?
-	/**
-	 * Retourne la position du personnage elimine
-	 * @param idPersonnage L'ID du personnage elimine
- 	 * @return La position du personnage
-	 */
-	/*public Point getMortPosition(int id) {
-		Mort mort = modele.getMort( id );
-		int x = mort.getX();
-		int y = mort.getY();
-		return new Point(x,y);
-	}*/
-	
 	
 	/**
 	 * Recupere la position d'un bonus

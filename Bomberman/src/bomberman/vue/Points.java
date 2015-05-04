@@ -35,30 +35,20 @@ public class Points extends JPanel {
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		
-		points1 = new SousPoints(0, modele);		
-		points2 = new SousPoints(1, modele);
-		points3 = new SousPoints(2, modele);
-		points4 = new SousPoints(3, modele);
 		
-		liste = new SousPoints[] {points1, points2, points3, points4};
-		
-		/*for (int i = 0 ; i < controleur.getNbJoueurs() ; i++) {
-	    	gbc.gridx = 0;
-			gbc.gridy = i;
-			gbc.gridheight = 1;
-			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			this.add(liste[i], gbc);
-			
-		}*/
+
 	}
 	
 	public void creerPoints(){
+	
+		
 		for (int i = 0 ; i < controleur.getNbJoueurs() ; i++) {
+			SousPoints points = new SousPoints(i, controleur.getPersonnageNom(i), modele);
 	    	gbc.gridx = 0;
 			gbc.gridy = i;
 			gbc.gridheight = 1;
 			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			this.add(liste[i], gbc);
+			this.add(points, gbc);
 			
 		}
 	}

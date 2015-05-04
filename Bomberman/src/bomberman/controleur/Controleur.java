@@ -508,7 +508,7 @@ public class Controleur {
 			type = "bonus_bombe1.png";
 		}
 		if (bonus.getBonus_vie() == 1){
-			type = "bonus_vie1.png";
+			type = "Coeur(1).png";
 		}
 		if (bonus.getBonus_explosion() == 1){
 			type = "bonus_explosion1.png";

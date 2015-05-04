@@ -87,11 +87,12 @@ public class Vue extends JFrame{
 		
 		cl.show(content, listContent[3]);
 		this.setSize(1100,890);
-		 this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();
 		this.getContentPane().validate();
+		points.creerPoints();
 		
 	}
 

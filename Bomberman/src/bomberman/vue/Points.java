@@ -1,15 +1,9 @@
 package bomberman.vue;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Label;
-import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
@@ -24,6 +18,12 @@ public class Points extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Modele modele = null;
 	private Controleur controleur = null ;
+	private GridBagConstraints gbc;
+	private SousPoints points1;		
+	private SousPoints points2;
+	private SousPoints points3;
+	private SousPoints points4;
+	private SousPoints[] liste;
 
 	public Points(Controleur controleur, Modele modele){
 		
@@ -33,15 +33,26 @@ public class Points extends JPanel {
 		
 		
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		
-		SousPoints points1 = new SousPoints(0, modele);		
-		SousPoints points2 = new SousPoints(1, modele);
-		SousPoints points3 = new SousPoints(2, modele);
-		SousPoints points4 = new SousPoints(3, modele);
+		points1 = new SousPoints(0, modele);		
+		points2 = new SousPoints(1, modele);
+		points3 = new SousPoints(2, modele);
+		points4 = new SousPoints(3, modele);
 		
-		SousPoints[] liste = {points1, points2, points3, points4};
+		liste = new SousPoints[] {points1, points2, points3, points4};
 		
+		/*for (int i = 0 ; i < controleur.getNbJoueurs() ; i++) {
+	    	gbc.gridx = 0;
+			gbc.gridy = i;
+			gbc.gridheight = 1;
+			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			this.add(liste[i], gbc);
+			
+		}*/
+	}
+	
+	public void creerPoints(){
 		for (int i = 0 ; i < controleur.getNbJoueurs() ; i++) {
 	    	gbc.gridx = 0;
 			gbc.gridy = i;

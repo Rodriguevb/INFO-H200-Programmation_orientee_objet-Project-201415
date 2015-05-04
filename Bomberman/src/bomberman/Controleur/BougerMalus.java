@@ -16,6 +16,7 @@ public class BougerMalus implements ActionListener{
 	private Controleur controleur;
 	private Modele modele;
 	private int identifiant;
+	private boolean [] directionsPossibles = {false, false, false, false};
 	
 	
 	/**
@@ -44,12 +45,16 @@ public class BougerMalus implements ActionListener{
 	 */
 	public void move(){
 		Malus mal = modele.getMalusDepuisId(identifiant);
+		if (mal != null) { 
 		int x = mal.getX();
 		int y = mal.getY();
 		int[] dir_x = new int[] {1,-1,0,0};
 		int[] dir_y = new int[] {0,0,1,-1};
 		int v_x = mal.getV_x();
 		int v_y = mal.getV_y();
+		
+		changeDirectionsPossibles(x, y);
+		
 		if (controleur.estLibre(x+v_x, y+v_y)){
 			mal.setX(x+v_x);
 			mal.setY(y+v_y);
@@ -72,9 +77,23 @@ public class BougerMalus implements ActionListener{
 			mal.setV_x(v_x);
 			mal.setV_y(v_y);
 			
-		
+		}
 		}
 		controleur.repaint();
+	
+}	
+	
+	public void changeDirectionsPossibles(int x, int y){
+		
+		if (controleur.estLibre(x, y-1)){
+			directionsPossibles[0] = true ;}
+		if (controleur.estLibre(x+1, y)){
+			directionsPossibles[1] = true ;}
+		if (controleur.estLibre(x, y+1)){
+			directionsPossibles[2] = true ;}
+		if (controleur.estLibre(x-1, y)){
+			directionsPossibles[3] = true ;}	
+		
 	}
 
 }

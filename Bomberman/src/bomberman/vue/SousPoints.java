@@ -33,6 +33,7 @@ public class SousPoints extends JPanel {
 		nom_perso.setBounds(0, 0, 90, 20);
 		nom_perso.setFont(new java.awt.Font("Comic Sans MS",1,20));
 		nom_perso.setForeground(new Color(175,175,175));
+		nom_perso.setBackground(new Color(0,0,0));
 		this.setBackground(new Color(0,0,0));
 		this.add(nom_perso);
 		
@@ -45,7 +46,7 @@ public class SousPoints extends JPanel {
 		labelBombe = new JLabel();
 		labelBombe.setFont(new java.awt.Font("Comic Sans MS",1,15));
 		labelBombe.setForeground(new Color(175,175,175));
-		labelBombe.setBounds(50,80,30,30);		
+		labelBombe.setBounds(50,80,30,30);
 		this.add(labelBombe);
 }
 	

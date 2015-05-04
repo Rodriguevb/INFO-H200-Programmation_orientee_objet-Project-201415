@@ -9,7 +9,6 @@ import bomberman.modele.Bombe;
 import bomberman.modele.Bonus;
 import bomberman.modele.Malus;
 import bomberman.modele.Modele;
-import bomberman.modele.Mort;
 import bomberman.modele.Personnage;
 import bomberman.vue.Vue;
 
@@ -231,6 +230,7 @@ public class Controleur {
 			personnage.perdreVie();
 			if (personnage.getNb_vies() <= 0){
 				personnage.mourir();
+
 			}
 		}
 	}
@@ -299,7 +299,7 @@ public class Controleur {
 		if (type_bonus == "bonus_bombe1.png"){
 			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0,0,0));
 		}
-		if (type_bonus == "bonus_vie1.png"){
+		if (type_bonus == "coeur(1).png"){
 			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0,0,0));
 		}
 		if (type_bonus == "bonus_explosion1.png"){
@@ -369,6 +369,24 @@ public class Controleur {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
 		String nom = personnage.getNom();
 		return nom;
+	}
+	
+	/**
+	 * Determine le gagnant s'il ne reste qu'un personnage
+	 * @return l'ID du gagnant
+	 */
+	public int getGagnant(){
+		int i = 0 ;
+		int idGagnant = -1 ;
+		for (int id = 0 ; id < this.nb_joueurs ; id ++){
+			if (modele.getPersonnage (id).getVivant()){
+				i++ ;
+				idGagnant = id ;
+			}
+		}
+		
+		if (i != 1) idGagnant = -1 ;
+		return idGagnant ;
 	}
 	
 	

@@ -6,10 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
+import bomberman.modele.Personnage;
 
 public class Jeu extends JPanel {
 	
@@ -96,7 +98,8 @@ public class Jeu extends JPanel {
 			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
-		// Afficher les personnages.
+		// Afficher les personnages et afficher le gagnant
+		
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
 			if (modele.getPersonnage(id).getVivant()){
 			    Point point = controleur.getPersonnagePosition( id );
@@ -111,24 +114,18 @@ public class Jeu extends JPanel {
 		    g2d.drawImage(new ImageIcon(img_malus).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
-		// Afficher les morts.
-		/*for (int id = 0; id < controleur.getSizeMorts(); ++id){
-			Point point = controleur.getMortPosition( id );
-			String image = "mort.png";
-			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
-		}*/
+		int id = controleur.getGagnant();
+		if (id != -1) {
+			JLabel labelGagnant = new JLabel(controleur.getPersonnageNom(id)+ " a gagné !");
+			labelGagnant.setFont(new java.awt.Font("Comic Sans MS",1,70));
+			labelGagnant.setForeground(new Color(255,0,0));
+			this.add(labelGagnant);
+			labelGagnant.setBounds(200,300,600,100);
+			System.out.println(controleur.getPersonnageNom(id));
+		}
 		
+	}
 		
 	}
 
-
-	public Points getPoints() {
-		return points;
-	}
-
-
-	public void setPoints(Points points) {
-		this.points = points;
-	}
-} 
 

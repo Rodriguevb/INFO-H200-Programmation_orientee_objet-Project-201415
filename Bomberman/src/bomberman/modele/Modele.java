@@ -15,7 +15,6 @@ public class Modele {
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Bombe>       bombes       = new ArrayList<Bombe>();
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
-	private ArrayList<Mort> morts = new ArrayList<Mort>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
 	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
@@ -332,10 +331,6 @@ public class Modele {
 		return bombes.get( idBombe );
 	}
 	
-	public Mort getMort(int idMort) {
-		return morts.get( idMort );
-	}
-	
 	
 	/**
 	 * Recupere un bonus dans la liste bonus
@@ -373,12 +368,7 @@ public class Modele {
 		return explosions;
 	}
 	
-	
-	public ArrayList<Mort> getListMorts() {
-		return morts;
-	}
-	
-	
+
 	/**
 	 * Recupere la liste des bonus
 	 * @return La liste des bonus

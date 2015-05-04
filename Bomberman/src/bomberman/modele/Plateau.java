@@ -5,11 +5,16 @@ public class Plateau {
 	
 	
 	/**
-	 * Classe contenant la matrice de la carte et facilitant les changements.
+	 * Classe contenant la matrice de la carte et facilitant les changements
 	 */
 	private Matrice matrice;
 	
 	
+	/**
+	 * Genere le terrain de jeu
+	 * @param width La largeur du plateau
+	 * @param height La hauteur du plateau
+	 */
 	public void genererTerrain(int width, int height) {
 		matrice = new Matrice(width,height);
 		addLimit( matrice );
@@ -19,6 +24,10 @@ public class Plateau {
 	}
 	
 	
+	/**
+	 * Fixe les limites du plateau grace a des blocs incassables
+	 * @param matrice La matrice du jeu
+	 */
 	public static void addLimit( Matrice matrice ) {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
@@ -37,6 +46,10 @@ public class Plateau {
 	}
 	
 	
+	/**
+	 * Ajoute des blocs incassables une case sur deux, une ligne sur deux
+	 * @param matrice La matrice du jeu
+	 */
 	public static void addIncassable( Matrice matrice ) {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
@@ -51,8 +64,8 @@ public class Plateau {
 	
 	
 	/**
-	 * Remplir la matrice de blocs cassables un peu partout.
-	 * @param matrice La matrice qu'on veut remplir.
+	 * Remplir la matrice de blocs cassables un peu partout
+	 * @param matrice La matrice a remplir
 	 */
 	public static void addRandom( Matrice matrice ) {
 		int width  = matrice.getWidth();
@@ -72,6 +85,10 @@ public class Plateau {
 	}
 	
 	
+	/**
+	 * Rend libre les coins de la matrice et les cases adjacentes
+	 * @param matrice La matrice du jeu
+	 */
 	public static void removePositionPlayer( Matrice matrice ) {
 		int width  = matrice.getWidth();
 		int height = matrice.getHeight();
@@ -94,21 +111,38 @@ public class Plateau {
 	}
 	
 	
+	/**
+	 * Recupere la matrice du jeu
+	 * @return La matrice du jeu
+	 */
 	public Matrice getMatrice() {
 		return this.matrice;
 	}
 	
 	
+	/**
+	 * Genere un nombre aleatoire de 0 a un maximum
+	 * @param maxNbRandom Le maximum
+	 * @return Le nombre aleatoire
+	 */
 	public static int randomInt(int maxNbRandom) {
 		return (int)(Math.floor(Math.random() * maxNbRandom));
 	}
 
 
+	/**
+	 * Savoir la hauteur de la matrice
+	 * @return La hauteur de la matrice
+	 */
 	public int getHeight() {
 		return matrice.getHeight();
 	}
 	
 	
+    /**
+     * Savoir la largeur de la matrice
+     * @return La largeur de la matrice
+     */
 	public int getWidth() {
 		return matrice.getWidth();
 	}

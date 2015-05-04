@@ -461,9 +461,9 @@ public class Controleur {
 	 * Savoir le nombre de morts sur le tableau
 	 * @return Le nombre de morts
 	 */
-	public int getSizeMorts() {
+	/*public int getSizeMorts() {
 		return modele.getListMorts().size();
-	}
+	}*/
 	
 	
 	/**
@@ -480,12 +480,12 @@ public class Controleur {
 	 * @param idPersonnage L'ID du personnage elimine
  	 * @return La position du personnage
 	 */
-	public Point getMortPosition(int id) {
+	/*public Point getMortPosition(int id) {
 		Mort mort = modele.getMort( id );
 		int x = mort.getX();
 		int y = mort.getY();
 		return new Point(x,y);
-	}
+	}*/
 	
 	
 	/**

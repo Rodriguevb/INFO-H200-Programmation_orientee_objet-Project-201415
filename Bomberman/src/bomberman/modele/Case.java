@@ -3,8 +3,9 @@ package bomberman.modele;
 
 public class Case extends PossedePosition {
 	
-	
-	
+	/**
+	 * Classe permettant la creation des cases
+	 */
 	private boolean possedeBlocCassable = false;
 	private boolean possedeBlocIncassable = false;
 	private boolean possedeBombe = false;
@@ -23,8 +24,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Indiquer si la case possede un bloc cassable.
-	 * @param valeur Bloc cassable present ou non.
+	 * Indique si la case possede un bloc cassable
+	 * @param valeur Bloc cassable present ou non
 	 */
 	public void setPossedeBlocCassable(boolean valeur) {
 		possedeBlocCassable = valeur;
@@ -38,8 +39,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Indiquer si la case possede un bloc incassable.
-	 * @param valeur Bloc incassable present ou non.
+	 * Indique si la case possede un bloc incassable
+	 * @param valeur Bloc incassable present ou non
 	 */
 	public void setPossedeBlocIncassable(boolean valeur) {
 		possedeBlocIncassable = valeur;
@@ -53,8 +54,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Indiquer si la case possede une bombe.
-	 * @param valeur Bombe presente ou non.
+	 * Indique si la case possede une bombe
+	 * @param valeur Bombe presente ou non
 	 */
 	public void setPossedeBombe(boolean valeur) {
 		possedeBombe = valeur;
@@ -68,8 +69,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Indiquer si la case possede un personnage.
-	 * @param valeur Personnage present ou non.
+	 * Indique si la case possede un personnage
+	 * @param valeur Personnage present ou non
 	 */
 	public void setPossedePersonnage(boolean valeur) {
 		possedePersonnage = valeur;
@@ -80,9 +81,11 @@ public class Case extends PossedePosition {
 			possedeMalus = false;
 		}
 	}
+	
+	
 	/**
-	 * Indiquer si la case possede un malus.
-	 * @param valeur Malus present ou non.
+	 * Indique si la case possede un malus
+	 * @param valeur Malus present ou non
 	 */
 	public void setPossedeMalus(boolean valeur) {
 		possedeMalus = valeur;
@@ -96,8 +99,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si il n'y a rien sur la case.
-	 * @return Vrai si le contenu est vide.
+	 * Savoir si il n'y a rien sur la case
+	 * @return Vrai si le contenu est vide
 	 */
 	public boolean estLibre() {
 		return !getPossedeBlocCassable() && !getPossedeBlocIncassable() && !getPossedeBombe() && !getPossedePersonnage() && !getPossedeMalus();
@@ -105,8 +108,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupee par un bloc incassable.
-	 * @return Vrai si il a un bloc incassable.
+	 * Savoir si la case est occupee par un bloc incassable
+	 * @return Vrai s'il a un bloc incassable
 	 */
 	public boolean getPossedeBlocIncassable() {
 		return possedeBlocIncassable;
@@ -114,8 +117,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupee par un bloc cassable.
-	 * @return Vrai si il a un bloc cassable.
+	 * Savoir si la case est occupee par un bloc cassable
+	 * @return Vrai s'il a un bloc cassable
 	 */
 	public boolean getPossedeBlocCassable() {
 		return possedeBlocCassable;
@@ -123,8 +126,8 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupee par une bombe.
-	 * @return Vrai si il a une bombe.
+	 * Savoir si la case est occupee par une bombe
+	 * @return Vrai s'il a une bombe
 	 */
 	public boolean getPossedeBombe() {
 		return possedeBombe;
@@ -132,16 +135,16 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Savoir si la case est occupee par un personnage.
-	 * @return Vrai si il a un personnage.
+	 * Savoir si la case est occupee par un personnage
+	 * @return Vrai s'il a un personnage
 	 */
 	public boolean getPossedePersonnage() {
 		return possedePersonnage;
 	}
 	
 	/**
-	 * Savoir si la case est occupee par un malus.
-	 * @return Vrai si il a un malus.
+	 * Savoir si la case est occupee par un malus
+	 * @return Vrai s'il a un malus
 	 */
 	public boolean getPossedeMalus() {
 		return possedeMalus;
@@ -149,7 +152,7 @@ public class Case extends PossedePosition {
 	
 	
 	/**
-	 * Rendre la case libre.
+	 * Rendre la case libre
 	 */
 	public void rendreLibre() {
 		possedePersonnage = false;

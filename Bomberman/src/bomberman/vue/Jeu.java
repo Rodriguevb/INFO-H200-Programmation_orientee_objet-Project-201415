@@ -112,11 +112,11 @@ public class Jeu extends JPanel {
 		}
 		
 		// Afficher les morts.
-		for (int id = 0; id < controleur.getSizeMorts(); ++id){
+		/*for (int id = 0; id < controleur.getSizeMorts(); ++id){
 			Point point = controleur.getMortPosition( id );
 			String image = "mort.png";
 			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
-		}
+		}*/
 		
 		
 	}

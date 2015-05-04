@@ -64,9 +64,15 @@ public class BougerMalus implements ActionListener{
 			}
 		}
 		else {
+			while(!controleur.estLibre(x+v_x, y+v_y)){
 			int n = (int) (Math.random()*4);
-			mal.setV_x(dir_x[n]);
-			mal.setV_y(dir_y[n]);
+			v_x = dir_x[n];
+			v_y = dir_y[n];
+			}
+			mal.setV_x(v_x);
+			mal.setV_y(v_y);
+			
+		
 		}
 		controleur.repaint();
 	}

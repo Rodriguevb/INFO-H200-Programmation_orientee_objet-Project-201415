@@ -125,27 +125,27 @@ public class Modele {
 	 * @param niveau Le niveau de difficulte
 	 */
 	public void createBonus(int x, int y, int niveau){
-		int random = (int)(Math.random()*200);
+		int random = (int)(Math.random()*100);
 		if (random <= 5*(4-niveau)){
-			bonus.add(new Bonus(x,y,1,0,0,0,0,0,0));
+			bonus.add(new BonusIntensite(x,y,null));
 		}
 		if (random > 5*(4-niveau) && random <= 10*(4-niveau)){
-			bonus.add(new Bonus(x,y,0,0,1,0,0,0,0));
+			bonus.add(new BonusBombe(x,y,null));
 		}
-		if (random > 10*(4-niveau) && random <= 60+(5*(4-niveau))){
-			bonus.add(new Bonus(x,y,0,0,0,1,0,0,0));
+		if (random > 10*(4-niveau) && random <= 30+(5*(4-niveau))){
+			bonus.add(new BonusVie(x, y, null));
 		}
-		if (random > 60+(5*(4-niveau)) && random <= 85+(5*(4-niveau))){
-			bonus.add(new Bonus(x,y,0,0,0,0,1,0,0));
+		if (random > 30+(5*(4-niveau)) && random <= 55+(5*(4-niveau))){
+			bonus.add(new BonusExplosion(x, y, null));
 		}
-		if (random > 85+(5*(4-niveau)) && random < 95+(5*(4-niveau))){
-			bonus.add(new Bonus(x,y,0,1,0,0,0,0,0));
+		if (random > 55+(5*(4-niveau)) && random < 65+(5*(4-niveau))){
+			bonus.add(new BonusClavier(x,y,null));
 		}
-		if (random > 95+(5*(4-niveau)) && random < 110+(5*(4-niveau))){
-			bonus.add(new Bonus(x,y,0,0,0,0,0,1,0));
+		if (random > 65+(5*(4-niveau)) && random < 110+(5*(4-niveau))){
+			bonus.add(new BonusTunnel(x,y,null));
 		}
 		if (random > 110+(5*(4-niveau))){
-			bonus.add(new Bonus(x,y,0,0,0,0,0,0,1));
+			bonus.add(new BonusGilet(x,y,null));
 		}
 	}
 	

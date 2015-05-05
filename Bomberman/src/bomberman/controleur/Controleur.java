@@ -7,6 +7,13 @@ import javax.swing.Timer;
 
 import bomberman.modele.Bombe;
 import bomberman.modele.Bonus;
+import bomberman.modele.BonusBombe;
+import bomberman.modele.BonusClavier;
+import bomberman.modele.BonusExplosion;
+import bomberman.modele.BonusGilet;
+import bomberman.modele.BonusIntensite;
+import bomberman.modele.BonusTunnel;
+import bomberman.modele.BonusVie;
 import bomberman.modele.Malus;
 import bomberman.modele.Modele;
 import bomberman.modele.Personnage;
@@ -289,27 +296,28 @@ public class Controleur {
      * @param y La position du personnage en y
      */
 	private void addBonus(Personnage personnage, int idBonus, int x, int y){
-		String type_bonus = getTypeBonus(idBonus);
-		if (type_bonus == "bonus_intensite1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,1,0,0,0,0,0,0));
+		Bonus bonus = modele.getBonus( idBonus );
+		String type_bonus = bonus.getNom();
+		if (type_bonus == "BonusIntensite"){
+			personnage.getBonus_personnage().add(new BonusIntensite(x,y,personnage));
 		}
-		if (type_bonus == "bonus_clavier1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,1,0,0,0,0,0));
+		if (type_bonus == "BonusClavier"){
+			personnage.getBonus_personnage().add(new BonusClavier(x,y,personnage));
 		}
-		if (type_bonus == "bonus_bombe1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,1,0,0,0,0));
+		if (type_bonus == "BonusBombe"){
+			personnage.getBonus_personnage().add(new BonusBombe(x,y,personnage));
 		}
-		if (type_bonus == "coeur(1).png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,1,0,0,0));
+		if (type_bonus == "BonusVie"){
+			personnage.getBonus_personnage().add(new BonusVie(x,y,personnage));
 		}
-		if (type_bonus == "bonus_explosion1.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,1,0,0));
+		if (type_bonus == "BonusExplosion"){
+			personnage.getBonus_personnage().add(new BonusExplosion(x,y,personnage));
 		}
-		if (type_bonus == "bonus_tunnel.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,1,0));
+		if (type_bonus == "BonusTunnel"){
+			personnage.getBonus_personnage().add(new BonusTunnel(x,y,personnage));
 		}
-		if (type_bonus == "jacket.png"){
-			personnage.getBonus_personnage().add(new Bonus(x,y,0,0,0,0,0,0,1));
+		if (type_bonus == "BonusGilet"){
+			personnage.getBonus_personnage().add(new BonusGilet(x,y,personnage));
 		}
 	}
 	
@@ -513,33 +521,33 @@ public class Controleur {
 	 * @param id L'ID du bonus
 	 * @return Le type du bonus
 	 */
-	public String getTypeBonus(int id){
+	public String getNomBonus(int id){
 		String type = "sans";
 		Bonus bonus = modele.getBonus( id );
-		if (bonus.getBonus_intensite() == 1){
+		if (bonus.getNom() == "BonusIntensite"){
 			type = "bonus_intensite1.png";
 		}
-		if (bonus.getBonus_clavier() == 1){
+		if (bonus.getNom() == "BonusClavier"){
 			type = "bonus_clavier1.png";
 		}
-		if (bonus.getBonus_bombe() == 1){
+		if (bonus.getNom() == "BonusBombe"){
 			type = "bonus_bombe1.png";
 		}
-		if (bonus.getBonus_vie() == 1){
+		if (bonus.getNom() == "BonusVie"){
 			type = "Coeur(1).png";
 		}
-		if (bonus.getBonus_explosion() == 1){
+		if (bonus.getNom() == "BonusExplosion"){
 			type = "bonus_explosion1.png";
 		}
-		if (bonus.getBonus_tunnel() == 1){
+		if (bonus.getNom() == "BonusTunnel"){
 			type = "bonus_tunnel.png";
 		}
-		if (bonus.getBonus_bouclier() == 1){
+		if (bonus.getNom() == "BonusGilet"){
 			type = "jacket.png";
 		}
 		return type;
 	}
-	
+
 
 	/**
 	 * Lache une bombe a l'endroit du personnage
@@ -568,9 +576,10 @@ public class Controleur {
 		int porteeBombe = 1;
 		int idBonus = 0;
 		while (idBonus < personnage.getBonus_personnage().size()){
-			if (bonus_provisoire(personnage, idBonus).getBonus_intensite() == 1){
+			if (bonus_provisoire(personnage, idBonus).getNom() == "BonusIntensite"){
 				porteeBombe++;
 				personnage.removeBonus(idBonus);
+				System.out.println("activé");
 			}
 			else idBonus++;
 		}
@@ -587,10 +596,11 @@ public class Controleur {
 		int dureeBombe = 1500;
 		int idBonus = 0;
 		while (idBonus < personnage.getBonus_personnage().size()){
-			if (bonus_provisoire(personnage, idBonus).getBonus_explosion() == 1){
+			if (bonus_provisoire(personnage, idBonus).getNom() == "BonusExplosion"){
 				int deltaDuree = (int) (Math.random()*2000)-1000;
 				dureeBombe = dureeBombe + deltaDuree;
 				personnage.removeBonus(idBonus);
+				
 			}
 			else idBonus++;
 		}

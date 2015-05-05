@@ -156,6 +156,14 @@ public class Personnage extends PossedePosition {
 	
 	
 	/**
+	 * Fait gagner une vie au personnage
+	 */
+	public void gagnerVie(){
+		this.nb_vies ++ ;
+	}
+	
+	
+	/**
 	 * Fait perdre une bombe au personnage
 	 */
 	public void perdreBombe(){
@@ -217,42 +225,13 @@ public class Personnage extends PossedePosition {
 	 */
 	public void activerBonus(){
 		int idBonus = 0;
-		while (idBonus < bonus_personnage.size()){
-			if (bonus_personnage.get(idBonus).getBonus_vie() == 1){
-				nb_vies++;
-				bonus_personnage.remove(idBonus);
-			}
-			else if (bonus_personnage.get(idBonus).getBonus_bombe() == 1){
-				nb_bombes++;
-				bonus_personnage.remove(idBonus);
-			}
-			else if (bonus_personnage.get(idBonus).getBonus_tunnel() == 1){
-				tunnel = true;
-				bonus_personnage.remove(idBonus);
-				Timer timerTunnel = new Timer(10000, new Tunnel(this));
-				timerTunnel.setRepeats(false);
-				timerTunnel.start();
-			}
-			else if (bonus_personnage.get(idBonus).getBonus_clavier() == 1){
-				clavier = true;
-				bonus_personnage.remove(idBonus);
-				Timer timerClavier = new Timer(10000, new Clavier(this));
-				timerClavier.setRepeats(false);
-				timerClavier.start();
-			}
-			else if (bonus_personnage.get(idBonus).getBonus_bouclier() == 1){
-				gilet = true;
-				bonus_personnage.remove(idBonus);
-				Timer timerGilet = new Timer(10000, new Gilet(this));
-				timerGilet.setRepeats(false);
-				timerGilet.start();
-			}
-			else {
-				idBonus++;
-			}
+		while (idBonus < bonus_personnage.size() && bonus_personnage.get(idBonus).getNom() != "BonusExplosion" && bonus_personnage.get(idBonus).getNom() != "BonusIntensite"){
+			bonus_personnage.get(idBonus).action(this);
+			bonus_personnage.remove(idBonus);
+		}
 			Audio_simple son = new Audio_simple("sonBonus.wav");
 			son.start();
-		}
+		
 	}
 	
 	
@@ -264,7 +243,7 @@ public class Personnage extends PossedePosition {
 		boolean bonus = false;
 		int idBonus = 0;
 		while (idBonus < bonus_personnage.size()){
-			if (bonus_personnage.get(idBonus).getBonus_clavier() == 1){
+			if (bonus_personnage.get(idBonus).getNom() == "BonusClavier"){
 				bonus = true;
 				bonus_personnage.remove(idBonus);
 			}

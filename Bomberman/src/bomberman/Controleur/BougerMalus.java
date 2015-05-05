@@ -50,8 +50,6 @@ public class BougerMalus implements ActionListener{
 		if (mal != null) { 
 		int x = mal.getX();
 		int y = mal.getY();
-		//int[] dir_x = new int[] {1,-1,0,0};
-		//int[] dir_y = new int[] {0,0,1,-1};
 
 		int v_x = mal.getV_x();
 		int v_y = mal.getV_y();

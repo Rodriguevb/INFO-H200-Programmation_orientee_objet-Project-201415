@@ -94,7 +94,7 @@ public class Jeu extends JPanel {
 		// Afficher les bonus.
 		for (int id = 0; id < controleur.getSizeBonus(); ++id){
 			Point point = controleur.getBonusPosition( id );
-			String image = controleur.getTypeBonus(id);
+			String image = controleur.getNomBonus(id);
 			g2d.drawImage(new ImageIcon(image).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		

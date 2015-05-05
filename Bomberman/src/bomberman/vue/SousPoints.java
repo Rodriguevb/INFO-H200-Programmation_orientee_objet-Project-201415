@@ -23,6 +23,7 @@ public class SousPoints extends JPanel {
 	JLabel labelVie ;
 	JLabel labelBombe ;
 	JLabel labelGilet ;
+	JLabel labelTunnel ;
 	
 	public SousPoints (int id, String nom, Modele modele){
 		
@@ -56,6 +57,12 @@ public class SousPoints extends JPanel {
 		labelGilet.setForeground(new Color(175,175,175));
 		labelGilet.setBounds(50,90,40,25);
 		this.add(labelGilet);
+		
+		labelTunnel = new JLabel();
+		labelTunnel.setFont(new java.awt.Font("Comic Sans MS",1,15));
+		labelTunnel.setForeground(new Color(175,175,175));
+		labelTunnel.setBounds(50,120,40,25);
+		this.add(labelTunnel);
 }
 	
 
@@ -68,15 +75,18 @@ public class SousPoints extends JPanel {
 		int Nombre_Vies = modele.getPersonnage( idPersonnage ).getNb_vies();
 		int Nombre_Bombes = modele.getPersonnage( idPersonnage ).getNb_bombes();
 		boolean Possede_gilet = modele.getPersonnage( idPersonnage ).isGilet();
+		boolean Possede_Tunnel = modele.getPersonnage( idPersonnage ).isTunnel();
 		
 		g2d.drawImage(new ImageIcon("Coeur(1).png").getImage(), 0, 30, 25, 25, null);
 		g2d.drawImage(new ImageIcon("bombe.png").getImage(), 0, 60, 25, 25, null);
 		g2d.drawImage(new ImageIcon("jacket.png").getImage(), 0, 90, 25, 25, null);
+		g2d.drawImage(new ImageIcon("bonus_tunnel.png").getImage(), 0, 120, 25, 25, null);
 			
 		
 		labelVie.setText(Integer.toString(Nombre_Vies));
 		labelBombe.setText(Integer.toString(Nombre_Bombes));
 		labelGilet.setText(Boolean.toString(Possede_gilet));
+		labelTunnel.setText(Boolean.toString(Possede_Tunnel));
 		
 	}
 

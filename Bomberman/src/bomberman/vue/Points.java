@@ -3,6 +3,7 @@ package bomberman.vue;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JPanel;
 
@@ -48,6 +49,7 @@ public class Points extends JPanel {
 			gbc.gridy = i;
 			gbc.gridheight = 1;
 			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			gbc.insets = new Insets(25,0,0,0) ;
 			this.add(points, gbc);
 			
 		}

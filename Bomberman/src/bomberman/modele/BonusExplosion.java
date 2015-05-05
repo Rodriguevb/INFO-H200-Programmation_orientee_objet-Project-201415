@@ -12,6 +12,5 @@ public class BonusExplosion extends Bonus {
 	}
 	
 	public void action(Personnage personnage){
-		System.out.println("Explosion");
 	}
 }

@@ -49,7 +49,7 @@ public class Points extends JPanel {
 			gbc.gridy = i;
 			gbc.gridheight = 1;
 			gbc.gridwidth = GridBagConstraints.REMAINDER;
-			gbc.insets = new Insets(25,0,0,0) ;
+			gbc.insets = new Insets(15,0,15,0) ;
 			this.add(points, gbc);
 			
 		}

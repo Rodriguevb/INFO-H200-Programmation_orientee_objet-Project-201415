@@ -30,7 +30,6 @@ public class Controleur {
 	private Modele modele;
 	private int nb_joueurs = 2;
 	private int niveau = 1;
-	boolean EtatJeu = false ;
 	private int[][] touches = {{KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_LEFT,KeyEvent.VK_RIGHT,KeyEvent.VK_SPACE},
 			{KeyEvent.VK_Z,KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_D,KeyEvent.VK_X},
 			{KeyEvent.VK_Y,KeyEvent.VK_H,KeyEvent.VK_G,KeyEvent.VK_J,KeyEvent.VK_N},
@@ -100,24 +99,6 @@ public class Controleur {
 	 */
 	public void repaint() {
 		vue.repaint();
-	}
-	
-	
-	/**
-	 * Precise l'etat du jeu
-	 * @param etat L'etat du jeu
-	 */
-	public void jeuEnMarche(boolean etat){
-		EtatJeu = etat ;
-	}
-	
-	
-	/**
-	 * Permet de connaitre l'etat du jeu
-	 * @return Vrai si le jeu est en marche
-	 */
-	public boolean isJeuEnCours(){
-		return EtatJeu;
 	}
 	
 	
@@ -558,64 +539,15 @@ public class Controleur {
 		Point point = getPersonnagePosition( idPersonnage );
 		int x = point.x;
 		int y = point.y;
-		int portee = getPortee(personnage);
-		int duree = getDuree(personnage);
+		int portee = personnage.getPortee();
+		int duree = personnage.getDuree();
 		if ( casePasDeBomb( x,y ) && personnage.getVivant() && personnage.getNb_bombes() > 0){
 			modele.getListBombe().add( new Bombe(x,y,portee,duree,this,idPersonnage) );
 			personnage.perdreBombe();
 		}
-	}
-	
-	
-	/**
-	 * Savoir la portee d'une bombe qu'un personnage va poser
-	 * @param personnage Le personnage
-	 * @return La portee de la bombe
-	 */
-	public int getPortee(Personnage personnage){
-		int porteeBombe = 1;
-		int idBonus = 0;
-		while (idBonus < personnage.getBonus_personnage().size()){
-			if (bonus_provisoire(personnage, idBonus).getNom() == "BonusIntensite"){
-				porteeBombe++;
-				personnage.removeBonus(idBonus);
-				System.out.println("activé");
-			}
-			else idBonus++;
-		}
-		return porteeBombe;
-	}
-	
-	
-	/**
-	 * Savoir la duree d'une bombe qu'un personnage va poser
-	 * @param personnage Le personnage
-	 * @return La duree de la bombe
-	 */
-	public int getDuree(Personnage personnage){
-		int dureeBombe = 1500;
-		int idBonus = 0;
-		while (idBonus < personnage.getBonus_personnage().size()){
-			if (bonus_provisoire(personnage, idBonus).getNom() == "BonusExplosion"){
-				int deltaDuree = (int) (Math.random()*2000)-1000;
-				dureeBombe = dureeBombe + deltaDuree;
-				personnage.removeBonus(idBonus);
-				
-			}
-			else idBonus++;
-		}
-		return dureeBombe;
-	}
-	
-	
-	/**
-	 * Permet de recuperer un bonus detenu par un personnage
-	 * @param personnage Le personnage
-	 * @param idBonus L'ID du bonus
-	 * @return Le bonus
-	 */
-	public Bonus bonus_provisoire(Personnage personnage, int idBonus){
-		return personnage.getBonus_personnage().get(idBonus);
+		personnage.setPortee(1);
+		personnage.setDuree(1500);
+		
 	}
 	
 	

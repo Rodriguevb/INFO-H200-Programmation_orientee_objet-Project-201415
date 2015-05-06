@@ -49,7 +49,6 @@ public class Bouton_go extends JButton implements ActionListener{
 		
 		controleur.creerJoueurs();
 		controleur.creerMalus();
-		controleur.jeuEnMarche(true);
 		controleur.moveMalus();
 		controleur.switchToJeu();
 		Audio son = new Audio(modele.getTheme().getNom_son());

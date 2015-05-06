@@ -24,6 +24,8 @@ public class Personnage extends PossedePosition {
 	private boolean tunnel;
 	private boolean clavier;
 	private boolean gilet;
+	private int porteeBombe;
+	private int dureeBombe;
 	
 	
 	/**
@@ -43,8 +45,20 @@ public class Personnage extends PossedePosition {
 		this.tunnel = false;
 		this.clavier = false;
 		this.gilet = false;
+		this.porteeBombe = 1 ;
+		this.dureeBombe = 1500 ;
 	}
 	
+
+	public int getDuree() {
+		return dureeBombe;
+	}
+
+
+	public void setDuree(int duree) {
+		dureeBombe = duree ;
+	}
+
 
 	/**
 	 * Savoir si le personnage a le bonus gilet
@@ -62,7 +76,14 @@ public class Personnage extends PossedePosition {
 	public void setGilet(boolean gilet) {
 		this.gilet = gilet;
 	}
-
+	
+	public int getPortee(){
+		return porteeBombe ;
+	}
+	
+	public void setPortee(int portee){
+		porteeBombe = portee ;
+	}
 
 	/**
 	 * Savoir si le personnage a le bonus clavier
@@ -225,7 +246,7 @@ public class Personnage extends PossedePosition {
 	 */
 	public void activerBonus(){
 		int idBonus = 0;
-		while (idBonus < bonus_personnage.size() && bonus_personnage.get(idBonus).getNom() != "BonusExplosion" && bonus_personnage.get(idBonus).getNom() != "BonusIntensite"){
+		while (idBonus < bonus_personnage.size()){
 			bonus_personnage.get(idBonus).action(this);
 			bonus_personnage.remove(idBonus);
 		}

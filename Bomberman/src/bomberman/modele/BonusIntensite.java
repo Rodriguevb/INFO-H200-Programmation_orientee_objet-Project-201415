@@ -11,6 +11,6 @@ public class BonusIntensite extends Bonus {
 	}
 	
 	public void action(Personnage personnage){
-		System.out.println("Bonus intensité");
+		personnage.setPortee(2);
 	}
 } 

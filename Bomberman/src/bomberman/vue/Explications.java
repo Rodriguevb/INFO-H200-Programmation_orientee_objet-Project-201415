@@ -15,9 +15,7 @@ public class Explications extends JPanel {
 	/**
 	 * La classe qui affiche les explications.
 	 */
-	private static final long serialVersionUID = 1L;
 	
-
 	public Explications(Controleur controleur) {
 		
 		setLayout(null);

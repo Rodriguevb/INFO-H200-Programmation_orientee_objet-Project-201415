@@ -12,7 +12,7 @@ public class Bouton_options extends JButton implements ActionListener{
 	/**
 	 * Classe du bouton options.
 	 */
-	private static final long serialVersionUID = 1L;
+
 	private Controleur controleur; 
 	
 	

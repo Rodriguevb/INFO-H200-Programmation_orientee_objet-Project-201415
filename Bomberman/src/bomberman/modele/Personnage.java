@@ -242,7 +242,7 @@ public class Personnage extends PossedePosition {
 	
 	
 	/**
-	 * Active les effets des bonus : vie, bombe, tunnel, clavier et bouclier
+	 * Active les effets des bonus
 	 */
 	public void activerBonus(){
 		int idBonus = 0;
@@ -253,24 +253,6 @@ public class Personnage extends PossedePosition {
 			Audio_simple son = new Audio_simple("sonBonus.wav");
 			son.start();
 		
-	}
-	
-	
-	/**
-	 * Savoir si le personnage a un bonus clavier dans sa liste bonus_personnage
-	 * @return Vrai si le personnage a un bonus clavier dans sa liste bonus_clavier
-	 */
-	public boolean ownBonusClavier(){
-		boolean bonus = false;
-		int idBonus = 0;
-		while (idBonus < bonus_personnage.size()){
-			if (bonus_personnage.get(idBonus).getNom() == "BonusClavier"){
-				bonus = true;
-				bonus_personnage.remove(idBonus);
-			}
-			else idBonus++;
-		}
-		return bonus;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class Points extends JPanel {
 * La classe qui affiche le nombre de vies et de bonus de chaque personnage.
 */
 	
-	private static final long serialVersionUID = 1L;
+	
 	private Modele modele = null;
 	private Controleur controleur = null ;
 	private GridBagConstraints gbc;

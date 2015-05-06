@@ -18,7 +18,7 @@ public class Jeu extends JPanel {
 	/**
 	 * Permettre d'afficher les constituants du plateau
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	private Controleur controleur = null;
 	private Modele modele;
 	private Points points;

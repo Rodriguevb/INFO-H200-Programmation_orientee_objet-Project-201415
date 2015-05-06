@@ -21,8 +21,6 @@ public class Menu extends JPanel {
 	/**
 	 * La classe qui affiche le menu.
 	 */
-	private static final long serialVersionUID = 1L;
-	
 
 	public Menu(Controleur controleur) {
 		

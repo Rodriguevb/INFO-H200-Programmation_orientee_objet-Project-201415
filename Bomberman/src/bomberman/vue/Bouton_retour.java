@@ -13,7 +13,7 @@ public class Bouton_retour extends JButton implements ActionListener{
 	/**
 	 * Classe du bouton retou.
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	private Controleur controleur; 
 	
 	

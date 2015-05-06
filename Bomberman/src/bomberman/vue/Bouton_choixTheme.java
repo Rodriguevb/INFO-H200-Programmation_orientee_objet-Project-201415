@@ -13,7 +13,7 @@ public class Bouton_choixTheme extends JComboBox implements ActionListener{
 	/**
 	 * Classe du bouton Choix des joueurs.
 	 */
-	private static final long serialVersionUID = 1L;
+
 	private Controleur controleur = null;
 	
 	public Bouton_choixTheme(Controleur controleur) {

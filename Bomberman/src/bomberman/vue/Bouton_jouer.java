@@ -14,10 +14,8 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	/**
 	 * Classe du bouton jouer.
 	 */
-	private static final long serialVersionUID = 1L;
-	private Controleur controleur = null;
-	private int nb_joueurs;
 	
+	private Controleur controleur = null;	
 	
 	public Bouton_jouer(Controleur controleur) {
 		super("Jouer");
@@ -27,16 +25,6 @@ public class Bouton_jouer extends JButton implements ActionListener{
 		this.addActionListener(this); // mets le bouton sur ecoute de la souris
 	}
 
-
-	public int getNb_joueurs() {
-		return nb_joueurs;
-	}
-
-
-	public void setNb_joueurs(int nb_joueurs) {
-		this.nb_joueurs = nb_joueurs;
-	}
-	
 
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToSousMenu();

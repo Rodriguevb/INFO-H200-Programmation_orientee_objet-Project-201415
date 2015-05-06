@@ -13,7 +13,7 @@ public class Bouton_niveau extends JComboBox implements ActionListener{
 	/**
 	 * Classe du bouton Nombre de joueurs.
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	private Controleur controleur = null;
 	
 	

@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 
 public class SousPoints extends JPanel {
 	
-	int idPersonnage ;
-	String nom ;
-	Modele modele;
-	JLabel labelVie ;
-	JLabel labelBombe ;
-	JLabel labelGilet ;
-	JLabel labelTunnel ;
+	private int idPersonnage ;
+	private String nom ;
+	private Modele modele;
+	private JLabel labelVie ;
+	private JLabel labelBombe ;
+	private JLabel labelGilet ;
+	private JLabel labelTunnel ;
 	
 	public SousPoints (int id, String nom, Modele modele){
 		

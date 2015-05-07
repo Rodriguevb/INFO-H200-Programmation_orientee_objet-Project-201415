@@ -20,6 +20,7 @@ public class Explosion extends PossedePosition implements ActionListener {
 	private int duree;
 	private int portee;
 	private boolean bombeExplosee;
+	private int idMalus;
 
 	
 	/**
@@ -31,20 +32,30 @@ public class Explosion extends PossedePosition implements ActionListener {
 	 * @param controleur Le controleur
 	 * @param bombe La bombe
 	 */
-	public Explosion(int x, int y, int duree, int portee, Controleur controleur, Bombe bombe) {
+	public Explosion(int x, int y, int duree, int portee, Controleur controleur, Bombe bombe, int idMalus) {
 		super(x,y);
 		this.duree = duree;
 		this.controleur = controleur;
 		this.bombe = bombe;
 		this.portee = portee;
 		this.bombeExplosee = false;
-		
+		this.idMalus = idMalus ;	
 		this.timer = new Timer(duree, new SuppressionExplosion(controleur, this) );
 		this.timer.setRepeats(false);
 		this.timer.start();
 	}
 	
 	
+	public int getIdMalus() {
+		return idMalus;
+	}
+
+
+	public void setIdMalus(int idMalus) {
+		this.idMalus = idMalus;
+	}
+
+
 	/**
 	 * Determine la portee de l'explosion
 	 * @return La portee de l'explosion

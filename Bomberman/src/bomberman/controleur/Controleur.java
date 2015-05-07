@@ -2,6 +2,7 @@ package bomberman.controleur;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -183,6 +184,19 @@ public class Controleur {
 		    Timer timerMalus = new Timer(600, new BougerMalus(this, modele, mal.getIdentifiant()));
 		    timerMalus.start();
 		} 
+	}
+	
+	/**
+	 * Cree un timer a chaque Malus pour qu'il puisse poser une bombe
+	 */
+	public void dropBombMalus(){
+		Random r = new Random();
+		for (int i = 0; i < modele.getMalus().size(); i++){
+			int duree = r.nextInt(5)*1000 + 5000 ;
+			Malus mal = modele.getMalus().get(i);
+		    Timer timerMalus = new Timer(duree, new PoserBombeMalus(this, modele, mal.getIdentifiant()));
+		    timerMalus.start();
+		}
 	}
 	
 	
@@ -536,7 +550,7 @@ public class Controleur {
 		int portee = personnage.getPortee();
 		int duree = personnage.getDuree();
 		if ( casePasDeBomb( x,y ) && personnage.getVivant() && personnage.getNb_bombes() > 0){
-			modele.getListBombe().add( new Bombe(x,y,portee,duree,this,idPersonnage) );
+			modele.getListBombe().add( new Bombe(x,y,portee,duree,this,idPersonnage,-1) );
 			personnage.perdreBombe();
 		}
 		personnage.setPortee(1);
@@ -587,10 +601,11 @@ public class Controleur {
 		int x = explosion.getX();
 		int y = explosion.getY();
 		int portee = explosion.getPortee();
-		addExplosion(x,y, 1, 0, portee);
-		addExplosion(x,y, -1, 0, portee);
-		addExplosion(x,y, 0, 1, portee);
-		addExplosion(x,y, 0, -1, portee);
+		int idMalus = explosion.getIdMalus();
+		addExplosion(x,y, 1, 0, portee, idMalus);
+		addExplosion(x,y, -1, 0, portee, idMalus);
+		addExplosion(x,y, 0, 1, portee, idMalus);
+		addExplosion(x,y, 0, -1, portee, idMalus);
 		if (estPersonnage(x,y)){
 			Personnage personnage = modele.getPersonnageSurPlateau(x, y);
 			if (personnage.getVivant() && !personnage.isGilet()){
@@ -600,7 +615,7 @@ public class Controleur {
 			    }
 			}
 		}
-		if (estMalus(x,y)){
+		if (estMalus(x,y) && idMalus == -1){
 			modele.removeMalusDuPlateau(x, y);
 		}
 		vue.repaint();
@@ -637,12 +652,12 @@ public class Controleur {
 	 * @param direction_y Direction de propagation en y
 	 * @param portee La portee de l'explosion
 	 */
-	public void addExplosion(int x, int y, int direction_x, int direction_y, int portee){
+	public void addExplosion(int x, int y, int direction_x, int direction_y, int portee, int idMalus){
 		x += direction_x ;
 		y += direction_y;
 		int p = 0;
 		while( !estBlocIncassable(x,y) && !estBlocCassable(x,y) && !estPersonnage(x,y) && !estBombe(x,y) && !estMalus(x,y) && p<portee){
-			addExplosion(x,y);
+			addExplosion(x,y,idMalus);
 			x += direction_x ;
 			y += direction_y;
 			p += 1;
@@ -653,7 +668,7 @@ public class Controleur {
 					if (random > 0.5){
 						modele.createBonus(x, y, niveau);
 					}
-			addExplosion(x,y);
+			addExplosion(x,y,idMalus);
 		}
 		if (estPersonnage(x,y) && p<portee){
 			Personnage personnage = modele.getPersonnageSurPlateau(x,y);
@@ -663,7 +678,7 @@ public class Controleur {
 	            personnage.mourir();
 		    	}
 			}
-			addExplosion(x,y);
+			addExplosion(x,y,idMalus);
 		}
 		if (estBombe(x,y) && p<portee){
 			int idBombe = modele.getIdBombe(x, y);
@@ -671,11 +686,12 @@ public class Controleur {
 			int porteeBombe = bombe.getPortee();
 			bombe.getExplosion().setBombeExplosee(true);
 			removeBombe(modele.getListBombe().get(idBombe));
-			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null));
+			makeExplosion(new Explosion(x,y,500,porteeBombe,this,null,idMalus));
 		}
-		if (estMalus(x,y) && p<portee){
+		if (estMalus(x,y) && idMalus == -1 && p<portee){
+			System.out.println("Touché");
 			modele.removeMalusDuPlateau(x, y);
-			addExplosion(x,y);
+			addExplosion(x,y,idMalus);
 		}
 	}
 
@@ -695,8 +711,8 @@ public class Controleur {
 	 * @param x L'abscisse de l'explosion
 	 * @param y L'ordonnee de l'explosion
 	 */
-	private void addExplosion(int x, int y){
-		modele.getListExplosion().add( new Explosion(x,y,500,0,this,null) );
+	private void addExplosion(int x, int y, int idMalus){
+		modele.getListExplosion().add( new Explosion(x,y,500,0,this,null,idMalus) );
 	}
 
 
@@ -706,7 +722,8 @@ public class Controleur {
 	 */
 	public void removeBombe(Bombe bombe) {
 		int idPersonnage = bombe.getIdPersonnage();
-		modele.getPersonnage(idPersonnage).gagnerBombe();
+		if(idPersonnage != -1){
+		modele.getPersonnage(idPersonnage).gagnerBombe();}
 		modele.getListBombe().remove( bombe );
 		repaint();
 	}

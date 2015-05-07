@@ -15,6 +15,7 @@ public class Bombe extends PossedePosition {
 	private int duree;
 	private int idPersonnage;
 	private Explosion explosion;
+	private int idMalus ;
 
 	
 	/**
@@ -25,13 +26,15 @@ public class Bombe extends PossedePosition {
 	 * @param duree La duree avant que la bombe explose
 	 * @param controleur Le controleur
 	 * @param idPersonnage L'ID du personnage qui a pose la bombe
+	 * @param idMalus L'ID du malus qui a pose la bombe
 	 */
-	public Bombe(int x, int y, int portee, int duree, Controleur controleur, int idPersonnage) {
+	public Bombe(int x, int y, int portee, int duree, Controleur controleur, int idPersonnage, int idMalus) {
 		super(x,y);
 		this.portee = portee;
 		this.duree = duree;
 		this.idPersonnage = idPersonnage;
-		this.explosion = new Explosion(x,y,duree+500,this.getPortee(),controleur, this);
+		this.idMalus = idMalus ;
+		this.explosion = new Explosion(x,y,duree+500,this.getPortee(),controleur, this, idMalus);
 		
 		
 		this.timer = new Timer(duree, explosion );
@@ -39,6 +42,21 @@ public class Bombe extends PossedePosition {
 		this.timer.start();
 	}
 	
+
+	public int getIdMalus() {
+		return idMalus;
+	}
+
+
+	public void setIdMalus(int idMalus) {
+		this.idMalus = idMalus;
+	}
+
+
+	public void setPortee(int portee) {
+		this.portee = portee;
+	}
+
 
 	/**
 	 * Determine l'ID du personnage qui a pose la bombe

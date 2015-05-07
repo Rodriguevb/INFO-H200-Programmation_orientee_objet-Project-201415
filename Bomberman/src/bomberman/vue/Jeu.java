@@ -11,17 +11,17 @@ import javax.swing.JPanel;
 
 import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
-import bomberman.modele.Personnage;
 
 public class Jeu extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Permettre d'afficher les constituants du plateau
 	 */
 	
 	private Controleur controleur = null;
 	private Modele modele;
-	private Points points;
+
 	
 	
 	int taille_img = 50;
@@ -40,7 +40,7 @@ public class Jeu extends JPanel {
 		setLayout(null);
 		this.controleur  = controleur;
 		this.modele = modele;
-		this.points = new Points(controleur, modele);
+		points = new Points(controleur, modele);
 		this.add(points);
 		points.setBounds(850,0,250,900);
 		this.add(new Bouton_retour(controleur));

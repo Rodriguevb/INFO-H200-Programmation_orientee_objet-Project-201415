@@ -18,6 +18,8 @@ import bomberman.modele.Modele ;
 
 public class SousMenu extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * La classe qui affiche le menu.
 	 */

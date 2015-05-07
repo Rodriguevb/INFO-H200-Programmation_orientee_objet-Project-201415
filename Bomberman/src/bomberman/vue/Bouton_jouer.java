@@ -10,7 +10,8 @@ import bomberman.controleur.Controleur;
 
 public class Bouton_jouer extends JButton implements ActionListener{
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Classe du bouton jouer.
 	 */

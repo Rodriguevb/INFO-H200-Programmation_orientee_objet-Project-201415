@@ -17,7 +17,6 @@ public abstract class Bonus extends PossedePosition{
 	 * @param nom Le nom du Bonus
 	 * @param personnage Le personnage concerné
 	 */
-	
 	public Bonus(int x, int y, String nom, Personnage personnage){
 		super(x,y);
 		this.personnage = personnage ;
@@ -25,12 +24,19 @@ public abstract class Bonus extends PossedePosition{
 	}
 	
 	
+	/** 
+	 * Declare la methode action abstraite des bonus
+	 * @param personnage
+	 */
 	public abstract void action(Personnage personnage);
-		
 	
+	
+	/**
+	 * Determine le nom du bonus
+	 * @return Le nom du bonus
+	 */
 	public String getNom(){
 		return nom ;
-		
 	}
 
 }

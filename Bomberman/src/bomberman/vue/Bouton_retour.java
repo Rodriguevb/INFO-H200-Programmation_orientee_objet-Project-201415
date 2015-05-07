@@ -1,5 +1,4 @@
 package bomberman.vue;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,8 +9,10 @@ import bomberman.controleur.Controleur;
 public class Bouton_retour extends JButton implements ActionListener{
 	
 	
+	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * Classe du bouton retou.
+	 * Classe du bouton retour.
 	 */
 	
 	private Controleur controleur; 

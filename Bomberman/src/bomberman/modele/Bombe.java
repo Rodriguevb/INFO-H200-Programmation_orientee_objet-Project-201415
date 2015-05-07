@@ -31,7 +31,7 @@ public class Bombe extends PossedePosition {
 	public Bombe(int x, int y, int portee, int duree, Controleur controleur, int idPersonnage, int idMalus) {
 		super(x,y);
 		this.portee = portee;
-		this.duree = duree;
+		this.setDuree(duree);
 		this.idPersonnage = idPersonnage;
 		this.idMalus = idMalus ;
 		this.explosion = new Explosion(x,y,duree+500,this.getPortee(),controleur, this, idMalus);
@@ -42,17 +42,19 @@ public class Bombe extends PossedePosition {
 		this.timer.start();
 	}
 	
-
+	
+	/**
+	 * Determine l'ID du Malus qui a pose la bombe
+	 * @return L'ID du Malus
+	 */
 	public int getIdMalus() {
 		return idMalus;
 	}
 
 
-	public void setIdMalus(int idMalus) {
-		this.idMalus = idMalus;
-	}
-
-
+	/**
+	 * Modifie la valeur de l'attribut portee
+	 */
 	public void setPortee(int portee) {
 		this.portee = portee;
 	}
@@ -77,20 +79,11 @@ public class Bombe extends PossedePosition {
 
 
 	/**
-	 * Determine 
-	 * @return
+	 * Determine l'explosion de la bombe
+	 * @return L'explosion
 	 */
 	public Explosion getExplosion() {
 		return explosion;
-	}
-
-	
-	/**
-	 * Modifie la valeur de l'attribut explosion
-	 * @param explosion L'attribut modifie
-	 */
-	public void setExplosion(Explosion explosion) {
-		this.explosion = explosion;
 	}
 
 	
@@ -102,20 +95,12 @@ public class Bombe extends PossedePosition {
 		return portee;
 	}
 
-	
-	/**
-	 * Savoir la duree avant que la bombe explose
-	 * @return La duree avant que la bombe explose
-	 */
+
 	public int getDuree() {
 		return duree;
 	}
 
-	
-	/**
-	 * Modifie la valeur de l'attribut duree
-	 * @param duree L'attribut modifie
-	 */
+
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}

@@ -6,9 +6,6 @@ import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +15,9 @@ import bomberman.controleur.Controleur;
 
 public class Menu extends JPanel {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * La classe qui affiche le menu.
 	 */

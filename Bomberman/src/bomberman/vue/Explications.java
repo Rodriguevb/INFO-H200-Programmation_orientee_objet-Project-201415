@@ -12,6 +12,9 @@ import bomberman.controleur.Controleur;
 
 public class Explications extends JPanel {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * La classe qui affiche les explications.
 	 */

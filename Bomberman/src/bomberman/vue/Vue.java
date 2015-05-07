@@ -11,7 +11,8 @@ import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
 
 public class Vue extends JFrame{
-	
+
+	private static final long serialVersionUID = 1L;
 	/**
 	 * La fenetre
 	 */
@@ -22,7 +23,7 @@ public class Vue extends JFrame{
 	private final Explications explications ;
 	private final Jeu  jeu;
 	private final Points points;
-	private Modele modele;
+	
 	
 	
 	private CardLayout cl = new CardLayout();
@@ -33,7 +34,6 @@ public class Vue extends JFrame{
 	public Vue(Controleur controleur, Modele modele){
 		
 		super("Bomberman");
-		this.modele = modele ;
 	    this.setSize(860, 890);
 	    this.setMinimumSize( new Dimension(860,890) );
 	    this.setMaximumSize( new Dimension(860,890) );

@@ -13,6 +13,7 @@ import bomberman.modele.Modele;
 
 public class Bouton_go extends JButton implements ActionListener{
 	
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Classe du bouton go.

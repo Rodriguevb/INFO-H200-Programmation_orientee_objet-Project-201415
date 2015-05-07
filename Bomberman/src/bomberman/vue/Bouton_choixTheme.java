@@ -8,8 +8,12 @@ import javax.swing.JComboBox;
 
 import bomberman.controleur.Controleur;
 
-public class Bouton_choixTheme extends JComboBox implements ActionListener{
+public class Bouton_choixTheme extends JComboBox<Object> implements ActionListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Classe du bouton Choix des joueurs.
 	 */

@@ -13,7 +13,6 @@ public class BonusExplosion extends Bonus {
 	
 	public void action(Personnage personnage){
 		int deltaDuree = (int) (Math.random()*2000)-1000;
-		//personnage.setDuree(personnage.getDuree() + deltaDuree);
-		personnage.setDuree(100);
+		personnage.setDuree(personnage.getDuree() + deltaDuree);
 	}
 }

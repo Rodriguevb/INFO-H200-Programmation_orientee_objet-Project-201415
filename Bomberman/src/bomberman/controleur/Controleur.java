@@ -85,13 +85,7 @@ public class Controleur {
 		vue.switchToJeu();
 	}
 	
-	
-	/**
-	 * Passe l'affichage aux options
-	 */
-	public void switchToOptions() {
-		vue.switchToOptions();
-	}
+
 	
 	
 	/**

@@ -20,7 +20,6 @@ public class SousPoints extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private int idPersonnage ;
-	//private String nom ;
 	private Modele modele;
 	private JLabel labelVie ;
 	private JLabel labelBombe ;

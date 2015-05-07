@@ -1,7 +1,5 @@
 package bomberman.modele;
 
-
-
 public class BonusExplosion extends Bonus {
 	
 	/**

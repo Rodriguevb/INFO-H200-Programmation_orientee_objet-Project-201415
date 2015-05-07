@@ -10,6 +10,7 @@ public class BonusClavier extends Bonus {
 	 * Classe des BonusClavier
 	 */
 	
+	
 	/**
 	 * Constructeur de la classe BonusClavier
 	 * @param x La position en x du BonusClavier

@@ -83,6 +83,7 @@ public class Vue extends JFrame{
 	public void switchToJeu() {
 		
 		cl.show(content, listContent[3]);
+		//this.setSize((controleur.getMapWidth()+2)*50+350, (controleur.getMapHeight()+2)*50+40);
 		this.setSize(1100,890);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );

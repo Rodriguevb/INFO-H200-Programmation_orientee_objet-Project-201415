@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 
 import bomberman.controleur.Controleur;
 
-public class Bouton_nbjoueurs extends JComboBox<Object> implements ActionListener{
+public class Bouton_nbjoueurs extends JComboBox implements ActionListener{
 
 
 	private static final long serialVersionUID = 1L;
@@ -35,4 +35,5 @@ public class Bouton_nbjoueurs extends JComboBox<Object> implements ActionListene
 	      controleur.NbJoueurs(this.getSelectedItem());
 	    }               
 	  }
+
 

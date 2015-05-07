@@ -519,19 +519,19 @@ public class Controleur {
 			type = "bonus_intensite1.png";
 		}
 		if (bonus.getNom() == "BonusClavier"){
-			type = "bonus_clavier1.png";
+			type = "BonusClavier.png";
 		}
 		if (bonus.getNom() == "BonusBombe"){
-			type = "bonus_bombe1.png";
+			type = "BonusBombe.png";
 		}
 		if (bonus.getNom() == "BonusVie"){
-			type = "Coeur(1).png";
+			type = "BonusVie.png";
 		}
 		if (bonus.getNom() == "BonusExplosion"){
-			type = "bonus_explosion1.png";
+			type = "BonusExplosion.png";
 		}
 		if (bonus.getNom() == "BonusTunnel"){
-			type = "bonus_tunnel.png";
+			type = "BonusTunnel.png";
 		}
 		if (bonus.getNom() == "BonusGilet"){
 			type = "jacket.png";

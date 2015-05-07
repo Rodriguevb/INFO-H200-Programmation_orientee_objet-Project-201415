@@ -78,10 +78,10 @@ public class SousPoints extends JPanel {
 		boolean Possede_gilet = modele.getPersonnage( idPersonnage ).isGilet();
 		boolean Possede_Tunnel = modele.getPersonnage( idPersonnage ).isTunnel();
 		
-		g2d.drawImage(new ImageIcon("Coeur(1).png").getImage(), 0, 30, 25, 25, null);
-		g2d.drawImage(new ImageIcon("bombe.png").getImage(), 0, 60, 25, 25, null);
+		g2d.drawImage(new ImageIcon("BonusVie.png").getImage(), 0, 30, 25, 25, null);
+		g2d.drawImage(new ImageIcon("BonusBombe.png").getImage(), 0, 60, 25, 25, null);
 		g2d.drawImage(new ImageIcon("jacket.png").getImage(), 0, 90, 25, 25, null);
-		g2d.drawImage(new ImageIcon("bonus_tunnel.png").getImage(), 0, 120, 25, 25, null);
+		g2d.drawImage(new ImageIcon("BonusTunnel.png").getImage(), 0, 120, 25, 25, null);
 			
 		
 		labelVie.setText(Integer.toString(Nombre_Vies));

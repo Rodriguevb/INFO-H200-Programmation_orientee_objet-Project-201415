@@ -18,14 +18,16 @@ public class Modele {
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
 	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
-			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
+			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});
+	private int width = 17;
+	private int height = 17;
 	
 	
 	/**
 	 * Constructeur de la classe Modele
 	 */
 	public Modele () {
-		plateau.genererTerrain(17, 17);
+		plateau.genererTerrain(width, height);
 	}
 	
 	
@@ -45,9 +47,9 @@ public class Modele {
 	public void createPlayers(int nb){
 	    personnages = new ArrayList<Personnage>();
 		personnages.add(new Personnage(1,1,theme.getNom_personnages()[0]));
-		if (nb >= 2) { personnages.add(new Personnage(1,15,theme.getNom_personnages()[1]));
-			if (nb >= 3) { personnages.add(new Personnage (15, 1, theme.getNom_personnages()[2]));
-				if (nb == 4) { personnages.add(new Personnage (15, 15, theme.getNom_personnages()[3])); 
+		if (nb >= 2) { personnages.add(new Personnage(1,height-2,theme.getNom_personnages()[1]));
+			if (nb >= 3) { personnages.add(new Personnage (width-2, 1, theme.getNom_personnages()[2]));
+				if (nb == 4) { personnages.add(new Personnage (width-2, height-2, theme.getNom_personnages()[3])); 
 				}
 			}
 		}

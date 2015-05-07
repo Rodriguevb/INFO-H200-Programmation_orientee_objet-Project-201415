@@ -258,19 +258,21 @@ public class Controleur {
      * @param y La position en y ou le personnage souhaite aller
      */
 	private void activerTunnel(Personnage personnage, int x, int y) {
-		if (y == 0 && personnage.isTunnel() && estLibre(x,15)){
-			personnage.setY(15);
-			y = 15;
+		int width = getMapWidth();
+		int height = getMapHeight();
+		if (y == 0 && personnage.isTunnel() && estLibre(x,height-2)){
+			personnage.setY(height-2);
+			y = height-2;
 		}
-		else if (y == 16 && personnage.isTunnel() && estLibre(x,1)){
+		else if (y == height-1 && personnage.isTunnel() && estLibre(x,1)){
 			personnage.setY(1);
 			y = 1;
 		}
-		else if (x == 0 && personnage.isTunnel() && estLibre(15,y)){
-			personnage.setX(15);
-			x = 15;
+		else if (x == 0 && personnage.isTunnel() && estLibre(width-2,y)){
+			personnage.setX(width-2);
+			x = width-2;
 		}
-		else if (x == 16 && personnage.isTunnel() && estLibre(1,y)){
+		else if (x == width-1 && personnage.isTunnel() && estLibre(1,y)){
 			personnage.setX(1);
 			x = 1;
 		}

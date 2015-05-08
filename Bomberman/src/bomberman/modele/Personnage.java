@@ -15,7 +15,7 @@ public class Personnage extends PossedePosition {
 	/**
 	 * Classe qui represente un personnage
 	 */
-	private String nom_image;
+	private String direction;
 	private String nom;
 	private int nb_vies;
 	private int nb_bombes;
@@ -37,7 +37,7 @@ public class Personnage extends PossedePosition {
 	public Personnage(int x, int y, String nom) {
 		super(x,y);
 		this.nom = nom;
-		this.nom_image = nom+"Face.png";
+		this.direction = "Face" ;
 		this.nb_vies = 1;
 		this.nb_bombes = 1;
 		this.vivant = true;
@@ -140,20 +140,20 @@ public class Personnage extends PossedePosition {
 
 	
 	/**
-	 * Savoir le nom de l'image du personnage
-	 * @return Le nom de l'image du personnage
+	 * Savoir la direction du personnage
+	 * @return La direction du personnage
 	 */
-	public String getNom_image() {
-		return nom_image;
+	public String getDirection() {
+		return direction;
 	}
 
 	
 	/**
-	 * Modifie la valeur de l'attribut nom_image
-	 * @param nom_image L'attribut modifie
+	 * Modifie la valeur de l'attribut direction
+	 * @param direction L'attribut modifie
 	 */
-	public void setNom_image(String nom_image) {
-		this.nom_image = nom_image;
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 	
 	
@@ -234,10 +234,10 @@ public class Personnage extends PossedePosition {
 	public void move(int avance_x, int avance_y) {
 		this.x += avance_x;
 		this.y += avance_y;
-		if (avance_x == 1) this.nom_image = nom + "Droite.png";
-		else if (avance_x == -1) this.nom_image = nom + "Gauche.png";
-		else if (avance_y == 1) this.nom_image = nom + "Face.png" ;
-		else if (avance_y == -1) this.nom_image = nom + "Dos.png" ;
+		if (avance_x == 1) direction = "Droite" ;
+		else if (avance_x == -1) direction = "Gauche";
+		else if (avance_y == 1) direction = "Face" ;
+		else if (avance_y == -1) direction = "Dos" ;
 	}
 	
 	

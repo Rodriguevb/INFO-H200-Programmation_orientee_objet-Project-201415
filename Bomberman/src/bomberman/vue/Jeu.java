@@ -102,7 +102,7 @@ public class Jeu extends JPanel {
 		for ( int id = 0; id < controleur.getNumberPersonnage(); ++id ){
 			if (modele.getPersonnage(id).getVivant()){
 			    Point point = controleur.getPersonnagePosition( id );
-			    String img_personnage = controleur.getPersonnageNomImage( id );
+			    String img_personnage = controleur.getPersonnageNom( id ) + controleur.getPersonnageDirection( id ) + ".png";
 			    g2d.drawImage(new ImageIcon(img_personnage).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 			}
 		}

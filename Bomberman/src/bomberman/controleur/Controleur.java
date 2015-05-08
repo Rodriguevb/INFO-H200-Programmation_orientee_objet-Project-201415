@@ -353,10 +353,10 @@ public class Controleur {
 	 * @param idPersonnage L'ID du personnage
 	 * @return Le nom_image du personnage
 	 */
-	public String getPersonnageNomImage(int idPersonnage) {
+	public String getPersonnageDirection(int idPersonnage) {
 		Personnage personnage = modele.getPersonnage( idPersonnage );
-		String nom_image = personnage.getNom_image();
-		return nom_image;
+		String direction = personnage.getDirection();
+		return direction;
 	}
 	
 	/**

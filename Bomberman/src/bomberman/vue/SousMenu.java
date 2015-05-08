@@ -26,7 +26,7 @@ public class SousMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 
+	 * Constructeur de la classe SousMenu
 	 * @param controleur Le controleur du jeu
 	 * @param modele Le modele du jeu
 	 */

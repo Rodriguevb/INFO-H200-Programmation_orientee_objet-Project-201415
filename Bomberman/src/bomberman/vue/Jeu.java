@@ -132,11 +132,11 @@ public class Jeu extends JPanel {
 		 {
 		int id = controleur.getGagnant();
 		if (id != -1) {
-			JLabel labelGagnant = new JLabel(controleur.getPersonnageNom(id)+ " a gagné !");
+			JLabel labelGagnant = new JLabel(controleur.getPersonnageNom(id)+ " gagne !");
 			labelGagnant.setFont(new java.awt.Font("Comic Sans MS",1,70));
 			labelGagnant.setForeground(new Color(255,0,0));
 			this.add(labelGagnant);
-			labelGagnant.setBounds(200,300,600,100);
+			labelGagnant.setBounds(150,200,700,100);
 			id = 0 ;
 		}
 		

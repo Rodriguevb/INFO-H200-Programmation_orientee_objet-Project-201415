@@ -18,6 +18,10 @@ import javax.swing.JPanel;
 public class SousPoints extends JPanel {
 	
 	
+	/**
+	 * Classe qui affiche les bonus et les vies de chaque personnage
+	 */
+	
 	private static final long serialVersionUID = 1L;
 	private int idPersonnage ;
 	private Modele modele;

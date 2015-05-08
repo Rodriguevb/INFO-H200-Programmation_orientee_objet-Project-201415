@@ -15,6 +15,8 @@ import bomberman.modele.Modele;
 public class Jeu extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
+	
+	
 	/**
 	 * Permettre d'afficher les constituants du plateau
 	 */
@@ -31,7 +33,9 @@ public class Jeu extends JPanel {
 	
 	/**
 	 * Constructeur de la classe Jeu
-	 * @param controleur
+	 * @param controleur Le controleur du jeu
+	 * @param modele Le modele du jeu
+	 * @param points Les scores
 	 */
 	public Jeu(Controleur controleur, Modele modele, Points points){
 	
@@ -49,13 +53,25 @@ public class Jeu extends JPanel {
 	
 	/**
 	 * Afficher les differents elements du plateau
+	 * @param g Objet graphique
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		String img_blocCassable = modele.getTheme().getImage_bloc_cassable();
-		String img_blocIncassable = modele.getTheme().getImage_bloc_incassable();
+		String img_blocCassable ;
+		String img_blocIncassable ;
+		
+		if (modele.getTheme().getNomTheme() == "Mario"){
+			img_blocCassable = "blocMarioCassable.png" ;
+			img_blocIncassable = "briqueMario.png" ;
+		}
+		
+		else {
+			img_blocCassable = "bloc_tetris_cassable.png" ;
+			img_blocIncassable = "bloc_tetris_incassable.png" ;
+			
+		}
 		
 		
 		// Afficher le fond d'ecran.
@@ -113,6 +129,7 @@ public class Jeu extends JPanel {
 		    g2d.drawImage(new ImageIcon(img_malus).getImage(), point.x*taille_img, point.y*taille_img, taille_img, taille_img, null);
 		}
 		
+		 {
 		int id = controleur.getGagnant();
 		if (id != -1) {
 			JLabel labelGagnant = new JLabel(controleur.getPersonnageNom(id)+ " a gagné !");
@@ -120,11 +137,11 @@ public class Jeu extends JPanel {
 			labelGagnant.setForeground(new Color(255,0,0));
 			this.add(labelGagnant);
 			labelGagnant.setBounds(200,300,600,100);
-			System.out.println(controleur.getPersonnageNom(id));
+			id = 0 ;
 		}
 		
 	}
-		
+	}	
 	}
 
 

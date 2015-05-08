@@ -11,18 +11,23 @@ import bomberman.controleur.Controleur;
 import bomberman.modele.Modele;
 
 public class Points extends JPanel {
+
+	
+	/**
+	* La classe qui affiche cree les panels de points.
+	*/
 	
 	private static final long serialVersionUID = 1L;
-/**
-* La classe qui affiche le nombre de vies et de bonus de chaque personnage.
-*/
-	
-	
 	private Modele modele = null;
 	private Controleur controleur = null ;
 	private GridBagConstraints gbc;
 	
-
+	
+	/**
+	 * Constructeur de la classe Points
+	 * @param controleur Le controleur du jeu
+	 * @param modele Le modele du jeu
+	 */
 	public Points(Controleur controleur, Modele modele){
 		
 		this.modele = modele ;
@@ -30,14 +35,13 @@ public class Points extends JPanel {
 		this.setBackground(new Color(0,0,0));
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
-		
-		
-
 	}
 	
-	public void creerPoints(){
 	
-		
+	/**
+	 * Cree un panel de points pour chaque joueur
+	 */
+	public void creerPoints(){
 		for (int i = 0 ; i < controleur.getNbJoueurs() ; i++) {
 			SousPoints points = new SousPoints(i, controleur.getPersonnageNom(i), modele);
 	    	gbc.gridx = 0;

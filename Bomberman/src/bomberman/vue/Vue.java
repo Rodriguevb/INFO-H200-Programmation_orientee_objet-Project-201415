@@ -2,8 +2,6 @@ package bomberman.vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,12 +10,12 @@ import bomberman.modele.Modele;
 
 public class Vue extends JFrame{
 
-	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * La fenetre
 	 */
 
-	
+	private static final long serialVersionUID = 1L;
 	private final Menu menu;
 	private final SousMenu sousmenu;
 	private final Explications explications ;
@@ -32,6 +30,11 @@ public class Vue extends JFrame{
 	private Controleur controleur ;
 
 	
+	/**
+	 * Constructeur de la classe Vue
+	 * @param controleur Le controleur du jeu
+	 * @param modele Le modele du jeu
+	 */
 	public Vue(Controleur controleur, Modele modele){
 		
 		super("Bomberman");
@@ -61,27 +64,46 @@ public class Vue extends JFrame{
 	}
 	
 	
+	/**
+	 * Recupere les points
+	 * @return les points
+	 */
 	public Points getPoints(){
 		
 		return points;
 	}
 	
+	
+	/**
+	 * Affiche le panel Menu
+	 */
 	public void switchToMenu() {
 		
 		cl.show(content, listContent[0]);
 	}
 	
 
+	/**
+	 * Affiche le panel SousMenu
+	 */
 	public void switchToSousMenu() {
 		
 		cl.show(content, listContent[1]);
 	}
 	
+	
+	/**
+	 * Affiche le panel Explications
+	 */
 	public void switchToExplications() {
 		
 		cl.show(content, listContent[2]);
 	}
 	
+	
+	/**
+	 * Affiche le panel Jeu
+	 */
 	public void switchToJeu() {
 		
 		cl.show(content, listContent[3]);
@@ -93,10 +115,13 @@ public class Vue extends JFrame{
 		this.getContentPane().validate();
 		points.creerPoints();
 		points.setBounds(controleur.getMapWidth()*50, 0, 150, (controleur.getMapHeight())*50+45);
-		
-		
 	}
 
+	
+	/**
+	 * Recupere le jeu
+	 * @return le jeu
+	 */
 	public Jeu getJeu(){
 		return jeu;
 	}

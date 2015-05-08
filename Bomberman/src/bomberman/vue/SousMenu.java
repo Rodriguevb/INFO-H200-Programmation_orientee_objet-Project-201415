@@ -18,16 +18,19 @@ import bomberman.modele.Modele ;
 
 public class SousMenu extends JPanel {
 	
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * La classe qui affiche le menu.
 	 */
 	
-		
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 * @param controleur Le controleur du jeu
+	 * @param modele Le modele du jeu
+	 */
 	public SousMenu(Controleur controleur, Modele modele) {
-
-
 				
 		Bouton_retour bouton_retour = new Bouton_retour(controleur);
 		bouton_retour.setPreferredSize(new Dimension(200, 40));
@@ -102,6 +105,10 @@ public class SousMenu extends JPanel {
 		gbc.gridy = 2 ;
 }		
 
+	
+	/**
+	* Affiche les images du SousMenu
+	*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;

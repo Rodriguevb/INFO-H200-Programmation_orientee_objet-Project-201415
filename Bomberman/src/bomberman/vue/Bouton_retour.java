@@ -9,15 +9,17 @@ import bomberman.controleur.Controleur;
 public class Bouton_retour extends JButton implements ActionListener{
 	
 	
-	private static final long serialVersionUID = 1L;
-	
 	/**
 	 * Classe du bouton retour.
 	 */
 	
 	private Controleur controleur; 
+	private static final long serialVersionUID = 1L;
 	
-	
+	/**
+	 * Constructeur du bouton Retour
+	 * @param controleur Le Controleur du jeu
+	 */
 	public Bouton_retour(Controleur controleur) {
 		super("Retour au menu");
 		this.controleur = controleur;
@@ -26,7 +28,9 @@ public class Bouton_retour extends JButton implements ActionListener{
 	}
 
 
-	@Override
+	/**
+	 * Active l'effet du bouton Retour
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		controleur.switchToMenu();
 	}

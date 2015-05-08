@@ -23,6 +23,11 @@ public class Bouton_go extends JButton implements ActionListener{
 	private Modele modele = null ;
 
 	
+	/**
+	 * Constucteur de la classe Bouton_go
+	 * @param controleur Le controleur du jeu
+	 * @param modele Le modele du jeu
+	 */	
 	public Bouton_go(Controleur controleur, Modele modele) {
 		super("C'est parti !");
 		this.setLocation(200,300);
@@ -33,6 +38,9 @@ public class Bouton_go extends JButton implements ActionListener{
 	}
 
 
+	/**
+	 * Active les effets du bouton Go
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		controleur.creerJoueurs();

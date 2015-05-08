@@ -17,10 +17,9 @@ public class Modele {
 	private ArrayList<Explosion>  explosions   = new ArrayList<Explosion>();
 	private ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
-	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
-			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});
-	private int width = 10;
-	private int height= 10;
+	private Theme theme = new Theme("Mario", new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, "SonMario.wav");
+	private int width = 15;
+	private int height= 15;
 	
 	
 	/**
@@ -100,13 +99,11 @@ public class Modele {
 	 */
 	public void creerTheme (int i){
 		if (i == 0){
-			theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
-				"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});	
+			theme = new Theme("Mario", new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, "SonMario.wav");	
 			
 		}
 		if (i == 1) {
-			theme = new Theme(new String[] {"BomberOrange", "BomberVert", "BomberNoir", "Bomber"}, 
-				"bloc_tetris_cassable.png", "bloc_tetris_incassable.png", "Tetris.wav", new int[] {255, 255, 255});
+			theme = new Theme("Tetris", new String[] {"BomberO", "BomberV", "BomberN", "BomberB"}, "Tetris.wav");
 		}
 	}
 	

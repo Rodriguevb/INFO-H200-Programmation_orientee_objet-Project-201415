@@ -15,13 +15,18 @@ import bomberman.controleur.Controleur;
 
 public class Menu extends JPanel {
 	
-
-	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * La classe qui affiche le menu.
 	 */
+	
+	private static final long serialVersionUID = 1L;
 
+	
+	/**
+	 * Constructeur de la classe Menu
+	 * @param controleur Le controleur du jeu
+	 */
 	public Menu(Controleur controleur) {
 		
 		JButton bouton_jouer = new Bouton_jouer(controleur);
@@ -48,6 +53,11 @@ public class Menu extends JPanel {
 	    //---------------------------------------------
 	}
 	
+	
+	/**
+	 * Affiche les images du Menu
+	 * @param g Objet graphique
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;

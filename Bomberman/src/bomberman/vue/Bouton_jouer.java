@@ -18,6 +18,11 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	
 	private Controleur controleur = null;	
 	
+	
+	/**
+	 * Constructeur de la classe Bouton_jouer
+	 * @param controleur Le controleur du jeu
+	 */
 	public Bouton_jouer(Controleur controleur) {
 		super("Jouer");
 		this.setBackground(new Color(151,201,59));
@@ -27,6 +32,9 @@ public class Bouton_jouer extends JButton implements ActionListener{
 	}
 
 
+	/**
+	 * Active l'effet du bouton Jouer
+	 */
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToSousMenu();
 	}

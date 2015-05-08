@@ -26,6 +26,13 @@ public class SousPoints extends JPanel {
 	private JLabel labelGilet ;
 	private JLabel labelTunnel ;
 	
+	
+	/**
+	 * Constructeur de la classe SousPoints
+	 * @param id L'identifiant du joueur
+	 * @param nom Le nom du personnage
+	 * @modele Le modele du jeu
+	 */
 	public SousPoints (int id, String nom, Modele modele){
 		
 		setLayout(null);
@@ -68,7 +75,9 @@ public class SousPoints extends JPanel {
 	
 
 	
-
+	/**
+	 * Affiche les images de SousPoints
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;

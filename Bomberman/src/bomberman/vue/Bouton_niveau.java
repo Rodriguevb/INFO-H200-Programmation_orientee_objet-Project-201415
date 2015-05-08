@@ -11,14 +11,18 @@ import bomberman.controleur.Controleur;
 public class Bouton_niveau extends JComboBox implements ActionListener{
 
 
-	private static final long serialVersionUID = 1L;
 	/**
 	 * Classe du bouton Niveau.
 	 */
 	
 	private Controleur controleur = null;
+	private static final long serialVersionUID = 1L;
 	
 	
+	/**
+	 * Constructeur du bouton Niveau
+	 * @param controleur Le Controleur du jeu
+	 */
 	public Bouton_niveau(Controleur controleur) {
 		this.controleur = controleur;
 		this.addItem("Facile");
@@ -29,12 +33,12 @@ public class Bouton_niveau extends JComboBox implements ActionListener{
 	    this.setFont(new java.awt.Font("Serif",1,25));
 	    
 	}
-	
-		/*public void initialise(){
-			controleur.NbJoueurs(new String("1 joueur"));
-		}*/
 
-	    public void actionPerformed(ActionEvent e) {
-	      controleur.Niveau(this.getSelectedItem());
+	
+	/**
+	 * Active l'effet du bouton Niveau
+	 */
+	public void actionPerformed(ActionEvent e) {
+		controleur.Niveau(this.getSelectedItem());
 	    }               
 	  }

@@ -11,13 +11,18 @@ import bomberman.controleur.Controleur;
 public class Bouton_choixTheme extends JComboBox implements ActionListener{
 
 	
-	private static final long serialVersionUID = 1L;
 	/**
 	 * Classe du bouton Choix des joueurs.
 	 */
-
+	
+	private static final long serialVersionUID = 1L;
 	private Controleur controleur = null;
 	
+	
+	/**
+	 * Constucteur de la classe Bouton_choixTheme
+	 * @param controleur Le controleur du jeu
+	 */
 	public Bouton_choixTheme(Controleur controleur) {
 		
 		this.controleur = controleur;
@@ -29,7 +34,10 @@ public class Bouton_choixTheme extends JComboBox implements ActionListener{
 	    
 	}
 	
-
+	
+	/**
+	 * Active l'effet du bouton ChoixTheme
+	 */
 	public void actionPerformed(ActionEvent e) {
 	    controleur.ChoixTheme(this.getSelectedItem());
 	    

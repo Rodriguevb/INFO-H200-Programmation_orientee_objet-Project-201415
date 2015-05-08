@@ -19,6 +19,10 @@ public class Bouton_explications extends JButton implements ActionListener{
 	private Controleur controleur = null;
 
 	
+	/**
+	 * Constucteur de la classe Bouton_explications
+	 * @param controleur Le controleur du jeu
+	 */
 	public Bouton_explications(Controleur controleur) {
 		super("Comment jouer ?");
 		this.setBackground(new Color(154,201,59));
@@ -28,7 +32,9 @@ public class Bouton_explications extends JButton implements ActionListener{
 	}
 
 
-	@Override
+	/**
+	 * Active l'effet du bouton Explications
+	 */
 	public void actionPerformed(ActionEvent e) {
 		controleur.switchToExplications();
 	}

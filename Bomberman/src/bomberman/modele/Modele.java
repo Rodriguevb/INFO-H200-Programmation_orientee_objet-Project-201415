@@ -19,8 +19,8 @@ public class Modele {
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
 	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
 			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});
-	private int width = 15;
-	private int height = 15;
+	private int width = 10;
+	private int height= 10;
 	
 	
 	/**
@@ -83,8 +83,8 @@ public class Modele {
 	 */
 	public ArrayList<Integer[]> placesAccessibles(){
 		ArrayList<Integer[]> accessible = new ArrayList<Integer[]>();
-		for (int l = 3; l <= 13; l+=2){
-			for (int c = 3; c <= 13; c+=2){
+		for (int l = 3; l <= width-4; l+=2){
+			for (int c = 3; c <= height-4 ; c+=2){
 				if (getCase(l,c).estLibre()){
 					accessible.add(new Integer[] {l,c});
 				}

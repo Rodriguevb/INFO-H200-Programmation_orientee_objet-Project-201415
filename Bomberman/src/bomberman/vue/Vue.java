@@ -85,15 +85,15 @@ public class Vue extends JFrame{
 	public void switchToJeu() {
 		
 		cl.show(content, listContent[3]);
-		this.setSize((controleur.getMapWidth())*50+250, (controleur.getMapHeight())*50+50);
-		//this.setSize(1100,890);
+		this.setSize((controleur.getMapWidth())*50+150, (controleur.getMapHeight())*50+45);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();
 		this.getContentPane().validate();
 		points.creerPoints();
-		//points.setBounds(controleur.getMapWidth()*50+250,0,250,900);
+		points.setBounds(controleur.getMapWidth()*50, 0, 150, (controleur.getMapHeight())*50+45);
+		
 		
 	}
 

@@ -28,8 +28,6 @@ public class Points extends JPanel {
 		this.modele = modele ;
 		this.controleur = controleur ;
 		this.setBackground(new Color(0,0,0));
-		
-		
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		

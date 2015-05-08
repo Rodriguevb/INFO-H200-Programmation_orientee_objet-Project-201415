@@ -29,14 +29,16 @@ public class Vue extends JFrame{
 	private CardLayout cl = new CardLayout();
 	private String[] listContent = {"Menu", "SousMenu", "Explications", "Jeu"};
 	private JPanel content = new JPanel();
+	private Controleur controleur ;
 
 	
 	public Vue(Controleur controleur, Modele modele){
 		
 		super("Bomberman");
 	    this.setSize(860, 890);
-	    this.setMinimumSize( new Dimension(860,890) );
-	    this.setMaximumSize( new Dimension(860,890) );
+	    this.controleur = controleur ;
+	    //this.setMinimumSize( new Dimension(860,890) );
+	    //this.setMaximumSize( new Dimension(860,890) );
 	    this.setLocationRelativeTo(null); 
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	    
@@ -83,14 +85,15 @@ public class Vue extends JFrame{
 	public void switchToJeu() {
 		
 		cl.show(content, listContent[3]);
-		//this.setSize((controleur.getMapWidth()+2)*50+350, (controleur.getMapHeight()+2)*50+40);
-		this.setSize(1100,890);
+		this.setSize((controleur.getMapWidth())*50+250, (controleur.getMapHeight())*50+50);
+		//this.setSize(1100,890);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setFocusable( true );
 		this.getContentPane().requestFocus(); // permet au clavier de fonctionner sur le panel
 		jeu.requestFocus();
 		this.getContentPane().validate();
 		points.creerPoints();
+		//points.setBounds(controleur.getMapWidth()*50+250,0,250,900);
 		
 	}
 

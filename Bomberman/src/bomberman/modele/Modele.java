@@ -19,8 +19,8 @@ public class Modele {
 	private ArrayList<Malus> malus = new ArrayList<Malus>();
 	private Theme theme = new Theme(new String[] {"Mario", "Luigi", "Yoshi", "Bowser"}, 
 			"blocMarioCassable.png", "briqueMario.png", "SonMario.wav", new int[] {255, 255, 255});
-	private int width = 17;
-	private int height = 17;
+	private int width = 15;
+	private int height = 15;
 	
 	
 	/**
